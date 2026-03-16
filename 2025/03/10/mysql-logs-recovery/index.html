@@ -1,0 +1,1046 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="博主">
+  <meta name="keywords" content="技术,编程,博客,学习">
+  
+    <meta name="description" content="MySQL 日志系统与崩溃恢复MySQL 的日志系统是保证数据安全和高可用的基石。本文将深入解析 Redo Log、Undo Log、Binlog 的原理和作用。 一、MySQL 日志体系概览MySQL InnoDB 有多个日志系统，各司其职：    日志类型 作用 写入时机    Redo Log 保证持久性，崩溃恢复 事务提交时   Undo Log 回滚事务，MVCC 数据修改时   Bin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 日志系统与崩溃恢复">
+<meta property="og:url" content="https://lzqiangit.github.io/2025/03/10/mysql-logs-recovery/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="MySQL 日志系统与崩溃恢复MySQL 的日志系统是保证数据安全和高可用的基石。本文将深入解析 Redo Log、Undo Log、Binlog 的原理和作用。 一、MySQL 日志体系概览MySQL InnoDB 有多个日志系统，各司其职：    日志类型 作用 写入时机    Redo Log 保证持久性，崩溃恢复 事务提交时   Undo Log 回滚事务，MVCC 数据修改时   Bin">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-10T07:45:00.000Z">
+<meta property="article:modified_time" content="2026-03-16T03:33:06.097Z">
+<meta property="article:author" content="博主">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="持久化">
+<meta property="article:tag" content="日志">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MySQL 日志系统与崩溃恢复 - 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzqiangit.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2,"loadingImg":"/img/loading.gif"},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>我的技术博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL 日志系统与崩溃恢复"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MySQL 日志系统与崩溃恢复</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MySQL-日志系统与崩溃恢复"><a href="#MySQL-日志系统与崩溃恢复" class="headerlink" title="MySQL 日志系统与崩溃恢复"></a>MySQL 日志系统与崩溃恢复</h1><p>MySQL 的日志系统是保证数据安全和高可用的基石。本文将深入解析 Redo Log、Undo Log、Binlog 的原理和作用。</p>
+<h2 id="一、MySQL-日志体系概览"><a href="#一、MySQL-日志体系概览" class="headerlink" title="一、MySQL 日志体系概览"></a>一、MySQL 日志体系概览</h2><p>MySQL InnoDB 有多个日志系统，各司其职：</p>
+<table>
+<thead>
+<tr>
+<th>日志类型</th>
+<th>作用</th>
+<th>写入时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Redo Log</td>
+<td>保证持久性，崩溃恢复</td>
+<td>事务提交时</td>
+</tr>
+<tr>
+<td>Undo Log</td>
+<td>回滚事务，MVCC</td>
+<td>数据修改时</td>
+</tr>
+<tr>
+<td>Binlog</td>
+<td>主从复制，数据备份</td>
+<td>事务提交时</td>
+</tr>
+<tr>
+<td>Error Log</td>
+<td>错误诊断</td>
+<td>实时写入</td>
+</tr>
+<tr>
+<td>Slow Query Log</td>
+<td>慢查询分析</td>
+<td>查询执行后</td>
+</tr>
+<tr>
+<td>General Log</td>
+<td>所有查询记录</td>
+<td>查询执行时</td>
+</tr>
+</tbody></table>
+<h2 id="二、Redo-Log（重做日志）"><a href="#二、Redo-Log（重做日志）" class="headerlink" title="二、Redo Log（重做日志）"></a>二、Redo Log（重做日志）</h2><h3 id="2-1-为什么需要-Redo-Log"><a href="#2-1-为什么需要-Redo-Log" class="headerlink" title="2.1 为什么需要 Redo Log"></a>2.1 为什么需要 Redo Log</h3><p><strong>问题</strong>：数据页修改是随机 I&#x2F;O，性能差</p>
+<p><strong>解决方案</strong>：WAL（Write-Ahead Logging）</p>
+<ul>
+<li>先写日志，再写数据页</li>
+<li>顺序 I&#x2F;O 替代随机 I&#x2F;O</li>
+<li>崩溃后通过日志恢复数据</li>
+</ul>
+<h3 id="2-2-Redo-Log-结构"><a href="#2-2-Redo-Log-结构" class="headerlink" title="2.2 Redo Log 结构"></a>2.2 Redo Log 结构</h3><p>InnoDB 的 Redo Log 采用<strong>循环写入</strong>的方式：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">           ib_logfile0    ib_logfile1<br>          +<span class="hljs-comment">-----------+   +-----------+</span><br>          |           |   |           |<br><span class="hljs-keyword">write</span> pos |===========|===|===========| <span class="hljs-keyword">checkpoint</span><br>          |           |   |           |<br>          +<span class="hljs-comment">-----------+   +-----------+</span><br>               ↑                           ↑<br>            写入位置                    检查点位置<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>write pos</strong>：当前写入位置</li>
+<li><strong>checkpoint</strong>：检查点位置（数据已刷盘）</li>
+<li><strong>空闲空间</strong>：checkpoint 到 write pos 之间的空间</li>
+</ul>
+<p>如果 write pos 追上 checkpoint，需要暂停写入，先刷脏页。</p>
+<h3 id="2-3-Redo-Log-写入流程"><a href="#2-3-Redo-Log-写入流程" class="headerlink" title="2.3 Redo Log 写入流程"></a>2.3 Redo Log 写入流程</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-number">1.</span> 事务执行 SQL，修改内存中的数据页<br><span class="hljs-number">2.</span> 生成 Redo <span class="hljs-built_in">Log</span> Record，写入 Redo <span class="hljs-built_in">Log</span> <span class="hljs-built_in">Buffer</span><br><span class="hljs-number">3.</span> 事务提交，将 Redo <span class="hljs-built_in">Log</span> <span class="hljs-built_in">Buffer</span> 刷到磁盘（ib_logfile）<br><span class="hljs-number">4.</span> 后台线程异步将内存中的脏页刷到数据文件<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-4-刷盘策略"><a href="#2-4-刷盘策略" class="headerlink" title="2.4 刷盘策略"></a>2.4 刷盘策略</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看 innodb_flush_log_at_trx_commit 配置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_flush_log_at_trx_commit&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>三种策略</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>行为</th>
+<th>性能</th>
+<th>安全性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>每秒刷盘一次</td>
+<td>最高</td>
+<td>最低（可能丢失 1 秒数据）</td>
+</tr>
+<tr>
+<td>1</td>
+<td>每次提交刷盘</td>
+<td>最低</td>
+<td>最高（不丢数据）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>提交写入 OS 缓存，每秒刷盘</td>
+<td>中等</td>
+<td>中等（OS 崩溃可能丢数据）</td>
+</tr>
+</tbody></table>
+<p><strong>建议</strong>：生产环境设置为 <strong>1</strong>，保证数据安全。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 设置刷盘策略</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> innodb_flush_log_at_trx_commit <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-5-Redo-Log-相关配置"><a href="#2-5-Redo-Log-相关配置" class="headerlink" title="2.5 Redo Log 相关配置"></a>2.5 Redo Log 相关配置</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看配置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_log%&#x27;</span>;<br><br><span class="hljs-comment">-- innodb_log_file_size：每个日志文件大小（默认 48MB）</span><br><span class="hljs-comment">-- innodb_log_files_in_group：日志文件数量（默认 2）</span><br><span class="hljs-comment">-- innodb_log_buffer_size：日志缓冲区大小（默认 16MB）</span><br><br><span class="hljs-comment">-- 调整日志文件大小（需要重启）</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> innodb_log_file_size <span class="hljs-operator">=</span> <span class="hljs-number">256</span>M;<br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> innodb_log_files_in_group <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-6-Redo-Log-恢复流程"><a href="#2-6-Redo-Log-恢复流程" class="headerlink" title="2.6 Redo Log 恢复流程"></a>2.6 Redo Log 恢复流程</h3><p>崩溃恢复时：</p>
+<ol>
+<li>从 checkpoint 位置开始扫描 Redo Log</li>
+<li>重做（Redo）：将已提交但未刷盘的数据重新应用</li>
+<li>恢复到崩溃前的状态</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看检查点位置</span><br><span class="hljs-keyword">SHOW</span> ENGINE INNODB STATUS\G<br><br><span class="hljs-comment">-- 查看 LSN（Log Sequence Number）</span><br><span class="hljs-keyword">SHOW</span> ENGINE INNODB STATUS\G<br></code></pre></td></tr></table></figure>
+
+<h2 id="三、Undo-Log（回滚日志）"><a href="#三、Undo-Log（回滚日志）" class="headerlink" title="三、Undo Log（回滚日志）"></a>三、Undo Log（回滚日志）</h2><h3 id="3-1-Undo-Log-的作用"><a href="#3-1-Undo-Log-的作用" class="headerlink" title="3.1 Undo Log 的作用"></a>3.1 Undo Log 的作用</h3><ol>
+<li><strong>事务回滚</strong>：回滚未提交的事务</li>
+<li><strong>MVCC</strong>：提供数据的历史版本，实现一致性非阻塞读</li>
+</ol>
+<h3 id="3-2-Undo-Log-存储"><a href="#3-2-Undo-Log-存储" class="headerlink" title="3.2 Undo Log 存储"></a>3.2 Undo Log 存储</h3><ul>
+<li>InnoDB 将 Undo Log 存储在系统表空间或独立的 Undo 表空间</li>
+<li>MySQL 5.6+ 支持独立的 Undo 表空间</li>
+<li>MySQL 8.0+ 默认使用独立 Undo 表空间</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看 Undo 配置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_undo%&#x27;</span>;<br><br><span class="hljs-comment">-- innodb_undo_tablespaces：Undo 表空间数量</span><br><span class="hljs-comment">-- innodb_undo_directory：Undo 表空间目录</span><br><span class="hljs-comment">-- innodb_max_undo_log_size：Undo 表空间最大大小</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-3-Undo-Log-类型"><a href="#3-3-Undo-Log-类型" class="headerlink" title="3.3 Undo Log 类型"></a>3.3 Undo Log 类型</h3><ol>
+<li><p><strong>Insert Undo Log</strong></p>
+<ul>
+<li>事务插入数据时生成</li>
+<li>事务提交后可以立即删除</li>
+</ul>
+</li>
+<li><p><strong>Update Undo Log</strong></p>
+<ul>
+<li>事务更新或删除数据时生成</li>
+<li>需要保留到所有读操作完成后才能删除（MVCC）</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-4-Undo-Log-版本链"><a href="#3-4-Undo-Log-版本链" class="headerlink" title="3.4 Undo Log 版本链"></a>3.4 Undo Log 版本链</h3><p>每次更新数据，都会生成一条 Undo Log，形成版本链：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">当前数据 → <span class="hljs-variable">Undo</span> <span class="hljs-built_in">Log</span> <span class="hljs-number">1</span> → <span class="hljs-variable">Undo</span> <span class="hljs-built_in">Log</span> <span class="hljs-number">2</span> → <span class="hljs-variable">Undo</span> <span class="hljs-built_in">Log</span> <span class="hljs-number">3</span><br>            <span class="hljs-punctuation">(</span>事务 <span class="hljs-variable">A</span><span class="hljs-punctuation">)</span>     <span class="hljs-punctuation">(</span>事务 <span class="hljs-variable">B</span><span class="hljs-punctuation">)</span>     <span class="hljs-punctuation">(</span>事务 <span class="hljs-built_in">C</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-5-Undo-Log-清理"><a href="#3-5-Undo-Log-清理" class="headerlink" title="3.5 Undo Log 清理"></a>3.5 Undo Log 清理</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看 Undo Log 清理线程</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_purge_threads&#x27;</span>;<br><br><span class="hljs-comment">-- 手动触发清理</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> innodb_purge_rseg_truncate_frequency <span class="hljs-operator">=</span> <span class="hljs-number">128</span>;<br><br><span class="hljs-comment">-- 查看 Undo 表空间信息</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_TABLESPACES <br><span class="hljs-keyword">WHERE</span> NAME <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%undo%&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="四、Binlog（归档日志）"><a href="#四、Binlog（归档日志）" class="headerlink" title="四、Binlog（归档日志）"></a>四、Binlog（归档日志）</h2><h3 id="4-1-Binlog-与-Redo-Log-的区别"><a href="#4-1-Binlog-与-Redo-Log-的区别" class="headerlink" title="4.1 Binlog 与 Redo Log 的区别"></a>4.1 Binlog 与 Redo Log 的区别</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Redo Log</th>
+<th>Binlog</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>存储层</td>
+<td>InnoDB 引擎层</td>
+<td>MySQL Server 层</td>
+</tr>
+<tr>
+<td>格式</td>
+<td>物理日志（数据页修改）</td>
+<td>逻辑日志（SQL 语句或行变更）</td>
+</tr>
+<tr>
+<td>写入方式</td>
+<td>循环写入</td>
+<td>追加写入</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>崩溃恢复</td>
+<td>主从复制、数据备份</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-Binlog-格式"><a href="#4-2-Binlog-格式" class="headerlink" title="4.2 Binlog 格式"></a>4.2 Binlog 格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看 binlog 格式</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;binlog_format&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>三种格式</strong>：</p>
+<ol>
+<li><p><strong>STATEMENT</strong>（语句模式）</p>
+<ul>
+<li>记录原始 SQL 语句</li>
+<li>可能导致主从不一致（如 NOW() 函数）</li>
+</ul>
+</li>
+<li><p><strong>ROW</strong>（行模式，推荐）</p>
+<ul>
+<li>记录每行数据的变更</li>
+<li>数据一致性最好</li>
+</ul>
+</li>
+<li><p><strong>MIXED</strong>（混合模式）</p>
+<ul>
+<li>默认使用 STATEMENT，特殊情况使用 ROW</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 设置 binlog 格式</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> binlog_format <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;ROW&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3-Binlog-写入流程"><a href="#4-3-Binlog-写入流程" class="headerlink" title="4.3 Binlog 写入流程"></a>4.3 Binlog 写入流程</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-number">1</span>. 事务执行过程中，写入 <span class="hljs-keyword">Binlog </span><span class="hljs-keyword">Cache</span><br><span class="hljs-keyword"></span><span class="hljs-number">2</span>. 事务提交时，写入 <span class="hljs-keyword">Binlog </span>文件<br><span class="hljs-number">3</span>. 通过 <span class="hljs-keyword">sync_binlog </span>参数控制刷盘策略<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看 sync_binlog 配置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;sync_binlog&#x27;</span>;<br><br><span class="hljs-comment">-- sync_binlog = 0：由操作系统决定刷盘（性能最高，风险最大）</span><br><span class="hljs-comment">-- sync_binlog = 1：每次提交都刷盘（性能最低，最安全）</span><br><span class="hljs-comment">-- sync_binlog = N：每 N 次提交刷盘</span><br><br><span class="hljs-comment">-- 推荐：sync_binlog = 1（与 innodb_flush_log_at_trx_commit = 1 配合）</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> sync_binlog <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-4-Binlog-操作"><a href="#4-4-Binlog-操作" class="headerlink" title="4.4 Binlog 操作"></a>4.4 Binlog 操作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看所有 binlog 文件</span><br><span class="hljs-keyword">SHOW</span> <span class="hljs-type">BINARY</span> LOGS;<br><br><span class="hljs-comment">-- 查看当前 binlog 位置</span><br><span class="hljs-keyword">SHOW</span> MASTER STATUS;<br><br><span class="hljs-comment">-- 查看 binlog 内容</span><br><span class="hljs-keyword">SHOW</span> BINLOG EVENTS <span class="hljs-keyword">IN</span> <span class="hljs-string">&#x27;mysql-bin.000001&#x27;</span>;<br><br><span class="hljs-comment">-- 使用 mysqlbinlog 工具解析</span><br><span class="hljs-comment">-- shell&gt; mysqlbinlog --no-defaults mysql-bin.000001</span><br><br><span class="hljs-comment">-- 删除旧 binlog</span><br>PURGE <span class="hljs-type">BINARY</span> LOGS BEFORE <span class="hljs-string">&#x27;2025-01-01 00:00:00&#x27;</span>;<br>PURGE <span class="hljs-type">BINARY</span> LOGS <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;mysql-bin.000010&#x27;</span>;<br><br><span class="hljs-comment">-- 自动删除（设置过期天数）</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> expire_logs_days <span class="hljs-operator">=</span> <span class="hljs-number">7</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-5-Binlog-与-Redo-Log-两阶段提交"><a href="#4-5-Binlog-与-Redo-Log-两阶段提交" class="headerlink" title="4.5 Binlog 与 Redo Log 两阶段提交"></a>4.5 Binlog 与 Redo Log 两阶段提交</h3><p>为保证一致性，MySQL 采用<strong>两阶段提交</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> Prepare 阶段：<br><span class="hljs-bullet">   -</span> 写入 Redo Log，状态为 prepare<br><span class="hljs-bullet">   -</span> 持久化 Redo Log<br><br><span class="hljs-bullet">2.</span> Commit 阶段：<br><span class="hljs-bullet">   -</span> 写入 Binlog<br><span class="hljs-bullet">   -</span> 持久化 Binlog<br><span class="hljs-bullet">   -</span> 修改 Redo Log 状态为 commit<br></code></pre></td></tr></table></figure>
+
+<p><strong>崩溃恢复</strong>：</p>
+<ul>
+<li>如果 Redo Log 是 prepare，且 Binlog 有对应记录 → 提交事务</li>
+<li>如果 Redo Log 是 prepare，且 Binlog 无对应记录 → 回滚事务</li>
+</ul>
+<h2 id="五、日志配置最佳实践"><a href="#五、日志配置最佳实践" class="headerlink" title="五、日志配置最佳实践"></a>五、日志配置最佳实践</h2><h3 id="5-1-生产环境推荐配置"><a href="#5-1-生产环境推荐配置" class="headerlink" title="5.1 生产环境推荐配置"></a>5.1 生产环境推荐配置</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[mysqld]</span><br><span class="hljs-comment"># Redo Log</span><br><span class="hljs-attr">innodb_flush_log_at_trx_commit</span> = <span class="hljs-number">1</span>  <span class="hljs-comment"># 每次提交刷盘</span><br><span class="hljs-attr">innodb_log_file_size</span> = <span class="hljs-number">256</span>M         <span class="hljs-comment"># 单个日志文件大小</span><br><span class="hljs-attr">innodb_log_files_in_group</span> = <span class="hljs-number">2</span>       <span class="hljs-comment"># 日志文件数量</span><br><span class="hljs-attr">innodb_log_buffer_size</span> = <span class="hljs-number">16</span>M        <span class="hljs-comment"># 日志缓冲区</span><br><br><span class="hljs-comment"># Binlog</span><br><span class="hljs-attr">log_bin</span> = mysql-bin                 <span class="hljs-comment"># 开启 binlog</span><br><span class="hljs-attr">binlog_format</span> = ROW                 <span class="hljs-comment"># 行模式</span><br><span class="hljs-attr">sync_binlog</span> = <span class="hljs-number">1</span>                     <span class="hljs-comment"># 每次提交刷盘</span><br><span class="hljs-attr">expire_logs_days</span> = <span class="hljs-number">7</span>                <span class="hljs-comment"># 自动删除 7 天前的日志</span><br><br><span class="hljs-comment"># Undo Log</span><br><span class="hljs-attr">innodb_undo_tablespaces</span> = <span class="hljs-number">4</span>         <span class="hljs-comment"># Undo 表空间数量</span><br><span class="hljs-attr">innodb_max_undo_log_size</span> = <span class="hljs-number">1</span>G       <span class="hljs-comment"># Undo 表空间最大大小</span><br><span class="hljs-attr">innodb_undo_log_truncate</span> = <span class="hljs-literal">ON</span>       <span class="hljs-comment"># 自动收缩 Undo 表空间</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-日志监控"><a href="#5-2-日志监控" class="headerlink" title="5.2 日志监控"></a>5.2 日志监控</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看 Redo Log 使用情况</span><br><span class="hljs-keyword">SHOW</span> ENGINE INNODB STATUS\G<br><br><span class="hljs-comment">-- 查看 Binlog 大小</span><br><span class="hljs-keyword">SELECT</span> <br>    LOG_NAME,<br>    FILE_SIZE <span class="hljs-operator">/</span> <span class="hljs-number">1024</span> <span class="hljs-operator">/</span> <span class="hljs-number">1024</span> <span class="hljs-keyword">AS</span> SIZE_MB<br><span class="hljs-keyword">FROM</span> performance_schema.binary_log_files;<br><br><span class="hljs-comment">-- 查看 Slow Query Log</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> mysql.slow_log <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> start_time <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span>;<br><br><span class="hljs-comment">-- 查看 Error Log</span><br><span class="hljs-comment">-- 在配置文件中查看 log_error 路径</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;log_error&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="六、崩溃恢复实战"><a href="#六、崩溃恢复实战" class="headerlink" title="六、崩溃恢复实战"></a>六、崩溃恢复实战</h2><h3 id="6-1-恢复流程"><a href="#6-1-恢复流程" class="headerlink" title="6.1 恢复流程"></a>6.1 恢复流程</h3><p>崩溃后的自动恢复：</p>
+<ol>
+<li>读取 Redo Log，从 checkpoint 开始重做</li>
+<li>应用已提交但未刷盘的事务</li>
+<li>回滚未提交的事务（通过 Undo Log）</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看恢复状态</span><br><span class="hljs-keyword">SHOW</span> ENGINE INNODB STATUS\G<br><br><span class="hljs-comment">-- 查看 LSN</span><br><span class="hljs-keyword">SELECT</span> @<span class="hljs-variable">@innodb_flush_log_at_trx_commit</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-使用-Binlog-恢复数据"><a href="#6-2-使用-Binlog-恢复数据" class="headerlink" title="6.2 使用 Binlog 恢复数据"></a>6.2 使用 Binlog 恢复数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 找到最近的备份，恢复数据</span><br>mysql -u root -p &lt; backup.sql<br><br><span class="hljs-comment"># 2. 使用 mysqlbinlog 解析 binlog</span><br>mysqlbinlog --start-datetime=<span class="hljs-string">&quot;2025-03-10 10:00:00&quot;</span> \<br>            --stop-datetime=<span class="hljs-string">&quot;2025-03-10 12:00:00&quot;</span> \<br>            mysql-bin.000001 &gt; recovery.sql<br><br><span class="hljs-comment"># 3. 应用 binlog</span><br>mysql -u root -p &lt; recovery.sql<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-3-主从复制延迟处理"><a href="#6-3-主从复制延迟处理" class="headerlink" title="6.3 主从复制延迟处理"></a>6.3 主从复制延迟处理</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看从库状态</span><br><span class="hljs-keyword">SHOW</span> SLAVE STATUS\G<br><br><span class="hljs-comment">-- 关键指标</span><br><span class="hljs-comment">-- Seconds_Behind_Master：从库落后主库的秒数</span><br><span class="hljs-comment">-- Relay_Master_Log_File：正在读取的主库 binlog</span><br><span class="hljs-comment">-- Exec_Master_Log_Pos：已执行到的位置</span><br><br><span class="hljs-comment">-- 处理延迟</span><br><span class="hljs-comment">-- 1. 增加从库数量，分散读压力</span><br><span class="hljs-comment">-- 2. 使用并行复制（MySQL 5.7+）</span><br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> slave_parallel_workers <span class="hljs-operator">=</span> <span class="hljs-number">4</span>;<br><span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> slave_parallel_type <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;LOGICAL_CLOCK&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>MySQL 的日志系统是数据安全和性能的关键：</p>
+<ol>
+<li><strong>Redo Log</strong>：保证持久性，WAL 技术提升性能</li>
+<li><strong>Undo Log</strong>：支持事务回滚和 MVCC</li>
+<li><strong>Binlog</strong>：主从复制和数据备份</li>
+<li><strong>两阶段提交</strong>：保证 Redo Log 和 Binlog 的一致性</li>
+</ol>
+<p>理解日志系统，才能更好地优化数据库性能和处理故障。</p>
+<hr>
+<p><strong>相关文章</strong>:</p>
+<ul>
+<li><a href="/2025/01/15/mysql-transaction-concurrency/">MySQL 事务与并发控制深度解析</a></li>
+<li><a href="/2025/02/20/mysql-index-optimization/">MySQL 索引原理与优化实战</a></li>
+<li><a href="/2025/04/15/redis-persistence/">Redis 持久化机制详解</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
+      
+        <a href="/tags/%E6%97%A5%E5%BF%97/" class="print-no-link">#日志</a>
+      
+        <a href="/tags/%E6%8C%81%E4%B9%85%E5%8C%96/" class="print-no-link">#持久化</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL 日志系统与崩溃恢复</div>
+      <div>https://lzqiangit.github.io/2025/03/10/mysql-logs-recovery/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>博主</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/04/15/redis-persistence/" title="Redis 持久化机制详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis 持久化机制详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/20/mysql-index-optimization/" title="MySQL 索引原理与优化实战">
+                        <span class="hidden-mobile">MySQL 索引原理与优化实战</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
