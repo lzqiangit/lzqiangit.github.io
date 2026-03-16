@@ -1,25 +1,24 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
 
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=consolas:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"lzqiangit.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":false,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="博主">
+  <meta name="keywords" content="技术,编程,博客,学习">
+  
     <meta name="description" content="MongoDB NoSQL 数据库入门 📄MongoDB 是一个基于文档的 NoSQL 数据库，以其高性能、高可用性和易扩展性著称。本教程将带你全面了解 MongoDB 的核心概念和使用方法。 什么是 MongoDB？MongoDB 是一个开源的文档数据库，属于 NoSQL 数据库的一种。它以 JSON-like 格式存储数据，支持动态查询和索引。 MongoDB 的特点 文档存储: 使用 BS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB NoSQL 数据库入门">
@@ -34,257 +33,351 @@
 <meta property="article:tag" content="NoSQL">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="文档数据库">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MongoDB NoSQL 数据库入门 - 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://lzqiangit.github.io/2026/03/16/mongodb-nosql-intro/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lzqiangit.github.io/2026/03/16/mongodb-nosql-intro/","path":"2026/03/16/mongodb-nosql-intro/","title":"MongoDB NoSQL 数据库入门"}</script>
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>MongoDB NoSQL 数据库入门 | 技术博客</title>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzqiangit.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2,"loadingImg":"/img/loading.gif"},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
-<script src="/js/third-party/search/local-search.js" defer></script>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
-  <script src="/js/third-party/tags/mermaid.js" defer></script>
-
-
-
-
-
+<body>
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+  <header>
+    
 
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">技术博客</p>
-      <i class="logo-line"></i>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>我的技术博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">分享技术与思考</p>
-      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="技术博客">
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-      <div class="search-header">
-        <span class="search-icon">
-          <i class="fa fa-search"></i>
-        </span>
-        <div class="search-input-container">
-          <input autocomplete="off" autocapitalize="off" maxlength="80"
-                placeholder="搜索..." spellcheck="false"
-                type="search" class="search-input">
-        </div>
-        <span class="popup-btn-close" role="button">
-          <i class="fa fa-times-circle"></i>
-        </span>
-      </div>
-      <div class="search-result-container">
-        <div class="search-result-icon">
-          <i class="fa fa-spinner fa-pulse fa-5x"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</header>
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
         
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB-NoSQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8-%F0%9F%93%84"><span class="nav-number">1.</span> <span class="nav-text">MongoDB NoSQL 数据库入门 📄</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-MongoDB%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 MongoDB？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">MongoDB 的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93-vs-NoSQL"><span class="nav-number">1.1.2.</span> <span class="nav-text">关系型数据库 vs NoSQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-MongoDB"><span class="nav-number">1.2.</span> <span class="nav-text">安装 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linux 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.2.</span> <span class="nav-text">macOS 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.3.</span> <span class="nav-text">Windows 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.4.</span> <span class="nav-text">Docker 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.3.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93-Database"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据库 (Database)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88-Collection"><span class="nav-number">1.3.2.</span> <span class="nav-text">集合 (Collection)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3-Document"><span class="nav-number">1.3.3.</span> <span class="nav-text">文档 (Document)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRUD-%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.</span> <span class="nav-text">CRUD 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA-Create"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 创建 (Create)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#insertOne-%E6%8F%92%E5%85%A5%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">insertOne - 插入单个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insertMany-%E6%8F%92%E5%85%A5%E5%A4%9A%E4%B8%AA%E6%96%87%E6%A1%A3"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">insertMany - 插入多个文档</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9F%A5%E8%AF%A2-Read"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 查询 (Read)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#find-%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">find - 查询文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findOne-%E6%9F%A5%E8%AF%A2%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">findOne - 查询单个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">查询操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%EF%BC%88%E9%80%89%E6%8B%A9%E5%AD%97%E6%AE%B5%EF%BC%89"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">投影（选择字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E3%80%81%E5%88%86%E9%A1%B5"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">排序、分页</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0-Update"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 更新 (Update)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#updateOne-%E6%9B%B4%E6%96%B0%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">updateOne - 更新单个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#updateMany-%E6%9B%B4%E6%96%B0%E5%A4%9A%E4%B8%AA%E6%96%87%E6%A1%A3"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">updateMany - 更新多个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">更新操作符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%88%A0%E9%99%A4-Delete"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 删除 (Delete)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.1.</span> <span class="nav-text">创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.2.</span> <span class="nav-text">查看索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.3.</span> <span class="nav-text">删除索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%AD%96%E7%95%A5"><span class="nav-number">1.5.4.</span> <span class="nav-text">索引策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E7%AE%A1%E9%81%93"><span class="nav-number">1.6.</span> <span class="nav-text">聚合管道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%AE%A1%E9%81%93%E9%98%B6%E6%AE%B5"><span class="nav-number">1.6.1.</span> <span class="nav-text">基本管道阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E8%81%9A%E5%90%88%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.6.2.</span> <span class="nav-text">复杂聚合示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.7.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="nav-number">1.8.</span> <span class="nav-text">副本集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="nav-number">1.8.1.</span> <span class="nav-text">配置副本集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%89%87"><span class="nav-number">1.9.</span> <span class="nav-text">分片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E7%89%87"><span class="nav-number">1.9.1.</span> <span class="nav-text">配置分片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D"><span class="nav-number">1.10.</span> <span class="nav-text">数据备份与恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mongodump-%E5%A4%87%E4%BB%BD"><span class="nav-number">1.10.1.</span> <span class="nav-text">mongodump - 备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mongorestore-%E6%81%A2%E5%A4%8D"><span class="nav-number">1.10.2.</span> <span class="nav-text">mongorestore - 恢复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.11.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">1.11.1.</span> <span class="nav-text">1. 查询优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="nav-number">1.11.2.</span> <span class="nav-text">2. 索引优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96"><span class="nav-number">1.11.3.</span> <span class="nav-text">3. 内存优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.12.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q1-%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%A7%E5%B0%8F%EF%BC%9F"><span class="nav-number">1.12.1.</span> <span class="nav-text">Q1: 如何查看数据库大小？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q2-%E5%A6%82%E4%BD%95%E6%B8%85%E7%A9%BA%E9%9B%86%E5%90%88%EF%BC%9F"><span class="nav-number">1.12.2.</span> <span class="nav-text">Q2: 如何清空集合？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q3-%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%9F"><span class="nav-number">1.12.3.</span> <span class="nav-text">Q3: 如何修改字段名？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="nav-number">1.13.</span> <span class="nav-text">学习资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">1.13.1.</span> <span class="nav-text">官方文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E6%95%99%E7%A8%8B"><span class="nav-number">1.13.2.</span> <span class="nav-text">在线教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">1.13.3.</span> <span class="nav-text">工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">1.14.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="博主"
-      src="/images/avatar.png">
-  <p class="site-author-name" itemprop="name">博主</p>
-  <div class="site-description" itemprop="description">个人技术博客，记录学习笔记与技术分享</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/yourusername" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourusername" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-  </div>
-
-        </div>
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
       </div>
     </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MongoDB NoSQL 数据库入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
 
     
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/03/16/mongodb-nosql-intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="博主">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-      <meta itemprop="description" content="个人技术博客，记录学习笔记与技术分享">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="MongoDB NoSQL 数据库入门 | 技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          MongoDB NoSQL 数据库入门
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          89 分钟
+        
       </span>
-      <span class="post-meta-item-text">发表于</span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
       
 
-      <time title="创建时间：2026-03-16 11:00:00 / 修改时间：11:03:20" itemprop="dateCreated datePublished" datetime="2026-03-16T11:00:00+08:00">2026-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/" itemprop="url" rel="index"><span itemprop="name">NoSQL</span></a>
-        </span>
-    </span>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-  
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-</div>
+    </div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><h1 id="MongoDB-NoSQL-数据库入门-📄"><a href="#MongoDB-NoSQL-数据库入门-📄" class="headerlink" title="MongoDB NoSQL 数据库入门 📄"></a>MongoDB NoSQL 数据库入门 📄</h1><p>MongoDB 是一个基于文档的 NoSQL 数据库，以其高性能、高可用性和易扩展性著称。本教程将带你全面了解 MongoDB 的核心概念和使用方法。</p>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MongoDB NoSQL 数据库入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MongoDB-NoSQL-数据库入门-📄"><a href="#MongoDB-NoSQL-数据库入门-📄" class="headerlink" title="MongoDB NoSQL 数据库入门 📄"></a>MongoDB NoSQL 数据库入门 📄</h1><p>MongoDB 是一个基于文档的 NoSQL 数据库，以其高性能、高可用性和易扩展性著称。本教程将带你全面了解 MongoDB 的核心概念和使用方法。</p>
 <h2 id="什么是-MongoDB？"><a href="#什么是-MongoDB？" class="headerlink" title="什么是 MongoDB？"></a>什么是 MongoDB？</h2><p>MongoDB 是一个开源的文档数据库，属于 NoSQL 数据库的一种。它以 JSON-like 格式存储数据，支持动态查询和索引。</p>
 <h3 id="MongoDB-的特点"><a href="#MongoDB-的特点" class="headerlink" title="MongoDB 的特点"></a>MongoDB 的特点</h3><ul>
 <li><strong>文档存储</strong>: 使用 BSON 格式存储文档</li>
@@ -333,9 +426,9 @@
 <td>半结构化数据</td>
 </tr>
 </tbody></table>
-<h2 id="安装-MongoDB"><a href="#安装-MongoDB" class="headerlink" title="安装 MongoDB"></a>安装 MongoDB</h2><h3 id="Linux-安装"><a href="#Linux-安装" class="headerlink" title="Linux 安装"></a>Linux 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu/Debian</span></span><br><span class="line"><span class="comment"># 1. 导入 MongoDB 公钥</span></span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | <span class="built_in">sudo</span> apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 添加 MongoDB 源</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/mongodb-org-7.0.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 安装 MongoDB</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install -y mongodb-org</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 启动 MongoDB</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start mongod</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> mongod</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 验证安装</span></span><br><span class="line">mongod --version</span><br></pre></td></tr></table></figure>
+<h2 id="安装-MongoDB"><a href="#安装-MongoDB" class="headerlink" title="安装 MongoDB"></a>安装 MongoDB</h2><h3 id="Linux-安装"><a href="#Linux-安装" class="headerlink" title="Linux 安装"></a>Linux 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Ubuntu/Debian</span><br><span class="hljs-comment"># 1. 导入 MongoDB 公钥</span><br>wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | <span class="hljs-built_in">sudo</span> apt-key add -<br><br><span class="hljs-comment"># 2. 添加 MongoDB 源</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> /etc/apt/sources.list.d/mongodb-org-7.0.list<br><br><span class="hljs-comment"># 3. 安装 MongoDB</span><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install -y mongodb-org<br><br><span class="hljs-comment"># 4. 启动 MongoDB</span><br><span class="hljs-built_in">sudo</span> systemctl start mongod<br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> mongod<br><br><span class="hljs-comment"># 5. 验证安装</span><br>mongod --version<br></code></pre></td></tr></table></figure>
 
-<h3 id="macOS-安装"><a href="#macOS-安装" class="headerlink" title="macOS 安装"></a>macOS 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Homebrew</span></span><br><span class="line">brew tap mongodb/brew</span><br><span class="line">brew install mongodb-community@7.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 MongoDB</span></span><br><span class="line">brew services start mongodb-community@7.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">mongod --version</span><br></pre></td></tr></table></figure>
+<h3 id="macOS-安装"><a href="#macOS-安装" class="headerlink" title="macOS 安装"></a>macOS 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用 Homebrew</span><br>brew tap mongodb/brew<br>brew install mongodb-community@7.0<br><br><span class="hljs-comment"># 启动 MongoDB</span><br>brew services start mongodb-community@7.0<br><br><span class="hljs-comment"># 验证</span><br>mongod --version<br></code></pre></td></tr></table></figure>
 
 <h3 id="Windows-安装"><a href="#Windows-安装" class="headerlink" title="Windows 安装"></a>Windows 安装</h3><ol>
 <li>下载 MongoDB: <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a></li>
@@ -343,24 +436,24 @@
 <li>配置环境变量</li>
 <li>启动服务</li>
 </ol>
-<h3 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取 MongoDB 镜像</span></span><br><span class="line">docker pull mongo:7.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 MongoDB 容器</span></span><br><span class="line">docker run -d -p 27017:27017 --name my-mongo \</span><br><span class="line">  -e MONGO_INITDB_ROOT_USERNAME=admin \</span><br><span class="line">  -e MONGO_INITDB_ROOT_PASSWORD=password123 \</span><br><span class="line">  mongo:7.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接 MongoDB</span></span><br><span class="line">docker <span class="built_in">exec</span> -it my-mongo mongosh</span><br></pre></td></tr></table></figure>
+<h3 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 拉取 MongoDB 镜像</span><br>docker pull mongo:7.0<br><br><span class="hljs-comment"># 运行 MongoDB 容器</span><br>docker run -d -p 27017:27017 --name my-mongo \<br>  -e MONGO_INITDB_ROOT_USERNAME=admin \<br>  -e MONGO_INITDB_ROOT_PASSWORD=password123 \<br>  mongo:7.0<br><br><span class="hljs-comment"># 连接 MongoDB</span><br>docker <span class="hljs-built_in">exec</span> -it my-mongo mongosh<br></code></pre></td></tr></table></figure>
 
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="数据库-Database"><a href="#数据库-Database" class="headerlink" title="数据库 (Database)"></a>数据库 (Database)</h3><p>数据库是存储集合的容器。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查看所有数据库</span></span><br><span class="line">show dbs</span><br><span class="line"></span><br><span class="line"><span class="comment">// 切换/创建数据库</span></span><br><span class="line">use my_blog</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看当前数据库</span></span><br><span class="line">db</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 查看所有数据库</span><br>show dbs<br><br><span class="hljs-comment">// 切换/创建数据库</span><br>use my_blog<br><br><span class="hljs-comment">// 查看当前数据库</span><br>db<br></code></pre></td></tr></table></figure>
 
 <h3 id="集合-Collection"><a href="#集合-Collection" class="headerlink" title="集合 (Collection)"></a>集合 (Collection)</h3><p>集合类似于关系型数据库中的表，用于存储文档。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建集合（自动创建）</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">insertOne</span>(&#123;<span class="attr">name</span>: <span class="string">&quot;张三&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显式创建集合</span></span><br><span class="line">db.<span class="title function_">createCollection</span>(<span class="string">&quot;articles&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看所有集合</span></span><br><span class="line">show collections</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除集合</span></span><br><span class="line">db.<span class="property">articles</span>.<span class="title function_">drop</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建集合（自动创建）</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">insertOne</span>(&#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;张三&quot;</span>&#125;)<br><br><span class="hljs-comment">// 显式创建集合</span><br>db.<span class="hljs-title function_">createCollection</span>(<span class="hljs-string">&quot;articles&quot;</span>)<br><br><span class="hljs-comment">// 查看所有集合</span><br>show collections<br><br><span class="hljs-comment">// 删除集合</span><br>db.<span class="hljs-property">articles</span>.<span class="hljs-title function_">drop</span>()<br></code></pre></td></tr></table></figure>
 
 <h3 id="文档-Document"><a href="#文档-Document" class="headerlink" title="文档 (Document)"></a>文档 (Document)</h3><p>文档是 MongoDB 中的基本数据单元，以 BSON 格式存储。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文档示例</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;_id&quot;</span>: <span class="title class_">ObjectId</span>(<span class="string">&quot;...&quot;</span>),</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: <span class="string">&quot;MongoDB 教程&quot;</span>,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;张三&quot;</span>,</span><br><span class="line">  <span class="string">&quot;content&quot;</span>: <span class="string">&quot;这是一篇教程&quot;</span>,</span><br><span class="line">  <span class="string">&quot;tags&quot;</span>: [<span class="string">&quot;MongoDB&quot;</span>, <span class="string">&quot;NoSQL&quot;</span>],</span><br><span class="line">  <span class="string">&quot;views&quot;</span>: <span class="number">100</span>,</span><br><span class="line">  <span class="string">&quot;created_at&quot;</span>: <span class="title class_">ISODate</span>(<span class="string">&quot;2026-03-16T03:00:00Z&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 文档示例</span><br>&#123;<br>  <span class="hljs-string">&quot;_id&quot;</span>: <span class="hljs-title class_">ObjectId</span>(<span class="hljs-string">&quot;...&quot;</span>),<br>  <span class="hljs-string">&quot;title&quot;</span>: <span class="hljs-string">&quot;MongoDB 教程&quot;</span>,<br>  <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;张三&quot;</span>,<br>  <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;这是一篇教程&quot;</span>,<br>  <span class="hljs-string">&quot;tags&quot;</span>: [<span class="hljs-string">&quot;MongoDB&quot;</span>, <span class="hljs-string">&quot;NoSQL&quot;</span>],<br>  <span class="hljs-string">&quot;views&quot;</span>: <span class="hljs-number">100</span>,<br>  <span class="hljs-string">&quot;created_at&quot;</span>: <span class="hljs-title class_">ISODate</span>(<span class="hljs-string">&quot;2026-03-16T03:00:00Z&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="CRUD-操作"><a href="#CRUD-操作" class="headerlink" title="CRUD 操作"></a>CRUD 操作</h2><h3 id="1-创建-Create"><a href="#1-创建-Create" class="headerlink" title="1. 创建 (Create)"></a>1. 创建 (Create)</h3><h4 id="insertOne-插入单个文档"><a href="#insertOne-插入单个文档" class="headerlink" title="insertOne - 插入单个文档"></a>insertOne - 插入单个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入单个文档</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">insertOne</span>(&#123;</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>,</span><br><span class="line">  <span class="attr">email</span>: <span class="string">&quot;zhangsan@example.com&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">25</span>,</span><br><span class="line">  <span class="attr">created_at</span>: <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入并返回插入的文档 ID</span></span><br><span class="line"><span class="keyword">var</span> result = db.<span class="property">users</span>.<span class="title function_">insertOne</span>(&#123;</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&quot;lisi&quot;</span>,</span><br><span class="line">  <span class="attr">email</span>: <span class="string">&quot;lisi@example.com&quot;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">printjson</span>(result.<span class="property">insertedId</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="CRUD-操作"><a href="#CRUD-操作" class="headerlink" title="CRUD 操作"></a>CRUD 操作</h2><h3 id="1-创建-Create"><a href="#1-创建-Create" class="headerlink" title="1. 创建 (Create)"></a>1. 创建 (Create)</h3><h4 id="insertOne-插入单个文档"><a href="#insertOne-插入单个文档" class="headerlink" title="insertOne - 插入单个文档"></a>insertOne - 插入单个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 插入单个文档</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">insertOne</span>(&#123;<br>  <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>,<br>  <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;zhangsan@example.com&quot;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">25</span>,<br>  <span class="hljs-attr">created_at</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()<br>&#125;)<br><br><span class="hljs-comment">// 插入并返回插入的文档 ID</span><br><span class="hljs-keyword">var</span> result = db.<span class="hljs-property">users</span>.<span class="hljs-title function_">insertOne</span>(&#123;<br>  <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;lisi&quot;</span>,<br>  <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;lisi@example.com&quot;</span><br>&#125;)<br><span class="hljs-title function_">printjson</span>(result.<span class="hljs-property">insertedId</span>)<br></code></pre></td></tr></table></figure>
 
-<h4 id="insertMany-插入多个文档"><a href="#insertMany-插入多个文档" class="headerlink" title="insertMany - 插入多个文档"></a>insertMany - 插入多个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 批量插入</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">insertMany</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">username</span>: <span class="string">&quot;user1&quot;</span>,</span><br><span class="line">    <span class="attr">email</span>: <span class="string">&quot;user1@example.com&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">28</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">username</span>: <span class="string">&quot;user2&quot;</span>,</span><br><span class="line">    <span class="attr">email</span>: <span class="string">&quot;user2@example.com&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">username</span>: <span class="string">&quot;user3&quot;</span>,</span><br><span class="line">    <span class="attr">email</span>: <span class="string">&quot;user3@example.com&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">22</span></span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<h4 id="insertMany-插入多个文档"><a href="#insertMany-插入多个文档" class="headerlink" title="insertMany - 插入多个文档"></a>insertMany - 插入多个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 批量插入</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">insertMany</span>([<br>  &#123;<br>    <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;user1&quot;</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;user1@example.com&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">28</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;user2&quot;</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;user2@example.com&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">30</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;user3&quot;</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;user3@example.com&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">22</span><br>  &#125;<br>])<br></code></pre></td></tr></table></figure>
 
-<h3 id="2-查询-Read"><a href="#2-查询-Read" class="headerlink" title="2. 查询 (Read)"></a>2. 查询 (Read)</h3><h4 id="find-查询文档"><a href="#find-查询文档" class="headerlink" title="find - 查询文档"></a>find - 查询文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询所有文档</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式化输出</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>().<span class="title function_">pretty</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 条件查询</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;<span class="attr">age</span>: <span class="number">25</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多条件查询（AND）</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;<span class="attr">age</span>: <span class="number">25</span>, <span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多条件查询（OR）</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;</span><br><span class="line">  <span class="attr">$or</span>: [</span><br><span class="line">    &#123;<span class="attr">age</span>: <span class="number">25</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">username</span>: <span class="string">&quot;lisi&quot;</span>&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 范围查询</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;<span class="attr">age</span>: &#123;<span class="attr">$gt</span>: <span class="number">20</span>, <span class="attr">$lt</span>: <span class="number">30</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含查询</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;<span class="attr">username</span>: &#123;<span class="attr">$in</span>: [<span class="string">&quot;zhangsan&quot;</span>, <span class="string">&quot;lisi&quot;</span>]&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正则表达式查询</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;<span class="attr">email</span>: <span class="regexp">/example\.com$/</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询数组</span></span><br><span class="line">db.<span class="property">articles</span>.<span class="title function_">find</span>(&#123;<span class="attr">tags</span>: <span class="string">&quot;MongoDB&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询数组（多个条件）</span></span><br><span class="line">db.<span class="property">articles</span>.<span class="title function_">find</span>(&#123;<span class="attr">tags</span>: &#123;<span class="attr">$all</span>: [<span class="string">&quot;MongoDB&quot;</span>, <span class="string">&quot;NoSQL&quot;</span>]&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="2-查询-Read"><a href="#2-查询-Read" class="headerlink" title="2. 查询 (Read)"></a>2. 查询 (Read)</h3><h4 id="find-查询文档"><a href="#find-查询文档" class="headerlink" title="find - 查询文档"></a>find - 查询文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 查询所有文档</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>()<br><br><span class="hljs-comment">// 格式化输出</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">pretty</span>()<br><br><span class="hljs-comment">// 条件查询</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">age</span>: <span class="hljs-number">25</span>&#125;)<br><br><span class="hljs-comment">// 多条件查询（AND）</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">age</span>: <span class="hljs-number">25</span>, <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;)<br><br><span class="hljs-comment">// 多条件查询（OR）</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<br>  <span class="hljs-attr">$or</span>: [<br>    &#123;<span class="hljs-attr">age</span>: <span class="hljs-number">25</span>&#125;,<br>    &#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;lisi&quot;</span>&#125;<br>  ]<br>&#125;)<br><br><span class="hljs-comment">// 范围查询</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">age</span>: &#123;<span class="hljs-attr">$gt</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">$lt</span>: <span class="hljs-number">30</span>&#125;&#125;)<br><br><span class="hljs-comment">// 包含查询</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">username</span>: &#123;<span class="hljs-attr">$in</span>: [<span class="hljs-string">&quot;zhangsan&quot;</span>, <span class="hljs-string">&quot;lisi&quot;</span>]&#125;&#125;)<br><br><span class="hljs-comment">// 正则表达式查询</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">email</span>: <span class="hljs-regexp">/example\.com$/</span>&#125;)<br><br><span class="hljs-comment">// 查询数组</span><br>db.<span class="hljs-property">articles</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">tags</span>: <span class="hljs-string">&quot;MongoDB&quot;</span>&#125;)<br><br><span class="hljs-comment">// 查询数组（多个条件）</span><br>db.<span class="hljs-property">articles</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">tags</span>: &#123;<span class="hljs-attr">$all</span>: [<span class="hljs-string">&quot;MongoDB&quot;</span>, <span class="hljs-string">&quot;NoSQL&quot;</span>]&#125;&#125;)<br></code></pre></td></tr></table></figure>
 
-<h4 id="findOne-查询单个文档"><a href="#findOne-查询单个文档" class="headerlink" title="findOne - 查询单个文档"></a>findOne - 查询单个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询第一个匹配的文档</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">findOne</span>(&#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按条件查询并排序</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">findOne</span>(&#123;&#125;, &#123;<span class="attr">sort</span>: &#123;<span class="attr">age</span>: -<span class="number">1</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="findOne-查询单个文档"><a href="#findOne-查询单个文档" class="headerlink" title="findOne - 查询单个文档"></a>findOne - 查询单个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 查询第一个匹配的文档</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">findOne</span>(&#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;)<br><br><span class="hljs-comment">// 按条件查询并排序</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">findOne</span>(&#123;&#125;, &#123;<span class="hljs-attr">sort</span>: &#123;<span class="hljs-attr">age</span>: -<span class="hljs-number">1</span>&#125;&#125;)<br></code></pre></td></tr></table></figure>
 
 <h4 id="查询操作符"><a href="#查询操作符" class="headerlink" title="查询操作符"></a>查询操作符</h4><table>
 <thead>
@@ -421,13 +514,13 @@
 <td><code>{age: {$type: &quot;int&quot;}}</code></td>
 </tr>
 </tbody></table>
-<h4 id="投影（选择字段）"><a href="#投影（选择字段）" class="headerlink" title="投影（选择字段）"></a>投影（选择字段）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只返回指定字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;&#125;, &#123;<span class="attr">username</span>: <span class="number">1</span>, <span class="attr">email</span>: <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排除指定字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;&#125;, &#123;<span class="attr">password</span>: <span class="number">0</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排除 _id 字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;&#125;, &#123;<span class="attr">username</span>: <span class="number">1</span>, <span class="attr">email</span>: <span class="number">1</span>, <span class="attr">_id</span>: <span class="number">0</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="投影（选择字段）"><a href="#投影（选择字段）" class="headerlink" title="投影（选择字段）"></a>投影（选择字段）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 只返回指定字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;&#125;, &#123;<span class="hljs-attr">username</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">email</span>: <span class="hljs-number">1</span>&#125;)<br><br><span class="hljs-comment">// 排除指定字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;&#125;, &#123;<span class="hljs-attr">password</span>: <span class="hljs-number">0</span>&#125;)<br><br><span class="hljs-comment">// 排除 _id 字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;&#125;, &#123;<span class="hljs-attr">username</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">email</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">_id</span>: <span class="hljs-number">0</span>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h4 id="排序、分页"><a href="#排序、分页" class="headerlink" title="排序、分页"></a>排序、分页</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 升序排序</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>().<span class="title function_">sort</span>(&#123;<span class="attr">age</span>: <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 降序排序</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>().<span class="title function_">sort</span>(&#123;<span class="attr">age</span>: -<span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多字段排序</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>().<span class="title function_">sort</span>(&#123;<span class="attr">age</span>: -<span class="number">1</span>, <span class="attr">username</span>: <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 限制返回数量</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>().<span class="title function_">limit</span>(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳过指定数量</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>().<span class="title function_">skip</span>(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分页查询</span></span><br><span class="line"><span class="keyword">var</span> page = <span class="number">2</span></span><br><span class="line"><span class="keyword">var</span> pageSize = <span class="number">10</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>()</span><br><span class="line">  .<span class="title function_">skip</span>((page - <span class="number">1</span>) * pageSize)</span><br><span class="line">  .<span class="title function_">limit</span>(pageSize)</span><br></pre></td></tr></table></figure>
+<h4 id="排序、分页"><a href="#排序、分页" class="headerlink" title="排序、分页"></a>排序、分页</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 升序排序</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">sort</span>(&#123;<span class="hljs-attr">age</span>: <span class="hljs-number">1</span>&#125;)<br><br><span class="hljs-comment">// 降序排序</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">sort</span>(&#123;<span class="hljs-attr">age</span>: -<span class="hljs-number">1</span>&#125;)<br><br><span class="hljs-comment">// 多字段排序</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">sort</span>(&#123;<span class="hljs-attr">age</span>: -<span class="hljs-number">1</span>, <span class="hljs-attr">username</span>: <span class="hljs-number">1</span>&#125;)<br><br><span class="hljs-comment">// 限制返回数量</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">limit</span>(<span class="hljs-number">5</span>)<br><br><span class="hljs-comment">// 跳过指定数量</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">skip</span>(<span class="hljs-number">10</span>)<br><br><span class="hljs-comment">// 分页查询</span><br><span class="hljs-keyword">var</span> page = <span class="hljs-number">2</span><br><span class="hljs-keyword">var</span> pageSize = <span class="hljs-number">10</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>()<br>  .<span class="hljs-title function_">skip</span>((page - <span class="hljs-number">1</span>) * pageSize)<br>  .<span class="hljs-title function_">limit</span>(pageSize)<br></code></pre></td></tr></table></figure>
 
-<h3 id="3-更新-Update"><a href="#3-更新-Update" class="headerlink" title="3. 更新 (Update)"></a>3. 更新 (Update)</h3><h4 id="updateOne-更新单个文档"><a href="#updateOne-更新单个文档" class="headerlink" title="updateOne - 更新单个文档"></a>updateOne - 更新单个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更新单个字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">updateOne</span>(</span><br><span class="line">  &#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">$set</span>: &#123;<span class="attr">age</span>: <span class="number">26</span>&#125;&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新多个字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">updateOne</span>(</span><br><span class="line">  &#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$set</span>: &#123;</span><br><span class="line">      <span class="attr">age</span>: <span class="number">26</span>,</span><br><span class="line">      <span class="attr">email</span>: <span class="string">&quot;newemail@example.com&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加新字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">updateOne</span>(</span><br><span class="line">  &#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">$set</span>: &#123;<span class="attr">city</span>: <span class="string">&quot;北京&quot;</span>&#125;&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">updateOne</span>(</span><br><span class="line">  &#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">$unset</span>: &#123;<span class="attr">city</span>: <span class="string">&quot;&quot;</span>&#125;&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="3-更新-Update"><a href="#3-更新-Update" class="headerlink" title="3. 更新 (Update)"></a>3. 更新 (Update)</h3><h4 id="updateOne-更新单个文档"><a href="#updateOne-更新单个文档" class="headerlink" title="updateOne - 更新单个文档"></a>updateOne - 更新单个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 更新单个字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">updateOne</span>(<br>  &#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;,<br>  &#123;<span class="hljs-attr">$set</span>: &#123;<span class="hljs-attr">age</span>: <span class="hljs-number">26</span>&#125;&#125;<br>)<br><br><span class="hljs-comment">// 更新多个字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">updateOne</span>(<br>  &#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;,<br>  &#123;<br>    <span class="hljs-attr">$set</span>: &#123;<br>      <span class="hljs-attr">age</span>: <span class="hljs-number">26</span>,<br>      <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;newemail@example.com&quot;</span><br>    &#125;<br>  &#125;<br>)<br><br><span class="hljs-comment">// 添加新字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">updateOne</span>(<br>  &#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;,<br>  &#123;<span class="hljs-attr">$set</span>: &#123;<span class="hljs-attr">city</span>: <span class="hljs-string">&quot;北京&quot;</span>&#125;&#125;<br>)<br><br><span class="hljs-comment">// 删除字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">updateOne</span>(<br>  &#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;,<br>  &#123;<span class="hljs-attr">$unset</span>: &#123;<span class="hljs-attr">city</span>: <span class="hljs-string">&quot;&quot;</span>&#125;&#125;<br>)<br></code></pre></td></tr></table></figure>
 
-<h4 id="updateMany-更新多个文档"><a href="#updateMany-更新多个文档" class="headerlink" title="updateMany - 更新多个文档"></a>updateMany - 更新多个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 批量更新</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">updateMany</span>(</span><br><span class="line">  &#123;<span class="attr">age</span>: &#123;<span class="attr">$lt</span>: <span class="number">25</span>&#125;&#125;,</span><br><span class="line">  &#123;<span class="attr">$set</span>: &#123;<span class="attr">status</span>: <span class="string">&quot;young&quot;</span>&#125;&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="updateMany-更新多个文档"><a href="#updateMany-更新多个文档" class="headerlink" title="updateMany - 更新多个文档"></a>updateMany - 更新多个文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 批量更新</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">updateMany</span>(<br>  &#123;<span class="hljs-attr">age</span>: &#123;<span class="hljs-attr">$lt</span>: <span class="hljs-number">25</span>&#125;&#125;,<br>  &#123;<span class="hljs-attr">$set</span>: &#123;<span class="hljs-attr">status</span>: <span class="hljs-string">&quot;young&quot;</span>&#125;&#125;<br>)<br></code></pre></td></tr></table></figure>
 
 <h4 id="更新操作符"><a href="#更新操作符" class="headerlink" title="更新操作符"></a>更新操作符</h4><table>
 <thead>
@@ -478,13 +571,13 @@
 <td><code>{$addToSet: {tags: &quot;new&quot;}}</code></td>
 </tr>
 </tbody></table>
-<h3 id="4-删除-Delete"><a href="#4-删除-Delete" class="headerlink" title="4. 删除 (Delete)"></a>4. 删除 (Delete)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除单个文档</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">deleteOne</span>(&#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除多个文档</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">deleteMany</span>(&#123;<span class="attr">age</span>: &#123;<span class="attr">$lt</span>: <span class="number">20</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除所有文档</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">deleteMany</span>(&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除集合</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">drop</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="4-删除-Delete"><a href="#4-删除-Delete" class="headerlink" title="4. 删除 (Delete)"></a>4. 删除 (Delete)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 删除单个文档</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">deleteOne</span>(&#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;)<br><br><span class="hljs-comment">// 删除多个文档</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">deleteMany</span>(&#123;<span class="hljs-attr">age</span>: &#123;<span class="hljs-attr">$lt</span>: <span class="hljs-number">20</span>&#125;&#125;)<br><br><span class="hljs-comment">// 删除所有文档</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">deleteMany</span>(&#123;&#125;)<br><br><span class="hljs-comment">// 删除集合</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">drop</span>()<br></code></pre></td></tr></table></figure>
 
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建单字段索引</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">createIndex</span>(&#123;<span class="attr">username</span>: <span class="number">1</span>&#125;)  <span class="comment">// 1 升序, -1 降序</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建复合索引</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">createIndex</span>(&#123;<span class="attr">username</span>: <span class="number">1</span>, <span class="attr">age</span>: -<span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建唯一索引</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">createIndex</span>(&#123;<span class="attr">email</span>: <span class="number">1</span>&#125;, &#123;<span class="attr">unique</span>: <span class="literal">true</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建文本索引</span></span><br><span class="line">db.<span class="property">articles</span>.<span class="title function_">createIndex</span>(&#123;<span class="attr">title</span>: <span class="string">&quot;text&quot;</span>, <span class="attr">content</span>: <span class="string">&quot;text&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 TTL 索引（自动过期删除）</span></span><br><span class="line">db.<span class="property">sessions</span>.<span class="title function_">createIndex</span>(</span><br><span class="line">  &#123;<span class="attr">created_at</span>: <span class="number">1</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">expireAfterSeconds</span>: <span class="number">3600</span>&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建单字段索引</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">createIndex</span>(&#123;<span class="hljs-attr">username</span>: <span class="hljs-number">1</span>&#125;)  <span class="hljs-comment">// 1 升序, -1 降序</span><br><br><span class="hljs-comment">// 创建复合索引</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">createIndex</span>(&#123;<span class="hljs-attr">username</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">age</span>: -<span class="hljs-number">1</span>&#125;)<br><br><span class="hljs-comment">// 创建唯一索引</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">createIndex</span>(&#123;<span class="hljs-attr">email</span>: <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span>&#125;)<br><br><span class="hljs-comment">// 创建文本索引</span><br>db.<span class="hljs-property">articles</span>.<span class="hljs-title function_">createIndex</span>(&#123;<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;text&quot;</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">&quot;text&quot;</span>&#125;)<br><br><span class="hljs-comment">// 创建 TTL 索引（自动过期删除）</span><br>db.<span class="hljs-property">sessions</span>.<span class="hljs-title function_">createIndex</span>(<br>  &#123;<span class="hljs-attr">created_at</span>: <span class="hljs-number">1</span>&#125;,<br>  &#123;<span class="hljs-attr">expireAfterSeconds</span>: <span class="hljs-number">3600</span>&#125;<br>)<br></code></pre></td></tr></table></figure>
 
-<h3 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查看所有索引</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">getIndexes</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看索引大小</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">totalIndexSize</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 查看所有索引</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">getIndexes</span>()<br><br><span class="hljs-comment">// 查看索引大小</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">totalIndexSize</span>()<br></code></pre></td></tr></table></figure>
 
-<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除指定索引</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">dropIndex</span>(<span class="string">&quot;username_1&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除所有索引（除了 _id 索引）</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">dropIndexes</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 删除指定索引</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">dropIndex</span>(<span class="hljs-string">&quot;username_1&quot;</span>)<br><br><span class="hljs-comment">// 删除所有索引（除了 _id 索引）</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">dropIndexes</span>()<br></code></pre></td></tr></table></figure>
 
 <h3 id="索引策略"><a href="#索引策略" class="headerlink" title="索引策略"></a>索引策略</h3><ol>
 <li><strong>选择性高的字段</strong>: 唯一性高的字段适合建索引</li>
@@ -493,39 +586,39 @@
 <li><strong>避免过多索引</strong>: 索引会影响写入性能</li>
 </ol>
 <h2 id="聚合管道"><a href="#聚合管道" class="headerlink" title="聚合管道"></a>聚合管道</h2><p>聚合管道用于数据处理和分析。</p>
-<h3 id="基本管道阶段"><a href="#基本管道阶段" class="headerlink" title="基本管道阶段"></a>基本管道阶段</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// $match - 过滤文档</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$match</span>: &#123;<span class="attr">status</span>: <span class="string">&quot;completed&quot;</span>&#125;&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $group - 分组</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$group</span>: &#123;</span><br><span class="line">      <span class="attr">_id</span>: <span class="string">&quot;$status&quot;</span>,</span><br><span class="line">      <span class="attr">total</span>: &#123;<span class="attr">$sum</span>: <span class="number">1</span>&#125;,</span><br><span class="line">      <span class="attr">totalAmount</span>: &#123;<span class="attr">$sum</span>: <span class="string">&quot;$amount&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $sort - 排序</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$sort</span>: &#123;<span class="attr">created_at</span>: -<span class="number">1</span>&#125;&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $limit - 限制数量</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$limit</span>: <span class="number">10</span>&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $skip - 跳过文档</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$skip</span>: <span class="number">10</span>&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $project - 选择字段</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$project</span>: &#123;</span><br><span class="line">      <span class="attr">username</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="attr">email</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="attr">_id</span>: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $lookup - 关联查询</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$lookup</span>: &#123;</span><br><span class="line">      <span class="attr">from</span>: <span class="string">&quot;users&quot;</span>,</span><br><span class="line">      <span class="attr">localField</span>: <span class="string">&quot;user_id&quot;</span>,</span><br><span class="line">      <span class="attr">foreignField</span>: <span class="string">&quot;_id&quot;</span>,</span><br><span class="line">      <span class="attr">as</span>: <span class="string">&quot;user_info&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// $unwind - 展开数组</span></span><br><span class="line">db.<span class="property">articles</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$unwind</span>: <span class="string">&quot;$tags&quot;</span>&#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<h3 id="基本管道阶段"><a href="#基本管道阶段" class="headerlink" title="基本管道阶段"></a>基本管道阶段</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// $match - 过滤文档</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$match</span>: &#123;<span class="hljs-attr">status</span>: <span class="hljs-string">&quot;completed&quot;</span>&#125;&#125;<br>])<br><br><span class="hljs-comment">// $group - 分组</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<br>    <span class="hljs-attr">$group</span>: &#123;<br>      <span class="hljs-attr">_id</span>: <span class="hljs-string">&quot;$status&quot;</span>,<br>      <span class="hljs-attr">total</span>: &#123;<span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span>&#125;,<br>      <span class="hljs-attr">totalAmount</span>: &#123;<span class="hljs-attr">$sum</span>: <span class="hljs-string">&quot;$amount&quot;</span>&#125;<br>    &#125;<br>  &#125;<br>])<br><br><span class="hljs-comment">// $sort - 排序</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$sort</span>: &#123;<span class="hljs-attr">created_at</span>: -<span class="hljs-number">1</span>&#125;&#125;<br>])<br><br><span class="hljs-comment">// $limit - 限制数量</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$limit</span>: <span class="hljs-number">10</span>&#125;<br>])<br><br><span class="hljs-comment">// $skip - 跳过文档</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$skip</span>: <span class="hljs-number">10</span>&#125;<br>])<br><br><span class="hljs-comment">// $project - 选择字段</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<br>    <span class="hljs-attr">$project</span>: &#123;<br>      <span class="hljs-attr">username</span>: <span class="hljs-number">1</span>,<br>      <span class="hljs-attr">email</span>: <span class="hljs-number">1</span>,<br>      <span class="hljs-attr">_id</span>: <span class="hljs-number">0</span><br>    &#125;<br>  &#125;<br>])<br><br><span class="hljs-comment">// $lookup - 关联查询</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<br>    <span class="hljs-attr">$lookup</span>: &#123;<br>      <span class="hljs-attr">from</span>: <span class="hljs-string">&quot;users&quot;</span>,<br>      <span class="hljs-attr">localField</span>: <span class="hljs-string">&quot;user_id&quot;</span>,<br>      <span class="hljs-attr">foreignField</span>: <span class="hljs-string">&quot;_id&quot;</span>,<br>      <span class="hljs-attr">as</span>: <span class="hljs-string">&quot;user_info&quot;</span><br>    &#125;<br>  &#125;<br>])<br><br><span class="hljs-comment">// $unwind - 展开数组</span><br>db.<span class="hljs-property">articles</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$unwind</span>: <span class="hljs-string">&quot;$tags&quot;</span>&#125;<br>])<br></code></pre></td></tr></table></figure>
 
-<h3 id="复杂聚合示例"><a href="#复杂聚合示例" class="headerlink" title="复杂聚合示例"></a>复杂聚合示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统计每个标签的文章数量</span></span><br><span class="line">db.<span class="property">articles</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$unwind</span>: <span class="string">&quot;$tags&quot;</span>&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$group</span>: &#123;</span><br><span class="line">      <span class="attr">_id</span>: <span class="string">&quot;$tags&quot;</span>,</span><br><span class="line">      <span class="attr">count</span>: &#123;<span class="attr">$sum</span>: <span class="number">1</span>&#125;,</span><br><span class="line">      <span class="attr">totalViews</span>: &#123;<span class="attr">$sum</span>: <span class="string">&quot;$views&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;<span class="attr">$sort</span>: &#123;<span class="attr">count</span>: -<span class="number">1</span>&#125;&#125;,</span><br><span class="line">  &#123;<span class="attr">$limit</span>: <span class="number">10</span>&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户订单统计</span></span><br><span class="line">db.<span class="property">orders</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$match</span>: &#123;</span><br><span class="line">      <span class="attr">created_at</span>: &#123;</span><br><span class="line">        <span class="attr">$gte</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&quot;2026-01-01&quot;</span>),</span><br><span class="line">        <span class="attr">$lt</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&quot;2026-12-31&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$group</span>: &#123;</span><br><span class="line">      <span class="attr">_id</span>: <span class="string">&quot;$user_id&quot;</span>,</span><br><span class="line">      <span class="attr">orderCount</span>: &#123;<span class="attr">$sum</span>: <span class="number">1</span>&#125;,</span><br><span class="line">      <span class="attr">totalAmount</span>: &#123;<span class="attr">$sum</span>: <span class="string">&quot;$amount&quot;</span>&#125;,</span><br><span class="line">      <span class="attr">avgAmount</span>: &#123;<span class="attr">$avg</span>: <span class="string">&quot;$amount&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$lookup</span>: &#123;</span><br><span class="line">      <span class="attr">from</span>: <span class="string">&quot;users&quot;</span>,</span><br><span class="line">      <span class="attr">localField</span>: <span class="string">&quot;_id&quot;</span>,</span><br><span class="line">      <span class="attr">foreignField</span>: <span class="string">&quot;_id&quot;</span>,</span><br><span class="line">      <span class="attr">as</span>: <span class="string">&quot;user&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;<span class="attr">$unwind</span>: <span class="string">&quot;$user&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">$sort</span>: &#123;<span class="attr">totalAmount</span>: -<span class="number">1</span>&#125;&#125;,</span><br><span class="line">  &#123;<span class="attr">$limit</span>: <span class="number">10</span>&#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<h3 id="复杂聚合示例"><a href="#复杂聚合示例" class="headerlink" title="复杂聚合示例"></a>复杂聚合示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 统计每个标签的文章数量</span><br>db.<span class="hljs-property">articles</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$unwind</span>: <span class="hljs-string">&quot;$tags&quot;</span>&#125;,<br>  &#123;<br>    <span class="hljs-attr">$group</span>: &#123;<br>      <span class="hljs-attr">_id</span>: <span class="hljs-string">&quot;$tags&quot;</span>,<br>      <span class="hljs-attr">count</span>: &#123;<span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span>&#125;,<br>      <span class="hljs-attr">totalViews</span>: &#123;<span class="hljs-attr">$sum</span>: <span class="hljs-string">&quot;$views&quot;</span>&#125;<br>    &#125;<br>  &#125;,<br>  &#123;<span class="hljs-attr">$sort</span>: &#123;<span class="hljs-attr">count</span>: -<span class="hljs-number">1</span>&#125;&#125;,<br>  &#123;<span class="hljs-attr">$limit</span>: <span class="hljs-number">10</span>&#125;<br>])<br><br><span class="hljs-comment">// 用户订单统计</span><br>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<br>    <span class="hljs-attr">$match</span>: &#123;<br>      <span class="hljs-attr">created_at</span>: &#123;<br>        <span class="hljs-attr">$gte</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2026-01-01&quot;</span>),<br>        <span class="hljs-attr">$lt</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2026-12-31&quot;</span>)<br>      &#125;<br>    &#125;<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">$group</span>: &#123;<br>      <span class="hljs-attr">_id</span>: <span class="hljs-string">&quot;$user_id&quot;</span>,<br>      <span class="hljs-attr">orderCount</span>: &#123;<span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span>&#125;,<br>      <span class="hljs-attr">totalAmount</span>: &#123;<span class="hljs-attr">$sum</span>: <span class="hljs-string">&quot;$amount&quot;</span>&#125;,<br>      <span class="hljs-attr">avgAmount</span>: &#123;<span class="hljs-attr">$avg</span>: <span class="hljs-string">&quot;$amount&quot;</span>&#125;<br>    &#125;<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">$lookup</span>: &#123;<br>      <span class="hljs-attr">from</span>: <span class="hljs-string">&quot;users&quot;</span>,<br>      <span class="hljs-attr">localField</span>: <span class="hljs-string">&quot;_id&quot;</span>,<br>      <span class="hljs-attr">foreignField</span>: <span class="hljs-string">&quot;_id&quot;</span>,<br>      <span class="hljs-attr">as</span>: <span class="hljs-string">&quot;user&quot;</span><br>    &#125;<br>  &#125;,<br>  &#123;<span class="hljs-attr">$unwind</span>: <span class="hljs-string">&quot;$user&quot;</span>&#125;,<br>  &#123;<span class="hljs-attr">$sort</span>: &#123;<span class="hljs-attr">totalAmount</span>: -<span class="hljs-number">1</span>&#125;&#125;,<br>  &#123;<span class="hljs-attr">$limit</span>: <span class="hljs-number">10</span>&#125;<br>])<br></code></pre></td></tr></table></figure>
 
 <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>MongoDB 4.0+ 支持多文档事务。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启动会话</span></span><br><span class="line"><span class="keyword">var</span> session = db.<span class="title function_">getMongo</span>().<span class="title function_">startSession</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// 开始事务</span></span><br><span class="line">  session.<span class="title function_">startTransaction</span>()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 执行操作</span></span><br><span class="line">  <span class="keyword">var</span> orders = session.<span class="title function_">getDatabase</span>(<span class="string">&quot;my_blog&quot;</span>).<span class="property">orders</span></span><br><span class="line">  <span class="keyword">var</span> products = session.<span class="title function_">getDatabase</span>(<span class="string">&quot;my_blog&quot;</span>).<span class="property">products</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建订单</span></span><br><span class="line">  orders.<span class="title function_">insertOne</span>(&#123;</span><br><span class="line">    <span class="attr">user_id</span>: <span class="title class_">ObjectId</span>(<span class="string">&quot;...&quot;</span>),</span><br><span class="line">    <span class="attr">product_id</span>: <span class="title class_">ObjectId</span>(<span class="string">&quot;...&quot;</span>),</span><br><span class="line">    <span class="attr">quantity</span>: <span class="number">2</span></span><br><span class="line">  &#125;, &#123;session&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 减少库存</span></span><br><span class="line">  products.<span class="title function_">updateOne</span>(</span><br><span class="line">    &#123;<span class="attr">_id</span>: <span class="title class_">ObjectId</span>(<span class="string">&quot;...&quot;</span>)&#125;,</span><br><span class="line">    &#123;<span class="attr">$inc</span>: &#123;<span class="attr">stock</span>: -<span class="number">2</span>&#125;&#125;,</span><br><span class="line">    &#123;session&#125;</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 提交事务</span></span><br><span class="line">  session.<span class="title function_">commitTransaction</span>()</span><br><span class="line">  <span class="title function_">print</span>(<span class="string">&quot;事务提交成功&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// 回滚事务</span></span><br><span class="line">  session.<span class="title function_">abortTransaction</span>()</span><br><span class="line">  <span class="title function_">print</span>(<span class="string">&quot;事务回滚: &quot;</span> + error)</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="comment">// 结束会话</span></span><br><span class="line">  session.<span class="title function_">endSession</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 启动会话</span><br><span class="hljs-keyword">var</span> session = db.<span class="hljs-title function_">getMongo</span>().<span class="hljs-title function_">startSession</span>()<br><br><span class="hljs-keyword">try</span> &#123;<br>  <span class="hljs-comment">// 开始事务</span><br>  session.<span class="hljs-title function_">startTransaction</span>()<br><br>  <span class="hljs-comment">// 执行操作</span><br>  <span class="hljs-keyword">var</span> orders = session.<span class="hljs-title function_">getDatabase</span>(<span class="hljs-string">&quot;my_blog&quot;</span>).<span class="hljs-property">orders</span><br>  <span class="hljs-keyword">var</span> products = session.<span class="hljs-title function_">getDatabase</span>(<span class="hljs-string">&quot;my_blog&quot;</span>).<span class="hljs-property">products</span><br><br>  <span class="hljs-comment">// 创建订单</span><br>  orders.<span class="hljs-title function_">insertOne</span>(&#123;<br>    <span class="hljs-attr">user_id</span>: <span class="hljs-title class_">ObjectId</span>(<span class="hljs-string">&quot;...&quot;</span>),<br>    <span class="hljs-attr">product_id</span>: <span class="hljs-title class_">ObjectId</span>(<span class="hljs-string">&quot;...&quot;</span>),<br>    <span class="hljs-attr">quantity</span>: <span class="hljs-number">2</span><br>  &#125;, &#123;session&#125;)<br><br>  <span class="hljs-comment">// 减少库存</span><br>  products.<span class="hljs-title function_">updateOne</span>(<br>    &#123;<span class="hljs-attr">_id</span>: <span class="hljs-title class_">ObjectId</span>(<span class="hljs-string">&quot;...&quot;</span>)&#125;,<br>    &#123;<span class="hljs-attr">$inc</span>: &#123;<span class="hljs-attr">stock</span>: -<span class="hljs-number">2</span>&#125;&#125;,<br>    &#123;session&#125;<br>  )<br><br>  <span class="hljs-comment">// 提交事务</span><br>  session.<span class="hljs-title function_">commitTransaction</span>()<br>  <span class="hljs-title function_">print</span>(<span class="hljs-string">&quot;事务提交成功&quot;</span>)<br>&#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>  <span class="hljs-comment">// 回滚事务</span><br>  session.<span class="hljs-title function_">abortTransaction</span>()<br>  <span class="hljs-title function_">print</span>(<span class="hljs-string">&quot;事务回滚: &quot;</span> + error)<br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>  <span class="hljs-comment">// 结束会话</span><br>  session.<span class="hljs-title function_">endSession</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="副本集"><a href="#副本集" class="headerlink" title="副本集"></a>副本集</h2><p>副本集提供数据冗余和高可用性。</p>
-<h3 id="配置副本集"><a href="#配置副本集" class="headerlink" title="配置副本集"></a>配置副本集</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化副本集</span></span><br><span class="line">rs.<span class="title function_">initiate</span>(&#123;</span><br><span class="line">  <span class="attr">_id</span>: <span class="string">&quot;myReplicaSet&quot;</span>,</span><br><span class="line">  <span class="attr">members</span>: [</span><br><span class="line">    &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">host</span>: <span class="string">&quot;mongo1:27017&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">_id</span>: <span class="number">1</span>, <span class="attr">host</span>: <span class="string">&quot;mongo2:27017&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">_id</span>: <span class="number">2</span>, <span class="attr">host</span>: <span class="string">&quot;mongo3:27017&quot;</span>&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看副本集状态</span></span><br><span class="line">rs.<span class="title function_">status</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看配置</span></span><br><span class="line">rs.<span class="title function_">conf</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加成员</span></span><br><span class="line">rs.<span class="title function_">add</span>(<span class="string">&quot;mongo4:27017&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除成员</span></span><br><span class="line">rs.<span class="title function_">remove</span>(<span class="string">&quot;mongo4:27017&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="配置副本集"><a href="#配置副本集" class="headerlink" title="配置副本集"></a>配置副本集</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 初始化副本集</span><br>rs.<span class="hljs-title function_">initiate</span>(&#123;<br>  <span class="hljs-attr">_id</span>: <span class="hljs-string">&quot;myReplicaSet&quot;</span>,<br>  <span class="hljs-attr">members</span>: [<br>    &#123;<span class="hljs-attr">_id</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">&quot;mongo1:27017&quot;</span>&#125;,<br>    &#123;<span class="hljs-attr">_id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">&quot;mongo2:27017&quot;</span>&#125;,<br>    &#123;<span class="hljs-attr">_id</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">&quot;mongo3:27017&quot;</span>&#125;<br>  ]<br>&#125;)<br><br><span class="hljs-comment">// 查看副本集状态</span><br>rs.<span class="hljs-title function_">status</span>()<br><br><span class="hljs-comment">// 查看配置</span><br>rs.<span class="hljs-title function_">conf</span>()<br><br><span class="hljs-comment">// 添加成员</span><br>rs.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;mongo4:27017&quot;</span>)<br><br><span class="hljs-comment">// 移除成员</span><br>rs.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&quot;mongo4:27017&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><p>分片用于水平扩展大数据集。</p>
-<h3 id="配置分片"><a href="#配置分片" class="headerlink" title="配置分片"></a>配置分片</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用分片</span></span><br><span class="line">sh.<span class="title function_">enableSharding</span>(<span class="string">&quot;my_blog&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对集合分片</span></span><br><span class="line">sh.<span class="title function_">shardCollection</span>(<span class="string">&quot;my_blog.users&quot;</span>, &#123;<span class="attr">username</span>: <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看分片状态</span></span><br><span class="line">sh.<span class="title function_">status</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="配置分片"><a href="#配置分片" class="headerlink" title="配置分片"></a>配置分片</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 启用分片</span><br>sh.<span class="hljs-title function_">enableSharding</span>(<span class="hljs-string">&quot;my_blog&quot;</span>)<br><br><span class="hljs-comment">// 对集合分片</span><br>sh.<span class="hljs-title function_">shardCollection</span>(<span class="hljs-string">&quot;my_blog.users&quot;</span>, &#123;<span class="hljs-attr">username</span>: <span class="hljs-number">1</span>&#125;)<br><br><span class="hljs-comment">// 查看分片状态</span><br>sh.<span class="hljs-title function_">status</span>()<br></code></pre></td></tr></table></figure>
 
-<h2 id="数据备份与恢复"><a href="#数据备份与恢复" class="headerlink" title="数据备份与恢复"></a>数据备份与恢复</h2><h3 id="mongodump-备份"><a href="#mongodump-备份" class="headerlink" title="mongodump - 备份"></a>mongodump - 备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份单个数据库</span></span><br><span class="line">mongodump --db my_blog --out /backup/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份所有数据库</span></span><br><span class="line">mongodump --out /backup/all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份单个集合</span></span><br><span class="line">mongodump --db my_blog --collection <span class="built_in">users</span> --out /backup/</span><br></pre></td></tr></table></figure>
+<h2 id="数据备份与恢复"><a href="#数据备份与恢复" class="headerlink" title="数据备份与恢复"></a>数据备份与恢复</h2><h3 id="mongodump-备份"><a href="#mongodump-备份" class="headerlink" title="mongodump - 备份"></a>mongodump - 备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 备份单个数据库</span><br>mongodump --db my_blog --out /backup/<br><br><span class="hljs-comment"># 备份所有数据库</span><br>mongodump --out /backup/all<br><br><span class="hljs-comment"># 备份单个集合</span><br>mongodump --db my_blog --collection <span class="hljs-built_in">users</span> --out /backup/<br></code></pre></td></tr></table></figure>
 
-<h3 id="mongorestore-恢复"><a href="#mongorestore-恢复" class="headerlink" title="mongorestore - 恢复"></a>mongorestore - 恢复</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 恢复数据库</span></span><br><span class="line">mongorestore --db my_blog /backup/my_blog/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复所有数据库</span></span><br><span class="line">mongorestore /backup/all/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复集合</span></span><br><span class="line">mongorestore --db my_blog --collection <span class="built_in">users</span> /backup/my_blog/users.bson</span><br></pre></td></tr></table></figure>
+<h3 id="mongorestore-恢复"><a href="#mongorestore-恢复" class="headerlink" title="mongorestore - 恢复"></a>mongorestore - 恢复</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 恢复数据库</span><br>mongorestore --db my_blog /backup/my_blog/<br><br><span class="hljs-comment"># 恢复所有数据库</span><br>mongorestore /backup/all/<br><br><span class="hljs-comment"># 恢复集合</span><br>mongorestore --db my_blog --collection <span class="hljs-built_in">users</span> /backup/my_blog/users.bson<br></code></pre></td></tr></table></figure>
 
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-查询优化"><a href="#1-查询优化" class="headerlink" title="1. 查询优化"></a>1. 查询优化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 explain 查看执行计划</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">find</span>(&#123;<span class="attr">username</span>: <span class="string">&quot;zhangsan&quot;</span>&#125;).<span class="title function_">explain</span>(<span class="string">&quot;executionStats&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分析慢查询</span></span><br><span class="line">db.<span class="title function_">setProfilingLevel</span>(<span class="number">1</span>, <span class="number">50</span>)  <span class="comment">// 记录超过50ms的查询</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看慢查询</span></span><br><span class="line">db.<span class="property">system</span>.<span class="property">profile</span>.<span class="title function_">find</span>().<span class="title function_">sort</span>(&#123;<span class="attr">ts</span>: -<span class="number">1</span>&#125;).<span class="title function_">limit</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-查询优化"><a href="#1-查询优化" class="headerlink" title="1. 查询优化"></a>1. 查询优化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 使用 explain 查看执行计划</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">find</span>(&#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;zhangsan&quot;</span>&#125;).<span class="hljs-title function_">explain</span>(<span class="hljs-string">&quot;executionStats&quot;</span>)<br><br><span class="hljs-comment">// 分析慢查询</span><br>db.<span class="hljs-title function_">setProfilingLevel</span>(<span class="hljs-number">1</span>, <span class="hljs-number">50</span>)  <span class="hljs-comment">// 记录超过50ms的查询</span><br><br><span class="hljs-comment">// 查看慢查询</span><br>db.<span class="hljs-property">system</span>.<span class="hljs-property">profile</span>.<span class="hljs-title function_">find</span>().<span class="hljs-title function_">sort</span>(&#123;<span class="hljs-attr">ts</span>: -<span class="hljs-number">1</span>&#125;).<span class="hljs-title function_">limit</span>(<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
 
 <h3 id="2-索引优化"><a href="#2-索引优化" class="headerlink" title="2. 索引优化"></a>2. 索引优化</h3><ul>
 <li>为常用查询创建索引</li>
 <li>使用复合索引优化多条件查询</li>
 <li>监控索引使用情况</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查看索引使用情况</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;<span class="attr">$indexStats</span>: &#123;&#125;&#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 查看索引使用情况</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">aggregate</span>([<br>  &#123;<span class="hljs-attr">$indexStats</span>: &#123;&#125;&#125;<br>])<br></code></pre></td></tr></table></figure>
 
-<h3 id="3-内存优化"><a href="#3-内存优化" class="headerlink" title="3. 内存优化"></a>3. 内存优化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查看内存使用情况</span></span><br><span class="line">db.<span class="title function_">serverStatus</span>().<span class="property">mem</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看工作集大小</span></span><br><span class="line">db.<span class="title function_">runCommand</span>(&#123;<span class="attr">serverStatus</span>: <span class="number">1</span>&#125;).<span class="property">workingSet</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-内存优化"><a href="#3-内存优化" class="headerlink" title="3. 内存优化"></a>3. 内存优化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 查看内存使用情况</span><br>db.<span class="hljs-title function_">serverStatus</span>().<span class="hljs-property">mem</span><br><br><span class="hljs-comment">// 查看工作集大小</span><br>db.<span class="hljs-title function_">runCommand</span>(&#123;<span class="hljs-attr">serverStatus</span>: <span class="hljs-number">1</span>&#125;).<span class="hljs-property">workingSet</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Q1-如何查看数据库大小？"><a href="#Q1-如何查看数据库大小？" class="headerlink" title="Q1: 如何查看数据库大小？"></a>Q1: 如何查看数据库大小？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="title function_">stats</span>()</span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">stats</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Q1-如何查看数据库大小？"><a href="#Q1-如何查看数据库大小？" class="headerlink" title="Q1: 如何查看数据库大小？"></a>Q1: 如何查看数据库大小？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">db.<span class="hljs-title function_">stats</span>()<br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">stats</span>()<br></code></pre></td></tr></table></figure>
 
-<h3 id="Q2-如何清空集合？"><a href="#Q2-如何清空集合？" class="headerlink" title="Q2: 如何清空集合？"></a>Q2: 如何清空集合？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="property">users</span>.<span class="title function_">deleteMany</span>(&#123;&#125;)</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line">db.<span class="property">users</span>.<span class="title function_">drop</span>()</span><br><span class="line">db.<span class="title function_">createCollection</span>(<span class="string">&quot;users&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Q2-如何清空集合？"><a href="#Q2-如何清空集合？" class="headerlink" title="Q2: 如何清空集合？"></a>Q2: 如何清空集合？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">db.<span class="hljs-property">users</span>.<span class="hljs-title function_">deleteMany</span>(&#123;&#125;)<br><span class="hljs-comment">// 或</span><br>db.<span class="hljs-property">users</span>.<span class="hljs-title function_">drop</span>()<br>db.<span class="hljs-title function_">createCollection</span>(<span class="hljs-string">&quot;users&quot;</span>)<br></code></pre></td></tr></table></figure>
 
-<h3 id="Q3-如何修改字段名？"><a href="#Q3-如何修改字段名？" class="headerlink" title="Q3: 如何修改字段名？"></a>Q3: 如何修改字段名？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="property">users</span>.<span class="title function_">updateMany</span>(</span><br><span class="line">  &#123;&#125;,</span><br><span class="line">  &#123;<span class="attr">$rename</span>: &#123;<span class="string">&quot;old_field&quot;</span>: <span class="string">&quot;new_field&quot;</span>&#125;&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="Q3-如何修改字段名？"><a href="#Q3-如何修改字段名？" class="headerlink" title="Q3: 如何修改字段名？"></a>Q3: 如何修改字段名？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">db.<span class="hljs-property">users</span>.<span class="hljs-title function_">updateMany</span>(<br>  &#123;&#125;,<br>  &#123;<span class="hljs-attr">$rename</span>: &#123;<span class="hljs-string">&quot;old_field&quot;</span>: <span class="hljs-string">&quot;new_field&quot;</span>&#125;&#125;<br>)<br></code></pre></td></tr></table></figure>
 
 <h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.mongodb.com/">MongoDB 官方文档</a></li>
@@ -557,97 +650,448 @@
 <li><a href="/2026/03/16/database-selection-guide/">数据库选型指南</a></li>
 </ul>
 
-    </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
+<span class="category-chains">
+  
+  
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
-              <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
-              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
-              <a href="/tags/%E6%96%87%E6%A1%A3%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 文档数据库</a>
-          </div>
-
+      <span class="category-chain">
         
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2026/03/16/redis-cache-database/" rel="prev" title="Redis 缓存数据库详解">
-                  <i class="fa fa-angle-left"></i> Redis 缓存数据库详解
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2026/03/16/postgresql-advanced-features/" rel="next" title="PostgreSQL 高级数据库特性详解">
-                  PostgreSQL 高级数据库特性详解 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2026</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">博主</span>
-  </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-    </div>
-  </footer>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/" class="category-chain-item">NoSQL</a>
+  
+  
 
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="print-no-link">#数据库</a>
+      
+        <a href="/tags/MongoDB/" class="print-no-link">#MongoDB</a>
+      
+        <a href="/tags/NoSQL/" class="print-no-link">#NoSQL</a>
+      
+        <a href="/tags/%E6%96%87%E6%A1%A3%E6%95%B0%E6%8D%AE%E5%BA%93/" class="print-no-link">#文档数据库</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MongoDB NoSQL 数据库入门</div>
+      <div>https://lzqiangit.github.io/2026/03/16/mongodb-nosql-intro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>博主</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/16/postgresql-advanced-features/" title="PostgreSQL 高级数据库特性详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PostgreSQL 高级数据库特性详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/16/redis-cache-database/" title="Redis 缓存数据库详解">
+                        <span class="hidden-mobile">Redis 缓存数据库详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-  <div class="reading-progress-bar"></div>
+</div>
 
-  <a href="https://github.com/yourusername" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -1,25 +1,24 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
 
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=consolas:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"lzqiangit.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":false,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="博主">
+  <meta name="keywords" content="技术,编程,博客,学习">
+  
     <meta name="description" content="PostgreSQL 高级数据库特性详解 🐘PostgreSQL 是一个功能强大的开源关系型数据库，以其丰富的特性、标准的 SQL 支持和可靠性著称。本教程将深入介绍 PostgreSQL 的高级特性。 什么是 PostgreSQL？PostgreSQL 是一个开源的对象关系型数据库管理系统（ORDBMS），起源于加州大学伯克利分校的 POSTGRES 项目。 PostgreSQL 的特点 完全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PostgreSQL 高级数据库特性详解">
@@ -34,257 +33,351 @@
 <meta property="article:tag" content="SQL">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="高级特性">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PostgreSQL 高级数据库特性详解 - 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://lzqiangit.github.io/2026/03/16/postgresql-advanced-features/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lzqiangit.github.io/2026/03/16/postgresql-advanced-features/","path":"2026/03/16/postgresql-advanced-features/","title":"PostgreSQL 高级数据库特性详解"}</script>
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>PostgreSQL 高级数据库特性详解 | 技术博客</title>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzqiangit.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2,"loadingImg":"/img/loading.gif"},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
-<script src="/js/third-party/search/local-search.js" defer></script>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
-  <script src="/js/third-party/tags/mermaid.js" defer></script>
-
-
-
-
-
+<body>
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+  <header>
+    
 
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">技术博客</p>
-      <i class="logo-line"></i>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>我的技术博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">分享技术与思考</p>
-      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="技术博客">
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-      <div class="search-header">
-        <span class="search-icon">
-          <i class="fa fa-search"></i>
-        </span>
-        <div class="search-input-container">
-          <input autocomplete="off" autocapitalize="off" maxlength="80"
-                placeholder="搜索..." spellcheck="false"
-                type="search" class="search-input">
-        </div>
-        <span class="popup-btn-close" role="button">
-          <i class="fa fa-times-circle"></i>
-        </span>
-      </div>
-      <div class="search-result-container">
-        <div class="search-result-icon">
-          <i class="fa fa-spinner fa-pulse fa-5x"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</header>
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
         
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PostgreSQL-%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3-%F0%9F%90%98"><span class="nav-number">1.</span> <span class="nav-text">PostgreSQL 高级数据库特性详解 🐘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-PostgreSQL%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 PostgreSQL？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PostgreSQL-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">PostgreSQL 的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-PostgreSQL"><span class="nav-number">1.2.</span> <span class="nav-text">安装 PostgreSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linux 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.2.</span> <span class="nav-text">macOS 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.3.</span> <span class="nav-text">Docker 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">高级数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 数组类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JSON-%E5%92%8C-JSONB"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. JSON 和 JSONB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%8C%83%E5%9B%B4%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 范围类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%87%A0%E4%BD%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 几何类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E7%B4%A2%E5%BC%95"><span class="nav-number">1.4.</span> <span class="nav-text">高级索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-B-tree-%E7%B4%A2%E5%BC%95%EF%BC%88%E9%BB%98%E8%AE%A4%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. B-tree 索引（默认）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Hash-%E7%B4%A2%E5%BC%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. Hash 索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-GiST-%E7%B4%A2%E5%BC%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. GiST 索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-GIN-%E7%B4%A2%E5%BC%95"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. GIN 索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%83%A8%E5%88%86%E7%B4%A2%E5%BC%95"><span class="nav-number">1.4.5.</span> <span class="nav-text">5. 部分索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%B4%A2%E5%BC%95"><span class="nav-number">1.4.6.</span> <span class="nav-text">6. 表达式索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2"><span class="nav-number">1.5.</span> <span class="nav-text">全文搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">窗口函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CTE-Common-Table-Expression"><span class="nav-number">1.7.</span> <span class="nav-text">CTE (Common Table Expression)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E5%8C%96%E8%A7%86%E5%9B%BE"><span class="nav-number">1.8.</span> <span class="nav-text">物化视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">1.9.</span> <span class="nav-text">触发器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">1.10.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.11.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-EXPLAIN-ANALYZE"><span class="nav-number">1.11.1.</span> <span class="nav-text">1. EXPLAIN ANALYZE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-VACUUM"><span class="nav-number">1.11.2.</span> <span class="nav-text">2. VACUUM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="nav-number">1.11.3.</span> <span class="nav-text">3. 统计信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D"><span class="nav-number">1.12.</span> <span class="nav-text">备份与恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pg-dump-%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD"><span class="nav-number">1.12.1.</span> <span class="nav-text">pg_dump - 逻辑备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pg-basebackup-%E7%89%A9%E7%90%86%E5%A4%87%E4%BB%BD"><span class="nav-number">1.12.2.</span> <span class="nav-text">pg_basebackup - 物理备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="nav-number">1.13.</span> <span class="nav-text">学习资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">1.13.1.</span> <span class="nav-text">官方文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E6%95%99%E7%A8%8B"><span class="nav-number">1.13.2.</span> <span class="nav-text">在线教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">1.13.3.</span> <span class="nav-text">工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">1.14.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="博主"
-      src="/images/avatar.png">
-  <p class="site-author-name" itemprop="name">博主</p>
-  <div class="site-description" itemprop="description">个人技术博客，记录学习笔记与技术分享</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/yourusername" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourusername" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-  </div>
-
-        </div>
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
       </div>
     </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PostgreSQL 高级数据库特性详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
 
     
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/03/16/postgresql-advanced-features/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="博主">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-      <meta itemprop="description" content="个人技术博客，记录学习笔记与技术分享">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="PostgreSQL 高级数据库特性详解 | 技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          PostgreSQL 高级数据库特性详解
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          99 分钟
+        
       </span>
-      <span class="post-meta-item-text">发表于</span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
       
 
-      <time title="创建时间：2026-03-16 11:30:00 / 修改时间：11:04:57" itemprop="dateCreated datePublished" datetime="2026-03-16T11:30:00+08:00">2026-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高级教程</span></a>
-        </span>
-    </span>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-  
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-</div>
+    </div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><h1 id="PostgreSQL-高级数据库特性详解-🐘"><a href="#PostgreSQL-高级数据库特性详解-🐘" class="headerlink" title="PostgreSQL 高级数据库特性详解 🐘"></a>PostgreSQL 高级数据库特性详解 🐘</h1><p>PostgreSQL 是一个功能强大的开源关系型数据库，以其丰富的特性、标准的 SQL 支持和可靠性著称。本教程将深入介绍 PostgreSQL 的高级特性。</p>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PostgreSQL 高级数据库特性详解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="PostgreSQL-高级数据库特性详解-🐘"><a href="#PostgreSQL-高级数据库特性详解-🐘" class="headerlink" title="PostgreSQL 高级数据库特性详解 🐘"></a>PostgreSQL 高级数据库特性详解 🐘</h1><p>PostgreSQL 是一个功能强大的开源关系型数据库，以其丰富的特性、标准的 SQL 支持和可靠性著称。本教程将深入介绍 PostgreSQL 的高级特性。</p>
 <h2 id="什么是-PostgreSQL？"><a href="#什么是-PostgreSQL？" class="headerlink" title="什么是 PostgreSQL？"></a>什么是 PostgreSQL？</h2><p>PostgreSQL 是一个开源的对象关系型数据库管理系统（ORDBMS），起源于加州大学伯克利分校的 POSTGRES 项目。</p>
 <h3 id="PostgreSQL-的特点"><a href="#PostgreSQL-的特点" class="headerlink" title="PostgreSQL 的特点"></a>PostgreSQL 的特点</h3><ul>
 <li><strong>完全 ACID 兼容</strong>: 支持事务的原子性、一致性、隔离性、持久性</li>
@@ -294,69 +387,69 @@
 <li><strong>标准兼容</strong>: 高度兼容 SQL 标准</li>
 <li><strong>并发控制</strong>: MVCC 多版本并发控制</li>
 </ul>
-<h2 id="安装-PostgreSQL"><a href="#安装-PostgreSQL" class="headerlink" title="安装 PostgreSQL"></a>安装 PostgreSQL</h2><h3 id="Linux-安装"><a href="#Linux-安装" class="headerlink" title="Linux 安装"></a>Linux 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu/Debian</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install postgresql postgresql-contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start postgresql</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> postgresql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 postgres 用户</span></span><br><span class="line"><span class="built_in">sudo</span> -u postgres psql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证版本</span></span><br><span class="line">SELECT version();</span><br></pre></td></tr></table></figure>
+<h2 id="安装-PostgreSQL"><a href="#安装-PostgreSQL" class="headerlink" title="安装 PostgreSQL"></a>安装 PostgreSQL</h2><h3 id="Linux-安装"><a href="#Linux-安装" class="headerlink" title="Linux 安装"></a>Linux 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Ubuntu/Debian</span><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install postgresql postgresql-contrib<br><br><span class="hljs-comment"># 启动服务</span><br><span class="hljs-built_in">sudo</span> systemctl start postgresql<br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> postgresql<br><br><span class="hljs-comment"># 切换到 postgres 用户</span><br><span class="hljs-built_in">sudo</span> -u postgres psql<br><br><span class="hljs-comment"># 验证版本</span><br>SELECT version();<br></code></pre></td></tr></table></figure>
 
-<h3 id="macOS-安装"><a href="#macOS-安装" class="headerlink" title="macOS 安装"></a>macOS 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Homebrew</span></span><br><span class="line">brew install postgresql@16</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">brew services start postgresql@16</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接数据库</span></span><br><span class="line">psql postgres</span><br></pre></td></tr></table></figure>
+<h3 id="macOS-安装"><a href="#macOS-安装" class="headerlink" title="macOS 安装"></a>macOS 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用 Homebrew</span><br>brew install postgresql@16<br><br><span class="hljs-comment"># 启动服务</span><br>brew services start postgresql@16<br><br><span class="hljs-comment"># 连接数据库</span><br>psql postgres<br></code></pre></td></tr></table></figure>
 
-<h3 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取 PostgreSQL 镜像</span></span><br><span class="line">docker pull postgres:16</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行容器</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name my-postgres \</span><br><span class="line">  -e POSTGRES_PASSWORD=password123 \</span><br><span class="line">  -p 5432:5432 \</span><br><span class="line">  postgres:16</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接 PostgreSQL</span></span><br><span class="line">docker <span class="built_in">exec</span> -it my-postgres psql -U postgres</span><br></pre></td></tr></table></figure>
+<h3 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 拉取 PostgreSQL 镜像</span><br>docker pull postgres:16<br><br><span class="hljs-comment"># 运行容器</span><br>docker run -d \<br>  --name my-postgres \<br>  -e POSTGRES_PASSWORD=password123 \<br>  -p 5432:5432 \<br>  postgres:16<br><br><span class="hljs-comment"># 连接 PostgreSQL</span><br>docker <span class="hljs-built_in">exec</span> -it my-postgres psql -U postgres<br></code></pre></td></tr></table></figure>
 
 <h2 id="高级数据类型"><a href="#高级数据类型" class="headerlink" title="高级数据类型"></a>高级数据类型</h2><h3 id="1-数组类型"><a href="#1-数组类型" class="headerlink" title="1. 数组类型"></a>1. 数组类型</h3><p>PostgreSQL 支持数组类型，可以存储同类型的多个值。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> articles (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    title <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">    tags TEXT[],</span><br><span class="line">    ratings <span class="type">INTEGER</span>[]</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> articles (title, tags, ratings)</span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;PostgreSQL 教程&#x27;</span>,</span><br><span class="line">    <span class="keyword">ARRAY</span>[<span class="string">&#x27;PostgreSQL&#x27;</span>, <span class="string">&#x27;Database&#x27;</span>, <span class="string">&#x27;Tutorial&#x27;</span>],</span><br><span class="line">    <span class="keyword">ARRAY</span>[<span class="number">5</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>]</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 或使用简写语法</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> articles (title, tags, ratings)</span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;SQL 高级特性&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123;SQL,Advanced,Features&#125;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123;5,5,4&#125;&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询数组</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> articles <span class="keyword">WHERE</span> <span class="string">&#x27;PostgreSQL&#x27;</span> <span class="operator">=</span> <span class="keyword">ANY</span>(tags);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 数组操作符</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> articles <span class="keyword">WHERE</span> tags @<span class="operator">&gt;</span> <span class="keyword">ARRAY</span>[<span class="string">&#x27;PostgreSQL&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 数组元素访问</span></span><br><span class="line"><span class="keyword">SELECT</span> title, tags[<span class="number">1</span>] <span class="keyword">as</span> first_tag <span class="keyword">FROM</span> articles;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 数组长度</span></span><br><span class="line"><span class="keyword">SELECT</span> title, array_length(tags, <span class="number">1</span>) <span class="keyword">as</span> tag_count <span class="keyword">FROM</span> articles;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 展开数组</span></span><br><span class="line"><span class="keyword">SELECT</span> id, title, <span class="built_in">unnest</span>(tags) <span class="keyword">as</span> tag <span class="keyword">FROM</span> articles;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表</span><br><span class="hljs-keyword">CREATE TABLE</span> articles (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    title <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">200</span>),<br>    tags TEXT[],<br>    ratings <span class="hljs-type">INTEGER</span>[]<br>);<br><br><span class="hljs-comment">-- 插入数据</span><br><span class="hljs-keyword">INSERT INTO</span> articles (title, tags, ratings)<br><span class="hljs-keyword">VALUES</span> (<br>    <span class="hljs-string">&#x27;PostgreSQL 教程&#x27;</span>,<br>    <span class="hljs-keyword">ARRAY</span>[<span class="hljs-string">&#x27;PostgreSQL&#x27;</span>, <span class="hljs-string">&#x27;Database&#x27;</span>, <span class="hljs-string">&#x27;Tutorial&#x27;</span>],<br>    <span class="hljs-keyword">ARRAY</span>[<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>]<br>);<br><br><span class="hljs-comment">-- 或使用简写语法</span><br><span class="hljs-keyword">INSERT INTO</span> articles (title, tags, ratings)<br><span class="hljs-keyword">VALUES</span> (<br>    <span class="hljs-string">&#x27;SQL 高级特性&#x27;</span>,<br>    <span class="hljs-string">&#x27;&#123;SQL,Advanced,Features&#125;&#x27;</span>,<br>    <span class="hljs-string">&#x27;&#123;5,5,4&#125;&#x27;</span><br>);<br><br><span class="hljs-comment">-- 查询数组</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> articles <span class="hljs-keyword">WHERE</span> <span class="hljs-string">&#x27;PostgreSQL&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">ANY</span>(tags);<br><br><span class="hljs-comment">-- 数组操作符</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> articles <span class="hljs-keyword">WHERE</span> tags @<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ARRAY</span>[<span class="hljs-string">&#x27;PostgreSQL&#x27;</span>];<br><br><span class="hljs-comment">-- 数组元素访问</span><br><span class="hljs-keyword">SELECT</span> title, tags[<span class="hljs-number">1</span>] <span class="hljs-keyword">as</span> first_tag <span class="hljs-keyword">FROM</span> articles;<br><br><span class="hljs-comment">-- 数组长度</span><br><span class="hljs-keyword">SELECT</span> title, array_length(tags, <span class="hljs-number">1</span>) <span class="hljs-keyword">as</span> tag_count <span class="hljs-keyword">FROM</span> articles;<br><br><span class="hljs-comment">-- 展开数组</span><br><span class="hljs-keyword">SELECT</span> id, title, <span class="hljs-built_in">unnest</span>(tags) <span class="hljs-keyword">as</span> tag <span class="hljs-keyword">FROM</span> articles;<br></code></pre></td></tr></table></figure>
 
 <h3 id="2-JSON-和-JSONB"><a href="#2-JSON-和-JSONB" class="headerlink" title="2. JSON 和 JSONB"></a>2. JSON 和 JSONB</h3><p>PostgreSQL 提供了 JSON 和 JSONB 两种 JSON 数据类型。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- JSON vs JSONB</span></span><br><span class="line"><span class="comment">-- JSON: 存储为文本，每次查询需要解析</span></span><br><span class="line"><span class="comment">-- JSONB: 存储为二进制，查询更快，支持索引</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> users (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    profile JSONB</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入 JSON 数据</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> users (username, profile)</span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;zhangsan&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">        &quot;name&quot;: &quot;张三&quot;,</span></span><br><span class="line"><span class="string">        &quot;age&quot;: 25,</span></span><br><span class="line"><span class="string">        &quot;email&quot;: &quot;zhangsan@example.com&quot;,</span></span><br><span class="line"><span class="string">        &quot;skills&quot;: [&quot;Java&quot;, &quot;Python&quot;, &quot;PostgreSQL&quot;],</span></span><br><span class="line"><span class="string">        &quot;address&quot;: &#123;</span></span><br><span class="line"><span class="string">            &quot;city&quot;: &quot;北京&quot;,</span></span><br><span class="line"><span class="string">            &quot;district&quot;: &quot;海淀区&quot;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询 JSON 字段</span></span><br><span class="line"><span class="keyword">SELECT</span> username, profile<span class="operator">-</span><span class="operator">&gt;&gt;</span><span class="string">&#x27;name&#x27;</span> <span class="keyword">as</span> name</span><br><span class="line"><span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询嵌套 JSON</span></span><br><span class="line"><span class="keyword">SELECT</span> username, profile<span class="operator">-</span><span class="operator">&gt;</span><span class="string">&#x27;address&#x27;</span><span class="operator">-</span><span class="operator">&gt;&gt;</span><span class="string">&#x27;city&#x27;</span> <span class="keyword">as</span> city</span><br><span class="line"><span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- JSON 条件查询</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users</span><br><span class="line"><span class="keyword">WHERE</span> profile<span class="operator">-</span><span class="operator">&gt;&gt;</span><span class="string">&#x27;name&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;张三&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- JSON 数组查询</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users</span><br><span class="line"><span class="keyword">WHERE</span> profile<span class="operator">-</span><span class="operator">&gt;</span><span class="string">&#x27;skills&#x27;</span> @<span class="operator">&gt;</span> <span class="string">&#x27;[&quot;PostgreSQL&quot;]&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更新 JSON 字段</span></span><br><span class="line"><span class="keyword">UPDATE</span> users</span><br><span class="line"><span class="keyword">SET</span> profile <span class="operator">=</span> profile <span class="operator">||</span> <span class="string">&#x27;&#123;&quot;age&quot;: 26&#125;&#x27;</span>::jsonb</span><br><span class="line"><span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;zhangsan&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建 JSONB 索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_profile <span class="keyword">ON</span> users <span class="keyword">USING</span> GIN (profile);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- JSON 函数</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    username,</span><br><span class="line">    jsonb_pretty(profile) <span class="keyword">as</span> formatted_profile,</span><br><span class="line">    jsonb_array_length(profile<span class="operator">-</span><span class="operator">&gt;</span><span class="string">&#x27;skills&#x27;</span>) <span class="keyword">as</span> skill_count</span><br><span class="line"><span class="keyword">FROM</span> users;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- JSON vs JSONB</span><br><span class="hljs-comment">-- JSON: 存储为文本，每次查询需要解析</span><br><span class="hljs-comment">-- JSONB: 存储为二进制，查询更快，支持索引</span><br><br><span class="hljs-comment">-- 创建表</span><br><span class="hljs-keyword">CREATE TABLE</span> users (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    username <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>),<br>    profile JSONB<br>);<br><br><span class="hljs-comment">-- 插入 JSON 数据</span><br><span class="hljs-keyword">INSERT INTO</span> users (username, profile)<br><span class="hljs-keyword">VALUES</span> (<br>    <span class="hljs-string">&#x27;zhangsan&#x27;</span>,<br>    <span class="hljs-string">&#x27;&#123;</span><br><span class="hljs-string">        &quot;name&quot;: &quot;张三&quot;,</span><br><span class="hljs-string">        &quot;age&quot;: 25,</span><br><span class="hljs-string">        &quot;email&quot;: &quot;zhangsan@example.com&quot;,</span><br><span class="hljs-string">        &quot;skills&quot;: [&quot;Java&quot;, &quot;Python&quot;, &quot;PostgreSQL&quot;],</span><br><span class="hljs-string">        &quot;address&quot;: &#123;</span><br><span class="hljs-string">            &quot;city&quot;: &quot;北京&quot;,</span><br><span class="hljs-string">            &quot;district&quot;: &quot;海淀区&quot;</span><br><span class="hljs-string">        &#125;</span><br><span class="hljs-string">    &#125;&#x27;</span><br>);<br><br><span class="hljs-comment">-- 查询 JSON 字段</span><br><span class="hljs-keyword">SELECT</span> username, profile<span class="hljs-operator">-</span><span class="hljs-operator">&gt;&gt;</span><span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-keyword">as</span> name<br><span class="hljs-keyword">FROM</span> users;<br><br><span class="hljs-comment">-- 查询嵌套 JSON</span><br><span class="hljs-keyword">SELECT</span> username, profile<span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span><span class="hljs-string">&#x27;address&#x27;</span><span class="hljs-operator">-</span><span class="hljs-operator">&gt;&gt;</span><span class="hljs-string">&#x27;city&#x27;</span> <span class="hljs-keyword">as</span> city<br><span class="hljs-keyword">FROM</span> users;<br><br><span class="hljs-comment">-- JSON 条件查询</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users<br><span class="hljs-keyword">WHERE</span> profile<span class="hljs-operator">-</span><span class="hljs-operator">&gt;&gt;</span><span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;张三&#x27;</span>;<br><br><span class="hljs-comment">-- JSON 数组查询</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users<br><span class="hljs-keyword">WHERE</span> profile<span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span><span class="hljs-string">&#x27;skills&#x27;</span> @<span class="hljs-operator">&gt;</span> <span class="hljs-string">&#x27;[&quot;PostgreSQL&quot;]&#x27;</span>;<br><br><span class="hljs-comment">-- 更新 JSON 字段</span><br><span class="hljs-keyword">UPDATE</span> users<br><span class="hljs-keyword">SET</span> profile <span class="hljs-operator">=</span> profile <span class="hljs-operator">||</span> <span class="hljs-string">&#x27;&#123;&quot;age&quot;: 26&#125;&#x27;</span>::jsonb<br><span class="hljs-keyword">WHERE</span> username <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;zhangsan&#x27;</span>;<br><br><span class="hljs-comment">-- 创建 JSONB 索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_profile <span class="hljs-keyword">ON</span> users <span class="hljs-keyword">USING</span> GIN (profile);<br><br><span class="hljs-comment">-- JSON 函数</span><br><span class="hljs-keyword">SELECT</span><br>    username,<br>    jsonb_pretty(profile) <span class="hljs-keyword">as</span> formatted_profile,<br>    jsonb_array_length(profile<span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span><span class="hljs-string">&#x27;skills&#x27;</span>) <span class="hljs-keyword">as</span> skill_count<br><span class="hljs-keyword">FROM</span> users;<br></code></pre></td></tr></table></figure>
 
 <h3 id="3-范围类型"><a href="#3-范围类型" class="headerlink" title="3. 范围类型"></a>3. 范围类型</h3><p>PostgreSQL 支持多种范围类型。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> reservations (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    room <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    during TSRANGE</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> reservations (room, during)</span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;Room 101&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;[2026-03-16 14:00, 2026-03-16 18:00)&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 范围查询</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> reservations</span><br><span class="line"><span class="keyword">WHERE</span> during <span class="operator">&amp;&amp;</span> <span class="string">&#x27;[2026-03-16 15:00, 2026-03-16 16:00)&#x27;</span>::tsrange;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 范围操作符</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> reservations</span><br><span class="line"><span class="keyword">WHERE</span> during @<span class="operator">&gt;</span> <span class="string">&#x27;2026-03-16 15:30&#x27;</span>::<span class="type">timestamp</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表</span><br><span class="hljs-keyword">CREATE TABLE</span> reservations (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    room <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>),<br>    during TSRANGE<br>);<br><br><span class="hljs-comment">-- 插入数据</span><br><span class="hljs-keyword">INSERT INTO</span> reservations (room, during)<br><span class="hljs-keyword">VALUES</span> (<br>    <span class="hljs-string">&#x27;Room 101&#x27;</span>,<br>    <span class="hljs-string">&#x27;[2026-03-16 14:00, 2026-03-16 18:00)&#x27;</span><br>);<br><br><span class="hljs-comment">-- 范围查询</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> reservations<br><span class="hljs-keyword">WHERE</span> during <span class="hljs-operator">&amp;&amp;</span> <span class="hljs-string">&#x27;[2026-03-16 15:00, 2026-03-16 16:00)&#x27;</span>::tsrange;<br><br><span class="hljs-comment">-- 范围操作符</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> reservations<br><span class="hljs-keyword">WHERE</span> during @<span class="hljs-operator">&gt;</span> <span class="hljs-string">&#x27;2026-03-16 15:30&#x27;</span>::<span class="hljs-type">timestamp</span>;<br></code></pre></td></tr></table></figure>
 
 <h3 id="4-几何类型"><a href="#4-几何类型" class="headerlink" title="4. 几何类型"></a>4. 几何类型</h3><p>PostgreSQL 支持点、线、多边形等几何类型。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> locations (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    position POINT,</span><br><span class="line">    area POLYGON</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> locations (name, position, area)</span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;总部大楼&#x27;</span>,</span><br><span class="line">    POINT(<span class="number">116.4074</span>, <span class="number">39.9042</span>),</span><br><span class="line">    POLYGON <span class="string">&#x27;((0,0),(0,10),(10,10),(10,0),(0,0))&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 距离计算</span></span><br><span class="line"><span class="keyword">SELECT</span> name, position <span class="operator">&lt;</span><span class="operator">-</span><span class="operator">&gt;</span> POINT(<span class="number">116.4080</span>, <span class="number">39.9048</span>) <span class="keyword">as</span> distance</span><br><span class="line"><span class="keyword">FROM</span> locations</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> distance;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表</span><br><span class="hljs-keyword">CREATE TABLE</span> locations (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),<br>    position POINT,<br>    area POLYGON<br>);<br><br><span class="hljs-comment">-- 插入数据</span><br><span class="hljs-keyword">INSERT INTO</span> locations (name, position, area)<br><span class="hljs-keyword">VALUES</span> (<br>    <span class="hljs-string">&#x27;总部大楼&#x27;</span>,<br>    POINT(<span class="hljs-number">116.4074</span>, <span class="hljs-number">39.9042</span>),<br>    POLYGON <span class="hljs-string">&#x27;((0,0),(0,10),(10,10),(10,0),(0,0))&#x27;</span><br>);<br><br><span class="hljs-comment">-- 距离计算</span><br><span class="hljs-keyword">SELECT</span> name, position <span class="hljs-operator">&lt;</span><span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> POINT(<span class="hljs-number">116.4080</span>, <span class="hljs-number">39.9048</span>) <span class="hljs-keyword">as</span> distance<br><span class="hljs-keyword">FROM</span> locations<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> distance;<br></code></pre></td></tr></table></figure>
 
 <h2 id="高级索引"><a href="#高级索引" class="headerlink" title="高级索引"></a>高级索引</h2><h3 id="1-B-tree-索引（默认）"><a href="#1-B-tree-索引（默认）" class="headerlink" title="1. B-tree 索引（默认）"></a>1. B-tree 索引（默认）</h3><p>适用于等值查询和范围查询。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建 B-tree 索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_username <span class="keyword">ON</span> users(username);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 适用于</span></span><br><span class="line"><span class="comment">-- =, &lt;, &gt;, &lt;=, &gt;=, BETWEEN, IN, LIKE &#x27;prefix%&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建 B-tree 索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_username <span class="hljs-keyword">ON</span> users(username);<br><br><span class="hljs-comment">-- 适用于</span><br><span class="hljs-comment">-- =, &lt;, &gt;, &lt;=, &gt;=, BETWEEN, IN, LIKE &#x27;prefix%&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="2-Hash-索引"><a href="#2-Hash-索引" class="headerlink" title="2. Hash 索引"></a>2. Hash 索引</h3><p>适用于等值查询。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建 Hash 索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_email_hash <span class="keyword">ON</span> users <span class="keyword">USING</span> HASH (email);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 仅适用于 = 操作符</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建 Hash 索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_email_hash <span class="hljs-keyword">ON</span> users <span class="hljs-keyword">USING</span> HASH (email);<br><br><span class="hljs-comment">-- 仅适用于 = 操作符</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="3-GiST-索引"><a href="#3-GiST-索引" class="headerlink" title="3. GiST 索引"></a>3. GiST 索引</h3><p>适用于几何类型、范围类型、全文搜索。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为几何类型创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_position <span class="keyword">ON</span> locations <span class="keyword">USING</span> GIST (position);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 为范围类型创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_during <span class="keyword">ON</span> reservations <span class="keyword">USING</span> GIST (during);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 为几何类型创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_position <span class="hljs-keyword">ON</span> locations <span class="hljs-keyword">USING</span> GIST (position);<br><br><span class="hljs-comment">-- 为范围类型创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_during <span class="hljs-keyword">ON</span> reservations <span class="hljs-keyword">USING</span> GIST (during);<br></code></pre></td></tr></table></figure>
 
 <h3 id="4-GIN-索引"><a href="#4-GIN-索引" class="headerlink" title="4. GIN 索引"></a>4. GIN 索引</h3><p>适用于数组和 JSONB。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为数组创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_tags <span class="keyword">ON</span> articles <span class="keyword">USING</span> GIN (tags);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 为 JSONB 创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_profile <span class="keyword">ON</span> users <span class="keyword">USING</span> GIN (profile);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- JSONB 路径索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_profile_path <span class="keyword">ON</span> users <span class="keyword">USING</span> GIN (profile jsonb_path_ops);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 为数组创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_tags <span class="hljs-keyword">ON</span> articles <span class="hljs-keyword">USING</span> GIN (tags);<br><br><span class="hljs-comment">-- 为 JSONB 创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_profile <span class="hljs-keyword">ON</span> users <span class="hljs-keyword">USING</span> GIN (profile);<br><br><span class="hljs-comment">-- JSONB 路径索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_profile_path <span class="hljs-keyword">ON</span> users <span class="hljs-keyword">USING</span> GIN (profile jsonb_path_ops);<br></code></pre></td></tr></table></figure>
 
 <h3 id="5-部分索引"><a href="#5-部分索引" class="headerlink" title="5. 部分索引"></a>5. 部分索引</h3><p>只为满足条件的行创建索引。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 只为活跃用户创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_active_users <span class="keyword">ON</span> users(email)</span><br><span class="line"><span class="keyword">WHERE</span> status <span class="operator">=</span> <span class="string">&#x27;active&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只为高价商品创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_expensive_products <span class="keyword">ON</span> products(price)</span><br><span class="line"><span class="keyword">WHERE</span> price <span class="operator">&gt;</span> <span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 只为活跃用户创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_active_users <span class="hljs-keyword">ON</span> users(email)<br><span class="hljs-keyword">WHERE</span> status <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;active&#x27;</span>;<br><br><span class="hljs-comment">-- 只为高价商品创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_expensive_products <span class="hljs-keyword">ON</span> products(price)<br><span class="hljs-keyword">WHERE</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">1000</span>;<br></code></pre></td></tr></table></figure>
 
 <h3 id="6-表达式索引"><a href="#6-表达式索引" class="headerlink" title="6. 表达式索引"></a>6. 表达式索引</h3><p>对计算结果创建索引。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 对小写的邮箱创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_email_lower <span class="keyword">ON</span> users(<span class="built_in">LOWER</span>(email));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 对日期提取创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_created_date <span class="keyword">ON</span> orders(<span class="type">DATE</span>(created_at));</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 对小写的邮箱创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_email_lower <span class="hljs-keyword">ON</span> users(<span class="hljs-built_in">LOWER</span>(email));<br><br><span class="hljs-comment">-- 对日期提取创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_created_date <span class="hljs-keyword">ON</span> orders(<span class="hljs-type">DATE</span>(created_at));<br></code></pre></td></tr></table></figure>
 
 <h2 id="全文搜索"><a href="#全文搜索" class="headerlink" title="全文搜索"></a>全文搜索</h2><p>PostgreSQL 内置强大的全文搜索功能。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> articles (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    title <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">    content TEXT,</span><br><span class="line">    search_vector TSVECTOR</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建全文搜索索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_search <span class="keyword">ON</span> articles <span class="keyword">USING</span> GIN (search_vector);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更新全文搜索向量</span></span><br><span class="line"><span class="keyword">UPDATE</span> articles</span><br><span class="line"><span class="keyword">SET</span> search_vector <span class="operator">=</span> to_tsvector(<span class="string">&#x27;english&#x27;</span>, title <span class="operator">||</span> <span class="string">&#x27; &#x27;</span> <span class="operator">||</span> content);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 或使用触发器自动更新</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> REPLACE <span class="keyword">FUNCTION</span> update_search_vector()</span><br><span class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span> <span class="keyword">AS</span> $$</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    NEW.search_vector :<span class="operator">=</span></span><br><span class="line">        to_tsvector(<span class="string">&#x27;english&#x27;</span>, NEW.title <span class="operator">||</span> <span class="string">&#x27; &#x27;</span> <span class="operator">||</span> NEW.content);</span><br><span class="line">    <span class="keyword">RETURN</span> <span class="keyword">NEW</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br><span class="line">$$ <span class="keyword">LANGUAGE</span> plpgsql;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> articles_search_update</span><br><span class="line">BEFORE <span class="keyword">INSERT</span> <span class="keyword">OR</span> <span class="keyword">UPDATE</span> <span class="keyword">ON</span> articles</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span> <span class="keyword">EXECUTE</span> <span class="keyword">FUNCTION</span> update_search_vector();</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 全文搜索查询</span></span><br><span class="line"><span class="keyword">SELECT</span> id, title,</span><br><span class="line">       ts_rank(search_vector, query) <span class="keyword">as</span> rank</span><br><span class="line"><span class="keyword">FROM</span> articles,</span><br><span class="line">     to_tsquery(<span class="string">&#x27;PostgreSQL &amp; tutorial&#x27;</span>) query</span><br><span class="line"><span class="keyword">WHERE</span> search_vector @@ query</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> rank <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 搜索结果高亮</span></span><br><span class="line"><span class="keyword">SELECT</span> id, title,</span><br><span class="line">       ts_headline(content, query) <span class="keyword">as</span> highlighted</span><br><span class="line"><span class="keyword">FROM</span> articles,</span><br><span class="line">     to_tsquery(<span class="string">&#x27;database&#x27;</span>) query</span><br><span class="line"><span class="keyword">WHERE</span> search_vector @@ query;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表</span><br><span class="hljs-keyword">CREATE TABLE</span> articles (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    title <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">200</span>),<br>    content TEXT,<br>    search_vector TSVECTOR<br>);<br><br><span class="hljs-comment">-- 创建全文搜索索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_search <span class="hljs-keyword">ON</span> articles <span class="hljs-keyword">USING</span> GIN (search_vector);<br><br><span class="hljs-comment">-- 更新全文搜索向量</span><br><span class="hljs-keyword">UPDATE</span> articles<br><span class="hljs-keyword">SET</span> search_vector <span class="hljs-operator">=</span> to_tsvector(<span class="hljs-string">&#x27;english&#x27;</span>, title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> content);<br><br><span class="hljs-comment">-- 或使用触发器自动更新</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> REPLACE <span class="hljs-keyword">FUNCTION</span> update_search_vector()<br><span class="hljs-keyword">RETURNS</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">AS</span> $$<br><span class="hljs-keyword">BEGIN</span><br>    NEW.search_vector :<span class="hljs-operator">=</span><br>        to_tsvector(<span class="hljs-string">&#x27;english&#x27;</span>, NEW.title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> NEW.content);<br>    <span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">NEW</span>;<br><span class="hljs-keyword">END</span>;<br>$$ <span class="hljs-keyword">LANGUAGE</span> plpgsql;<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> articles_search_update<br>BEFORE <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> articles<br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-type">ROW</span> <span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">FUNCTION</span> update_search_vector();<br><br><span class="hljs-comment">-- 全文搜索查询</span><br><span class="hljs-keyword">SELECT</span> id, title,<br>       ts_rank(search_vector, query) <span class="hljs-keyword">as</span> rank<br><span class="hljs-keyword">FROM</span> articles,<br>     to_tsquery(<span class="hljs-string">&#x27;PostgreSQL &amp; tutorial&#x27;</span>) query<br><span class="hljs-keyword">WHERE</span> search_vector @@ query<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> rank <span class="hljs-keyword">DESC</span>;<br><br><span class="hljs-comment">-- 搜索结果高亮</span><br><span class="hljs-keyword">SELECT</span> id, title,<br>       ts_headline(content, query) <span class="hljs-keyword">as</span> highlighted<br><span class="hljs-keyword">FROM</span> articles,<br>     to_tsquery(<span class="hljs-string">&#x27;database&#x27;</span>) query<br><span class="hljs-keyword">WHERE</span> search_vector @@ query;<br></code></pre></td></tr></table></figure>
 
 <h2 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h2><p>窗口函数用于执行跨行的计算。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建示例表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> sales (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    product <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    amount <span class="type">DECIMAL</span>(<span class="number">10</span>, <span class="number">2</span>),</span><br><span class="line">    sale_date <span class="type">DATE</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT INTO</span> sales (product, amount, sale_date) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;Product A&#x27;</span>, <span class="number">100.00</span>, <span class="string">&#x27;2026-03-01&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;Product A&#x27;</span>, <span class="number">150.00</span>, <span class="string">&#x27;2026-03-02&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;Product B&#x27;</span>, <span class="number">200.00</span>, <span class="string">&#x27;2026-03-01&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;Product B&#x27;</span>, <span class="number">250.00</span>, <span class="string">&#x27;2026-03-02&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;Product A&#x27;</span>, <span class="number">120.00</span>, <span class="string">&#x27;2026-03-03&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 排名函数</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    product,</span><br><span class="line">    amount,</span><br><span class="line">    <span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> amount <span class="keyword">DESC</span>) <span class="keyword">as</span> row_num,</span><br><span class="line">    <span class="built_in">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> amount <span class="keyword">DESC</span>) <span class="keyword">as</span> rank,</span><br><span class="line">    <span class="built_in">DENSE_RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> amount <span class="keyword">DESC</span>) <span class="keyword">as</span> dense_rank</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分组排名</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    product,</span><br><span class="line">    amount,</span><br><span class="line">    <span class="built_in">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> product <span class="keyword">ORDER</span> <span class="keyword">BY</span> amount <span class="keyword">DESC</span>) <span class="keyword">as</span> product_rank</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 聚合窗口函数</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    product,</span><br><span class="line">    amount,</span><br><span class="line">    <span class="built_in">SUM</span>(amount) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> product) <span class="keyword">as</span> product_total,</span><br><span class="line">    <span class="built_in">AVG</span>(amount) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> product) <span class="keyword">as</span> product_avg,</span><br><span class="line">    <span class="built_in">SUM</span>(amount) <span class="keyword">OVER</span> () <span class="keyword">as</span> grand_total</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 移动平均</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    sale_date,</span><br><span class="line">    amount,</span><br><span class="line">    <span class="built_in">AVG</span>(amount) <span class="keyword">OVER</span> (</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> sale_date</span><br><span class="line">        <span class="keyword">ROWS</span> <span class="keyword">BETWEEN</span> <span class="number">2</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span></span><br><span class="line">    ) <span class="keyword">as</span> moving_avg</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 累计求和</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    sale_date,</span><br><span class="line">    amount,</span><br><span class="line">    <span class="built_in">SUM</span>(amount) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> sale_date) <span class="keyword">as</span> running_total</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- LAG 和 LEAD</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    sale_date,</span><br><span class="line">    amount,</span><br><span class="line">    <span class="built_in">LAG</span>(amount, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> sale_date) <span class="keyword">as</span> prev_amount,</span><br><span class="line">    <span class="built_in">LEAD</span>(amount, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> sale_date) <span class="keyword">as</span> next_amount</span><br><span class="line"><span class="keyword">FROM</span> sales;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建示例表</span><br><span class="hljs-keyword">CREATE TABLE</span> sales (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    product <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>),<br>    amount <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>),<br>    sale_date <span class="hljs-type">DATE</span><br>);<br><br><span class="hljs-keyword">INSERT INTO</span> sales (product, amount, sale_date) <span class="hljs-keyword">VALUES</span><br>(<span class="hljs-string">&#x27;Product A&#x27;</span>, <span class="hljs-number">100.00</span>, <span class="hljs-string">&#x27;2026-03-01&#x27;</span>),<br>(<span class="hljs-string">&#x27;Product A&#x27;</span>, <span class="hljs-number">150.00</span>, <span class="hljs-string">&#x27;2026-03-02&#x27;</span>),<br>(<span class="hljs-string">&#x27;Product B&#x27;</span>, <span class="hljs-number">200.00</span>, <span class="hljs-string">&#x27;2026-03-01&#x27;</span>),<br>(<span class="hljs-string">&#x27;Product B&#x27;</span>, <span class="hljs-number">250.00</span>, <span class="hljs-string">&#x27;2026-03-02&#x27;</span>),<br>(<span class="hljs-string">&#x27;Product A&#x27;</span>, <span class="hljs-number">120.00</span>, <span class="hljs-string">&#x27;2026-03-03&#x27;</span>);<br><br><span class="hljs-comment">-- 排名函数</span><br><span class="hljs-keyword">SELECT</span><br>    product,<br>    amount,<br>    <span class="hljs-built_in">ROW_NUMBER</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> amount <span class="hljs-keyword">DESC</span>) <span class="hljs-keyword">as</span> row_num,<br>    <span class="hljs-built_in">RANK</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> amount <span class="hljs-keyword">DESC</span>) <span class="hljs-keyword">as</span> rank,<br>    <span class="hljs-built_in">DENSE_RANK</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> amount <span class="hljs-keyword">DESC</span>) <span class="hljs-keyword">as</span> dense_rank<br><span class="hljs-keyword">FROM</span> sales;<br><br><span class="hljs-comment">-- 分组排名</span><br><span class="hljs-keyword">SELECT</span><br>    product,<br>    amount,<br>    <span class="hljs-built_in">RANK</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> product <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> amount <span class="hljs-keyword">DESC</span>) <span class="hljs-keyword">as</span> product_rank<br><span class="hljs-keyword">FROM</span> sales;<br><br><span class="hljs-comment">-- 聚合窗口函数</span><br><span class="hljs-keyword">SELECT</span><br>    product,<br>    amount,<br>    <span class="hljs-built_in">SUM</span>(amount) <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> product) <span class="hljs-keyword">as</span> product_total,<br>    <span class="hljs-built_in">AVG</span>(amount) <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> product) <span class="hljs-keyword">as</span> product_avg,<br>    <span class="hljs-built_in">SUM</span>(amount) <span class="hljs-keyword">OVER</span> () <span class="hljs-keyword">as</span> grand_total<br><span class="hljs-keyword">FROM</span> sales;<br><br><span class="hljs-comment">-- 移动平均</span><br><span class="hljs-keyword">SELECT</span><br>    sale_date,<br>    amount,<br>    <span class="hljs-built_in">AVG</span>(amount) <span class="hljs-keyword">OVER</span> (<br>        <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> sale_date<br>        <span class="hljs-keyword">ROWS</span> <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">2</span> PRECEDING <span class="hljs-keyword">AND</span> <span class="hljs-keyword">CURRENT</span> <span class="hljs-type">ROW</span><br>    ) <span class="hljs-keyword">as</span> moving_avg<br><span class="hljs-keyword">FROM</span> sales;<br><br><span class="hljs-comment">-- 累计求和</span><br><span class="hljs-keyword">SELECT</span><br>    sale_date,<br>    amount,<br>    <span class="hljs-built_in">SUM</span>(amount) <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> sale_date) <span class="hljs-keyword">as</span> running_total<br><span class="hljs-keyword">FROM</span> sales;<br><br><span class="hljs-comment">-- LAG 和 LEAD</span><br><span class="hljs-keyword">SELECT</span><br>    sale_date,<br>    amount,<br>    <span class="hljs-built_in">LAG</span>(amount, <span class="hljs-number">1</span>) <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> sale_date) <span class="hljs-keyword">as</span> prev_amount,<br>    <span class="hljs-built_in">LEAD</span>(amount, <span class="hljs-number">1</span>) <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> sale_date) <span class="hljs-keyword">as</span> next_amount<br><span class="hljs-keyword">FROM</span> sales;<br></code></pre></td></tr></table></figure>
 
 <h2 id="CTE-Common-Table-Expression"><a href="#CTE-Common-Table-Expression" class="headerlink" title="CTE (Common Table Expression)"></a>CTE (Common Table Expression)</h2><p>CTE 提供了一种编写复杂查询的清晰方式。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 基本 CTE</span></span><br><span class="line"><span class="keyword">WITH</span> active_users <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> status <span class="operator">=</span> <span class="string">&#x27;active&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> active_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多个 CTE</span></span><br><span class="line"><span class="keyword">WITH</span></span><br><span class="line">user_orders <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> user_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> order_count</span><br><span class="line">    <span class="keyword">FROM</span> orders</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id</span><br><span class="line">),</span><br><span class="line">user_totals <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> user_id, <span class="built_in">SUM</span>(amount) <span class="keyword">as</span> total_amount</span><br><span class="line">    <span class="keyword">FROM</span> orders</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    u.username,</span><br><span class="line">    uo.order_count,</span><br><span class="line">    ut.total_amount</span><br><span class="line"><span class="keyword">FROM</span> users u</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user_orders uo <span class="keyword">ON</span> u.id <span class="operator">=</span> uo.user_id</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user_totals ut <span class="keyword">ON</span> u.id <span class="operator">=</span> ut.user_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 递归 CTE（组织架构）</span></span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> org_tree <span class="keyword">AS</span> (</span><br><span class="line">    <span class="comment">-- 基础查询</span></span><br><span class="line">    <span class="keyword">SELECT</span> id, name, manager_id, <span class="number">1</span> <span class="keyword">as</span> level</span><br><span class="line">    <span class="keyword">FROM</span> employees</span><br><span class="line">    <span class="keyword">WHERE</span> manager_id <span class="keyword">IS</span> <span class="keyword">NULL</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 递归查询</span></span><br><span class="line">    <span class="keyword">SELECT</span> e.id, e.name, e.manager_id, ot.level <span class="operator">+</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">FROM</span> employees e</span><br><span class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> org_tree ot <span class="keyword">ON</span> e.manager_id <span class="operator">=</span> ot.id</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> org_tree <span class="keyword">ORDER</span> <span class="keyword">BY</span> level;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 递归 CTE（查找所有子节点）</span></span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> category_tree <span class="keyword">AS</span> (</span><br><span class="line">    <span class="comment">-- 选择根节点</span></span><br><span class="line">    <span class="keyword">SELECT</span> id, name, parent_id</span><br><span class="line">    <span class="keyword">FROM</span> categories</span><br><span class="line">    <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 递归选择子节点</span></span><br><span class="line">    <span class="keyword">SELECT</span> c.id, c.name, c.parent_id</span><br><span class="line">    <span class="keyword">FROM</span> categories c</span><br><span class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> category_tree ct <span class="keyword">ON</span> c.parent_id <span class="operator">=</span> ct.id</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category_tree;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 基本 CTE</span><br><span class="hljs-keyword">WITH</span> active_users <span class="hljs-keyword">AS</span> (<br>    <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> status <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;active&#x27;</span><br>)<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> active_users;<br><br><span class="hljs-comment">-- 多个 CTE</span><br><span class="hljs-keyword">WITH</span><br>user_orders <span class="hljs-keyword">AS</span> (<br>    <span class="hljs-keyword">SELECT</span> user_id, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">as</span> order_count<br>    <span class="hljs-keyword">FROM</span> orders<br>    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> user_id<br>),<br>user_totals <span class="hljs-keyword">AS</span> (<br>    <span class="hljs-keyword">SELECT</span> user_id, <span class="hljs-built_in">SUM</span>(amount) <span class="hljs-keyword">as</span> total_amount<br>    <span class="hljs-keyword">FROM</span> orders<br>    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> user_id<br>)<br><span class="hljs-keyword">SELECT</span><br>    u.username,<br>    uo.order_count,<br>    ut.total_amount<br><span class="hljs-keyword">FROM</span> users u<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> user_orders uo <span class="hljs-keyword">ON</span> u.id <span class="hljs-operator">=</span> uo.user_id<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> user_totals ut <span class="hljs-keyword">ON</span> u.id <span class="hljs-operator">=</span> ut.user_id;<br><br><span class="hljs-comment">-- 递归 CTE（组织架构）</span><br><span class="hljs-keyword">WITH</span> <span class="hljs-keyword">RECURSIVE</span> org_tree <span class="hljs-keyword">AS</span> (<br>    <span class="hljs-comment">-- 基础查询</span><br>    <span class="hljs-keyword">SELECT</span> id, name, manager_id, <span class="hljs-number">1</span> <span class="hljs-keyword">as</span> level<br>    <span class="hljs-keyword">FROM</span> employees<br>    <span class="hljs-keyword">WHERE</span> manager_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span><br>    <br>    <span class="hljs-keyword">UNION</span> <span class="hljs-keyword">ALL</span><br>    <br>    <span class="hljs-comment">-- 递归查询</span><br>    <span class="hljs-keyword">SELECT</span> e.id, e.name, e.manager_id, ot.level <span class="hljs-operator">+</span> <span class="hljs-number">1</span><br>    <span class="hljs-keyword">FROM</span> employees e<br>    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> org_tree ot <span class="hljs-keyword">ON</span> e.manager_id <span class="hljs-operator">=</span> ot.id<br>)<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> org_tree <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> level;<br><br><span class="hljs-comment">-- 递归 CTE（查找所有子节点）</span><br><span class="hljs-keyword">WITH</span> <span class="hljs-keyword">RECURSIVE</span> category_tree <span class="hljs-keyword">AS</span> (<br>    <span class="hljs-comment">-- 选择根节点</span><br>    <span class="hljs-keyword">SELECT</span> id, name, parent_id<br>    <span class="hljs-keyword">FROM</span> categories<br>    <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span><br>    <br>    <span class="hljs-keyword">UNION</span> <span class="hljs-keyword">ALL</span><br>    <br>    <span class="hljs-comment">-- 递归选择子节点</span><br>    <span class="hljs-keyword">SELECT</span> c.id, c.name, c.parent_id<br>    <span class="hljs-keyword">FROM</span> categories c<br>    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> category_tree ct <span class="hljs-keyword">ON</span> c.parent_id <span class="hljs-operator">=</span> ct.id<br>)<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> category_tree;<br></code></pre></td></tr></table></figure>
 
 <h2 id="物化视图"><a href="#物化视图" class="headerlink" title="物化视图"></a>物化视图</h2><p>物化视图是预先计算并存储的查询结果。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建物化视图</span></span><br><span class="line"><span class="keyword">CREATE</span> MATERIALIZED <span class="keyword">VIEW</span> sales_summary <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    product,</span><br><span class="line">    <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> sale_count,</span><br><span class="line">    <span class="built_in">SUM</span>(amount) <span class="keyword">as</span> total_amount,</span><br><span class="line">    <span class="built_in">AVG</span>(amount) <span class="keyword">as</span> avg_amount</span><br><span class="line"><span class="keyword">FROM</span> sales</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> product;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询物化视图</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sales_summary;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 刷新物化视图</span></span><br><span class="line">REFRESH MATERIALIZED <span class="keyword">VIEW</span> sales_summary;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 并发刷新（不阻塞查询）</span></span><br><span class="line">REFRESH MATERIALIZED <span class="keyword">VIEW</span> CONCURRENTLY sales_summary;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_sales_summary_product <span class="keyword">ON</span> sales_summary(product);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除物化视图</span></span><br><span class="line"><span class="keyword">DROP</span> MATERIALIZED <span class="keyword">VIEW</span> sales_summary;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建物化视图</span><br><span class="hljs-keyword">CREATE</span> MATERIALIZED <span class="hljs-keyword">VIEW</span> sales_summary <span class="hljs-keyword">AS</span><br><span class="hljs-keyword">SELECT</span><br>    product,<br>    <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">as</span> sale_count,<br>    <span class="hljs-built_in">SUM</span>(amount) <span class="hljs-keyword">as</span> total_amount,<br>    <span class="hljs-built_in">AVG</span>(amount) <span class="hljs-keyword">as</span> avg_amount<br><span class="hljs-keyword">FROM</span> sales<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> product;<br><br><span class="hljs-comment">-- 查询物化视图</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> sales_summary;<br><br><span class="hljs-comment">-- 刷新物化视图</span><br>REFRESH MATERIALIZED <span class="hljs-keyword">VIEW</span> sales_summary;<br><br><span class="hljs-comment">-- 并发刷新（不阻塞查询）</span><br>REFRESH MATERIALIZED <span class="hljs-keyword">VIEW</span> CONCURRENTLY sales_summary;<br><br><span class="hljs-comment">-- 创建索引</span><br><span class="hljs-keyword">CREATE</span> INDEX idx_sales_summary_product <span class="hljs-keyword">ON</span> sales_summary(product);<br><br><span class="hljs-comment">-- 删除物化视图</span><br><span class="hljs-keyword">DROP</span> MATERIALIZED <span class="hljs-keyword">VIEW</span> sales_summary;<br></code></pre></td></tr></table></figure>
 
 <h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器在特定事件发生时自动执行。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建触发器函数</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> REPLACE <span class="keyword">FUNCTION</span> update_modified_time()</span><br><span class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span> <span class="keyword">AS</span> $$</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    NEW.updated_at <span class="operator">=</span> <span class="built_in">CURRENT_TIMESTAMP</span>;</span><br><span class="line">    <span class="keyword">RETURN</span> <span class="keyword">NEW</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br><span class="line">$$ <span class="keyword">LANGUAGE</span> plpgsql;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建触发器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> users_update_time</span><br><span class="line">BEFORE <span class="keyword">UPDATE</span> <span class="keyword">ON</span> users</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">EXECUTE</span> <span class="keyword">FUNCTION</span> update_modified_time();</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 审计触发器</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> audit_log (</span><br><span class="line">    id SERIAL <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    table_name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    operation <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">    old_data JSONB,</span><br><span class="line">    new_data JSONB,</span><br><span class="line">    changed_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> REPLACE <span class="keyword">FUNCTION</span> audit_trigger()</span><br><span class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span> <span class="keyword">AS</span> $$</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    IF TG_OP <span class="operator">=</span> <span class="string">&#x27;DELETE&#x27;</span> <span class="keyword">THEN</span></span><br><span class="line">        <span class="keyword">INSERT INTO</span> audit_log (table_name, operation, old_data)</span><br><span class="line">        <span class="keyword">VALUES</span> (TG_TABLE_NAME, <span class="string">&#x27;DELETE&#x27;</span>, to_jsonb(<span class="keyword">OLD</span>));</span><br><span class="line">        <span class="keyword">RETURN</span> <span class="keyword">OLD</span>;</span><br><span class="line">    ELSIF TG_OP <span class="operator">=</span> <span class="string">&#x27;UPDATE&#x27;</span> <span class="keyword">THEN</span></span><br><span class="line">        <span class="keyword">INSERT INTO</span> audit_log (table_name, operation, old_data, new_data)</span><br><span class="line">        <span class="keyword">VALUES</span> (TG_TABLE_NAME, <span class="string">&#x27;UPDATE&#x27;</span>, to_jsonb(<span class="keyword">OLD</span>), to_jsonb(<span class="keyword">NEW</span>));</span><br><span class="line">        <span class="keyword">RETURN</span> <span class="keyword">NEW</span>;</span><br><span class="line">    ELSIF TG_OP <span class="operator">=</span> <span class="string">&#x27;INSERT&#x27;</span> <span class="keyword">THEN</span></span><br><span class="line">        <span class="keyword">INSERT INTO</span> audit_log (table_name, operation, new_data)</span><br><span class="line">        <span class="keyword">VALUES</span> (TG_TABLE_NAME, <span class="string">&#x27;INSERT&#x27;</span>, to_jsonb(<span class="keyword">NEW</span>));</span><br><span class="line">        <span class="keyword">RETURN</span> <span class="keyword">NEW</span>;</span><br><span class="line">    <span class="keyword">END</span> IF;</span><br><span class="line">    <span class="keyword">RETURN</span> <span class="keyword">NULL</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br><span class="line">$$ <span class="keyword">LANGUAGE</span> plpgsql;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> users_audit</span><br><span class="line">AFTER <span class="keyword">INSERT</span> <span class="keyword">OR</span> <span class="keyword">UPDATE</span> <span class="keyword">OR</span> <span class="keyword">DELETE</span> <span class="keyword">ON</span> users</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">EXECUTE</span> <span class="keyword">FUNCTION</span> audit_trigger();</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除触发器</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> users_update_time <span class="keyword">ON</span> users;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建触发器函数</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> REPLACE <span class="hljs-keyword">FUNCTION</span> update_modified_time()<br><span class="hljs-keyword">RETURNS</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">AS</span> $$<br><span class="hljs-keyword">BEGIN</span><br>    NEW.updated_at <span class="hljs-operator">=</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>;<br>    <span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">NEW</span>;<br><span class="hljs-keyword">END</span>;<br>$$ <span class="hljs-keyword">LANGUAGE</span> plpgsql;<br><br><span class="hljs-comment">-- 创建触发器</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> users_update_time<br>BEFORE <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> users<br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-type">ROW</span><br><span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">FUNCTION</span> update_modified_time();<br><br><span class="hljs-comment">-- 审计触发器</span><br><span class="hljs-keyword">CREATE TABLE</span> audit_log (<br>    id SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,<br>    table_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>),<br>    operation <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>),<br>    old_data JSONB,<br>    new_data JSONB,<br>    changed_at <span class="hljs-type">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span><br>);<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> REPLACE <span class="hljs-keyword">FUNCTION</span> audit_trigger()<br><span class="hljs-keyword">RETURNS</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-keyword">AS</span> $$<br><span class="hljs-keyword">BEGIN</span><br>    IF TG_OP <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;DELETE&#x27;</span> <span class="hljs-keyword">THEN</span><br>        <span class="hljs-keyword">INSERT INTO</span> audit_log (table_name, operation, old_data)<br>        <span class="hljs-keyword">VALUES</span> (TG_TABLE_NAME, <span class="hljs-string">&#x27;DELETE&#x27;</span>, to_jsonb(<span class="hljs-keyword">OLD</span>));<br>        <span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">OLD</span>;<br>    ELSIF TG_OP <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;UPDATE&#x27;</span> <span class="hljs-keyword">THEN</span><br>        <span class="hljs-keyword">INSERT INTO</span> audit_log (table_name, operation, old_data, new_data)<br>        <span class="hljs-keyword">VALUES</span> (TG_TABLE_NAME, <span class="hljs-string">&#x27;UPDATE&#x27;</span>, to_jsonb(<span class="hljs-keyword">OLD</span>), to_jsonb(<span class="hljs-keyword">NEW</span>));<br>        <span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">NEW</span>;<br>    ELSIF TG_OP <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;INSERT&#x27;</span> <span class="hljs-keyword">THEN</span><br>        <span class="hljs-keyword">INSERT INTO</span> audit_log (table_name, operation, new_data)<br>        <span class="hljs-keyword">VALUES</span> (TG_TABLE_NAME, <span class="hljs-string">&#x27;INSERT&#x27;</span>, to_jsonb(<span class="hljs-keyword">NEW</span>));<br>        <span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">NEW</span>;<br>    <span class="hljs-keyword">END</span> IF;<br>    <span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">NULL</span>;<br><span class="hljs-keyword">END</span>;<br>$$ <span class="hljs-keyword">LANGUAGE</span> plpgsql;<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> users_audit<br>AFTER <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">ON</span> users<br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-type">ROW</span><br><span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">FUNCTION</span> audit_trigger();<br><br><span class="hljs-comment">-- 删除触发器</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> users_update_time <span class="hljs-keyword">ON</span> users;<br></code></pre></td></tr></table></figure>
 
 <h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>PostgreSQL 11+ 支持存储过程。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建存储过程</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> REPLACE <span class="keyword">PROCEDURE</span> transfer_money(</span><br><span class="line">    from_account <span class="type">INTEGER</span>,</span><br><span class="line">    to_account <span class="type">INTEGER</span>,</span><br><span class="line">    amount <span class="type">DECIMAL</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">LANGUAGE</span> plpgsql</span><br><span class="line"><span class="keyword">AS</span> $$</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="comment">-- 检查余额</span></span><br><span class="line">    IF (<span class="keyword">SELECT</span> balance <span class="keyword">FROM</span> accounts <span class="keyword">WHERE</span> id <span class="operator">=</span> from_account) <span class="operator">&lt;</span> amount <span class="keyword">THEN</span></span><br><span class="line">        RAISE EXCEPTION <span class="string">&#x27;Insufficient balance&#x27;</span>;</span><br><span class="line">    <span class="keyword">END</span> IF;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 转账</span></span><br><span class="line">    <span class="keyword">UPDATE</span> accounts <span class="keyword">SET</span> balance <span class="operator">=</span> balance <span class="operator">-</span> amount <span class="keyword">WHERE</span> id <span class="operator">=</span> from_account;</span><br><span class="line">    <span class="keyword">UPDATE</span> accounts <span class="keyword">SET</span> balance <span class="operator">=</span> balance <span class="operator">+</span> amount <span class="keyword">WHERE</span> id <span class="operator">=</span> to_account;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 记录日志</span></span><br><span class="line">    <span class="keyword">INSERT INTO</span> transfer_logs (from_account, to_account, amount, created_at)</span><br><span class="line">    <span class="keyword">VALUES</span> (from_account, to_account, amount, NOW());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">COMMIT</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br><span class="line">$$;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 调用存储过程</span></span><br><span class="line"><span class="keyword">CALL</span> transfer_money(<span class="number">1</span>, <span class="number">2</span>, <span class="number">100.00</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除存储过程</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> transfer_money;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建存储过程</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> REPLACE <span class="hljs-keyword">PROCEDURE</span> transfer_money(<br>    from_account <span class="hljs-type">INTEGER</span>,<br>    to_account <span class="hljs-type">INTEGER</span>,<br>    amount <span class="hljs-type">DECIMAL</span><br>)<br><span class="hljs-keyword">LANGUAGE</span> plpgsql<br><span class="hljs-keyword">AS</span> $$<br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-comment">-- 检查余额</span><br>    IF (<span class="hljs-keyword">SELECT</span> balance <span class="hljs-keyword">FROM</span> accounts <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> from_account) <span class="hljs-operator">&lt;</span> amount <span class="hljs-keyword">THEN</span><br>        RAISE EXCEPTION <span class="hljs-string">&#x27;Insufficient balance&#x27;</span>;<br>    <span class="hljs-keyword">END</span> IF;<br>    <br>    <span class="hljs-comment">-- 转账</span><br>    <span class="hljs-keyword">UPDATE</span> accounts <span class="hljs-keyword">SET</span> balance <span class="hljs-operator">=</span> balance <span class="hljs-operator">-</span> amount <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> from_account;<br>    <span class="hljs-keyword">UPDATE</span> accounts <span class="hljs-keyword">SET</span> balance <span class="hljs-operator">=</span> balance <span class="hljs-operator">+</span> amount <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> to_account;<br>    <br>    <span class="hljs-comment">-- 记录日志</span><br>    <span class="hljs-keyword">INSERT INTO</span> transfer_logs (from_account, to_account, amount, created_at)<br>    <span class="hljs-keyword">VALUES</span> (from_account, to_account, amount, NOW());<br>    <br>    <span class="hljs-keyword">COMMIT</span>;<br><span class="hljs-keyword">END</span>;<br>$$;<br><br><span class="hljs-comment">-- 调用存储过程</span><br><span class="hljs-keyword">CALL</span> transfer_money(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">100.00</span>);<br><br><span class="hljs-comment">-- 删除存储过程</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">PROCEDURE</span> transfer_money;<br></code></pre></td></tr></table></figure>
 
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-EXPLAIN-ANALYZE"><a href="#1-EXPLAIN-ANALYZE" class="headerlink" title="1. EXPLAIN ANALYZE"></a>1. EXPLAIN ANALYZE</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看查询计划</span></span><br><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;zhangsan&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看实际执行时间和计划</span></span><br><span class="line">EXPLAIN ANALYZE <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;zhangsan&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看详细输出</span></span><br><span class="line">EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;zhangsan&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-EXPLAIN-ANALYZE"><a href="#1-EXPLAIN-ANALYZE" class="headerlink" title="1. EXPLAIN ANALYZE"></a>1. EXPLAIN ANALYZE</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看查询计划</span><br>EXPLAIN <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;zhangsan&#x27;</span>;<br><br><span class="hljs-comment">-- 查看实际执行时间和计划</span><br>EXPLAIN ANALYZE <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;zhangsan&#x27;</span>;<br><br><span class="hljs-comment">-- 查看详细输出</span><br>EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;zhangsan&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
-<h3 id="2-VACUUM"><a href="#2-VACUUM" class="headerlink" title="2. VACUUM"></a>2. VACUUM</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 清理死元组</span></span><br><span class="line">VACUUM users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 完整清理并更新统计信息</span></span><br><span class="line">VACUUM <span class="keyword">FULL</span> ANALYZE users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 自动清理配置</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> users <span class="keyword">SET</span> (</span><br><span class="line">    autovacuum_enabled <span class="operator">=</span> <span class="literal">true</span>,</span><br><span class="line">    autovacuum_vacuum_threshold <span class="operator">=</span> <span class="number">50</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="2-VACUUM"><a href="#2-VACUUM" class="headerlink" title="2. VACUUM"></a>2. VACUUM</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 清理死元组</span><br>VACUUM users;<br><br><span class="hljs-comment">-- 完整清理并更新统计信息</span><br>VACUUM <span class="hljs-keyword">FULL</span> ANALYZE users;<br><br><span class="hljs-comment">-- 自动清理配置</span><br><span class="hljs-keyword">ALTER TABLE</span> users <span class="hljs-keyword">SET</span> (<br>    autovacuum_enabled <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>,<br>    autovacuum_vacuum_threshold <span class="hljs-operator">=</span> <span class="hljs-number">50</span><br>);<br></code></pre></td></tr></table></figure>
 
-<h3 id="3-统计信息"><a href="#3-统计信息" class="headerlink" title="3. 统计信息"></a>3. 统计信息</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看表统计信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> pg_stat_user_tables;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看索引使用情况</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    schemaname,</span><br><span class="line">    relname <span class="keyword">as</span> table_name,</span><br><span class="line">    indexrelname <span class="keyword">as</span> index_name,</span><br><span class="line">    idx_scan,</span><br><span class="line">    idx_tup_read,</span><br><span class="line">    idx_tup_fetch</span><br><span class="line"><span class="keyword">FROM</span> pg_stat_user_indexes;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看慢查询</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> pg_stat_statements <span class="keyword">ORDER</span> <span class="keyword">BY</span> total_time <span class="keyword">DESC</span> LIMIT <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="3-统计信息"><a href="#3-统计信息" class="headerlink" title="3. 统计信息"></a>3. 统计信息</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看表统计信息</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> pg_stat_user_tables;<br><br><span class="hljs-comment">-- 查看索引使用情况</span><br><span class="hljs-keyword">SELECT</span><br>    schemaname,<br>    relname <span class="hljs-keyword">as</span> table_name,<br>    indexrelname <span class="hljs-keyword">as</span> index_name,<br>    idx_scan,<br>    idx_tup_read,<br>    idx_tup_fetch<br><span class="hljs-keyword">FROM</span> pg_stat_user_indexes;<br><br><span class="hljs-comment">-- 查看慢查询</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> pg_stat_statements <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> total_time <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
 
-<h2 id="备份与恢复"><a href="#备份与恢复" class="headerlink" title="备份与恢复"></a>备份与恢复</h2><h3 id="pg-dump-逻辑备份"><a href="#pg-dump-逻辑备份" class="headerlink" title="pg_dump - 逻辑备份"></a>pg_dump - 逻辑备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份单个数据库</span></span><br><span class="line">pg_dump -U postgres mydb &gt; mydb_backup.sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份所有数据库</span></span><br><span class="line">pg_dumpall -U postgres &gt; all_backup.sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 压缩备份</span></span><br><span class="line">pg_dump -U postgres mydb | gzip &gt; mydb_backup.sql.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份特定表</span></span><br><span class="line">pg_dump -U postgres -t <span class="built_in">users</span> mydb &gt; users_backup.sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复</span></span><br><span class="line">psql -U postgres mydb &lt; mydb_backup.sql</span><br></pre></td></tr></table></figure>
+<h2 id="备份与恢复"><a href="#备份与恢复" class="headerlink" title="备份与恢复"></a>备份与恢复</h2><h3 id="pg-dump-逻辑备份"><a href="#pg-dump-逻辑备份" class="headerlink" title="pg_dump - 逻辑备份"></a>pg_dump - 逻辑备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 备份单个数据库</span><br>pg_dump -U postgres mydb &gt; mydb_backup.sql<br><br><span class="hljs-comment"># 备份所有数据库</span><br>pg_dumpall -U postgres &gt; all_backup.sql<br><br><span class="hljs-comment"># 压缩备份</span><br>pg_dump -U postgres mydb | gzip &gt; mydb_backup.sql.gz<br><br><span class="hljs-comment"># 备份特定表</span><br>pg_dump -U postgres -t <span class="hljs-built_in">users</span> mydb &gt; users_backup.sql<br><br><span class="hljs-comment"># 恢复</span><br>psql -U postgres mydb &lt; mydb_backup.sql<br></code></pre></td></tr></table></figure>
 
-<h3 id="pg-basebackup-物理备份"><a href="#pg-basebackup-物理备份" class="headerlink" title="pg_basebackup - 物理备份"></a>pg_basebackup - 物理备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础备份</span></span><br><span class="line">pg_basebackup -U postgres -D /backup/base -Ft -z -P</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增量备份（需要 WAL 归档）</span></span><br><span class="line">pg_basebackup -U postgres -D /backup/incr --checkpoint=fast</span><br></pre></td></tr></table></figure>
+<h3 id="pg-basebackup-物理备份"><a href="#pg-basebackup-物理备份" class="headerlink" title="pg_basebackup - 物理备份"></a>pg_basebackup - 物理备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 基础备份</span><br>pg_basebackup -U postgres -D /backup/base -Ft -z -P<br><br><span class="hljs-comment"># 增量备份（需要 WAL 归档）</span><br>pg_basebackup -U postgres -D /backup/incr --checkpoint=fast<br></code></pre></td></tr></table></figure>
 
 <h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/">PostgreSQL 官方文档</a></li>
@@ -390,94 +483,442 @@
 <li><a href="/2026/03/16/database-performance-optimization/">数据库性能优化实战</a></li>
 </ul>
 
-    </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
+<span class="category-chains">
+  
+  
     
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
-              <a href="/tags/SQL/" rel="tag"># SQL</a>
-              <a href="/tags/PostgreSQL/" rel="tag"># PostgreSQL</a>
-              <a href="/tags/%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="tag"># 高级特性</a>
-          </div>
-
+      <span class="category-chain">
         
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2026/03/16/mongodb-nosql-intro/" rel="prev" title="MongoDB NoSQL 数据库入门">
-                  <i class="fa fa-angle-left"></i> MongoDB NoSQL 数据库入门
-                </a>
-            </div>
-            <div class="post-nav-item">
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2026</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">博主</span>
-  </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-    </div>
-  </footer>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/" class="category-chain-item">高级教程</a>
+  
+  
 
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="print-no-link">#数据库</a>
+      
+        <a href="/tags/PostgreSQL/" class="print-no-link">#PostgreSQL</a>
+      
+        <a href="/tags/SQL/" class="print-no-link">#SQL</a>
+      
+        <a href="/tags/%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" class="print-no-link">#高级特性</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PostgreSQL 高级数据库特性详解</div>
+      <div>https://lzqiangit.github.io/2026/03/16/postgresql-advanced-features/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>博主</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/16/mongodb-nosql-intro/" title="MongoDB NoSQL 数据库入门">
+                        <span class="hidden-mobile">MongoDB NoSQL 数据库入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-  <div class="reading-progress-bar"></div>
+</div>
 
-  <a href="https://github.com/yourusername" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
