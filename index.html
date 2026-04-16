@@ -138,18 +138,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,438 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/redis/REDIS_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/redis/REDIS_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Redis数据结构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：20:16:54" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><table>
+<thead>
+<tr>
+<th><strong>数据类型</strong></th>
+<th><strong>实现数据结构</strong></th>
+<th><strong>适用场景</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>String</strong></td>
+<td><strong>SDS（Simple Dynamic String）</strong></td>
+<td><strong>token，计数，对象，分布式锁(setnx)</strong></td>
+</tr>
+<tr>
+<td><strong>List</strong></td>
+<td><strong>双向链表&#x2F;ZipList&#x2F;QuickList</strong></td>
+<td><strong>消息队列，最新列表，时间线</strong></td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td><strong>HashTable&#x2F;IntSet</strong></td>
+<td><strong>标签，共同好友，抽奖</strong></td>
+</tr>
+<tr>
+<td><strong>Hash</strong></td>
+<td><strong>HashTable&#x2F;ZipList</strong></td>
+<td><strong>存储对象，用户信息</strong></td>
+</tr>
+<tr>
+<td><strong>Zset</strong></td>
+<td><strong>跳表+HashTable</strong></td>
+<td><strong>排行榜</strong></td>
+</tr>
+<tr>
+<td><strong>HyperLogLog</strong></td>
+<td><strong>HyperLogLog算法</strong></td>
+<td><strong>基数统计，UV统计</strong></td>
+</tr>
+<tr>
+<td><strong>BitMap</strong></td>
+<td><strong>位数组</strong></td>
+<td><strong>实现登录，布隆过滤器</strong></td>
+</tr>
+<tr>
+<td><strong>Geospatial</strong></td>
+<td><strong>GeoHash+Zset</strong></td>
+<td><strong>附近的人，地理位置</strong></td>
+</tr>
+</tbody></table>
+<h1 id="String数据类型"><a href="#String数据类型" class="headerlink" title="String数据类型"></a>String数据类型</h1><p><strong>Redis 的 STRING 类型是最基本也最常用的数据类型，本质上是一个二进制安全的字节数组（value），可以保存文本、二进制数据，或者被当作整数来做原子自增。</strong></p>
+<p><strong>SDS（Simple Dynamic String）共有五种实现结构：sdshdr5、sdshdr8、sdshdr16、sdshdr32 和 sdshdr64。Redis 会根据字符串的实际长度自动选择最合适的结构类型，从而优化内存使用效率。</strong></p>
+<p><strong>与传统 C 字符串不同，SDS 通过 len 属性记录字符串长度，无需遍历即可获取长度信息，且能正确处理包含空字符的二进制数据，因此适用于更广泛的场景。</strong></p>
+<h1 id="什么是跳表"><a href="#什么是跳表" class="headerlink" title="什么是跳表"></a>什么是跳表</h1><p><strong>跳表是对链表的优化。即使链表元素有序，在链表中做查找速度还是需要遍历，速度很慢。跳表是在链表的基础上，增加了索引，使得查找速度速度达到二分查找的复杂度。</strong></p>
+<p>*<em>其是一种</em><em><strong>基于多层链表的概率平衡数据结构，用来实现有序集合或有序映射，能把查找、插入、删除的期望时间复杂度降到 O(log n)</strong></em>*。<strong>直观上可以把它想成在</strong>有序的单链表上额外建立若干”跳跃”层：最底层是完整的有序链表，上层是从底层抽样得到的子链表，越高层的节点越少。**查找时从最高层开始水平扫描，遇到大于目标的节点则下降一层，直至找到或确定不存在；插入时通过随机决定新节点的层数（常用的概率 p &#x3D; 1&#x2F;2），在每一层调整指针；删除类似——在每层把对应节点移除。</p>
+<h1 id="为什么用跳表实现zset？"><a href="#为什么用跳表实现zset？" class="headerlink" title="为什么用跳表实现zset？"></a>为什么用跳表实现zset？</h1><p><strong>一般可以通过跳表，二叉搜索书，B+树等来维护一个具有先后关系的集合，使用跳表是因为：</strong></p>
+<ul>
+<li>**相较于二叉平衡树，**<strong>没有平衡开销，范围搜索性能更好</strong></li>
+<li>**相较于红黑树，**<strong>实现起来更简洁，范围搜索性能也更好</strong></li>
+<li>**B+树更适合需要IO操作的场景，例如文件系统、数据库等。不适用B+树是因为Redis基于内存。**<strong>跳表实现更简单，添加删除时不用处理复杂的节点分裂合并</strong></li>
+</ul>
+<p><strong>5、Redis的过期策略</strong></p>
+<p><strong>6、Redis是怎么找到key存储在哪个节点上</strong></p>
+<h1 id="ZipList-和-QuickList"><a href="#ZipList-和-QuickList" class="headerlink" title="ZipList 和 QuickList"></a>ZipList 和 QuickList</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/375414918">redis 压缩列表ziplist、quicklist - 知乎</a></p>
+<h2 id="ZipList（压缩列表）"><a href="#ZipList（压缩列表）" class="headerlink" title="ZipList（压缩列表）"></a>ZipList（压缩列表）</h2><p><strong>ZipList 是 Redis 为了节约内存而设计的一种特殊编码的双向链表。它是一块连续的内存空间，以数组的形式存储数据，通过特殊的编码方式来压缩存储空间。</strong></p>
+<h3 id="ZipList-的特点"><a href="#ZipList-的特点" class="headerlink" title="ZipList 的特点"></a>ZipList 的特点</h3><ul>
+<li><strong>内存紧凑</strong>：所有元素连续存储，没有指针开销，适合存储小数据</li>
+<li><strong>可变长度编码</strong>：根据实际数据大小动态调整存储空间</li>
+<li><strong>连锁更新问题</strong>：当某个节点长度变化时，可能触发后续节点的级联更新，导致性能下降</li>
+<li><strong>适用场景</strong>：元素数量较少且元素值较小的 List、Hash 和 Zset</li>
+</ul>
+<h2 id="QuickList（快速列表）"><a href="#QuickList（快速列表）" class="headerlink" title="QuickList（快速列表）"></a>QuickList（快速列表）</h2><p><strong>QuickList 是 Redis 3.2 版本引入的新数据结构，它是 ZipList 和双向链表的结合体。QuickList 本质上是一个双向链表，但每个节点都是一个 ZipList。</strong></p>
+<h3 id="QuickList-的设计思路"><a href="#QuickList-的设计思路" class="headerlink" title="QuickList 的设计思路"></a>QuickList 的设计思路</h3><p><strong>QuickList 结合了两种数据结构的优点：</strong></p>
+<ul>
+<li><strong>双向链表的优势</strong>：支持高效的头尾插入和删除操作</li>
+<li><strong>ZipList 的优势</strong>：内存紧凑，适合存储多个小元素</li>
+</ul>
+<h3 id="QuickList-的优势"><a href="#QuickList-的优势" class="headerlink" title="QuickList 的优势"></a>QuickList 的优势</h3><ul>
+<li><strong>平衡性能和内存</strong>：既保持了链表的 O(1) 头尾操作性能，又通过 ZipList 节省了内存</li>
+<li><strong>避免连锁更新</strong>：将大链表拆分成多个小的 ZipList，降低了连锁更新的概率和影响范围</li>
+<li><strong>支持压缩</strong>：可以对中间节点进行压缩，进一步节省内存</li>
+<li><strong>默认实现</strong>：Redis 3.2+ 版本中，List 类型默认使用 QuickList 作为底层实现**</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-16 19:56:22" itemprop="dateCreated datePublished" datetime="2026-04-16T19:56:22+08:00">2026-04-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-16 19:55:59" itemprop="dateCreated datePublished" datetime="2026-04-16T19:55:59+08:00">2026-04-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-16 19:55:47" itemprop="dateCreated datePublished" datetime="2026-04-16T19:55:47+08:00">2026-04-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/ai/AI_skills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/ai/AI_skills/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-16 17:52:43" itemprop="dateCreated datePublished" datetime="2026-04-16T17:52:43+08:00">2026-04-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E9%94%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -207,7 +639,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/java/JUC_%E9%94%81/" class="post-title-link" itemprop="url">锁</a>
+          <a href="/2026/04/16/java/JUC_%E9%94%81/" class="post-title-link" itemprop="url">Java线程同步</a>
         </h2>
 
         <div class="post-meta-container">
@@ -219,7 +651,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 16:30:00 / 修改时间：16:34:26" itemprop="dateCreated datePublished" datetime="2026-04-16T16:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 16:30:00 / 修改时间：19:55:47" itemprop="dateCreated datePublished" datetime="2026-04-16T16:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,13 +681,14 @@
 <p><strong>锁升级：</strong> 锁升级机制的核心目标是在保证线程安全的前提下，根据实际的线程竞争情况，智能地选择最合适的锁实现。，synchronized无论有无竞争，直接使用重量级锁。这种锁依赖于操作系统的互斥量（Mutex Lock），导致每次加锁和解锁都需要进行用户态到内核态的切换，开销很大。</p>
 <blockquote>
 <p>偏向锁（CAS，适合单个线程重复获取锁）</p>
-<p>– 出现竞争–&gt; </p>
+<p>– 出现竞争–&gt;</p>
 <p>轻量级锁（自旋CAS，适合持有锁时间较短，两个线程竞争，没有用户态内核态切换）</p>
 <p>– 自旋次数过多&#x2F;竞争线程过多–&gt;</p>
 <p>重量级锁（操作系统的Mutex，需要操作系统切换）</p>
 </blockquote>
 <p>锁监视器Monitor，当升级为重量级锁的时候，对象头的Mark word将指向Monitor对象</p>
 <!-- 这是一张图片，ocr 内容为： -->
+
 <p><img src="/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png" alt="对象监视器结构"></p>
 <p><strong>可重入锁：</strong> synchronized是可重入锁，其通过 对象监视器 的”持有对象” 和 “计数器”属性字段实现</p>
 
