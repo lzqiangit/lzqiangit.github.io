@@ -636,7 +636,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -654,7 +654,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">MySQL性能优化</a>
+          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">MySQL日志</a>
         </h2>
 
         <div class="post-meta-container">
@@ -666,7 +666,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:49" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:43" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -714,7 +714,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -732,7 +732,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">MySQL日志</a>
+          <a href="/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">MySQL性能优化</a>
         </h2>
 
         <div class="post-meta-container">
@@ -744,7 +744,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:43" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:49" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -924,7 +924,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-16 21:59:51" itemprop="dateModified" datetime="2026-04-16T21:59:51+08:00">2026-04-16</time>
+      <time title="修改时间：2026-04-16 22:14:57" itemprop="dateModified" datetime="2026-04-16T22:14:57+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -946,183 +946,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Skills：AI-Agent-的能力扩展机制"><a href="#Skills：AI-Agent-的能力扩展机制" class="headerlink" title="Skills：AI Agent 的能力扩展机制"></a>Skills：AI Agent 的能力扩展机制</h1><h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><h3 id="1-1-AI-Agent-的发展演进"><a href="#1-1-AI-Agent-的发展演进" class="headerlink" title="1.1 AI Agent 的发展演进"></a>1.1 AI Agent 的发展演进</h3><p>随着大语言模型（LLM）技术的快速发展，AI 系统正从单纯的<strong>对话助手</strong>向**自主智能体（Agent）**演进。传统的 LLM 虽然具备强大的语言理解和生成能力，但在面对复杂任务时仍存在以下局限：</p>
-<ul>
-<li><strong>工具调用受限</strong>：无法直接访问外部系统、API 或执行具体操作</li>
-<li><strong>领域知识固化</strong>：训练数据截止后无法获取最新信息</li>
-<li><strong>任务分解困难</strong>：难以将复杂目标拆解为可执行的子任务</li>
-<li><strong>上下文管理薄弱</strong>：长周期任务中容易丢失关键状态信息</li>
-</ul>
-<p>为解决这些问题，<strong>Skills（技能）</strong> 作为一种结构化的能力封装机制应运而生。</p>
-<h3 id="1-2-Skills-的诞生"><a href="#1-2-Skills-的诞生" class="headerlink" title="1.2 Skills 的诞生"></a>1.2 Skills 的诞生</h3><p>Skills 概念最早由 Anthropic 在 Claude Agent 系统中提出，随后被 OpenAI、Google DeepMind 等机构广泛采纳。其核心思想是：<strong>将特定领域的能力封装为可复用、可组合的标准化模块</strong>，使 AI Agent 能够像人类专家一样”掌握”多种专业技能。</p>
-<hr>
-<h2 id="二、作用"><a href="#二、作用" class="headerlink" title="二、作用"></a>二、作用</h2><h3 id="2-1-核心功能"><a href="#2-1-核心功能" class="headerlink" title="2.1 核心功能"></a>2.1 核心功能</h3><h4 id="2-1-1-能力扩展"><a href="#2-1-1-能力扩展" class="headerlink" title="2.1.1 能力扩展"></a>2.1.1 能力扩展</h4><p>Skills 为 AI Agent 提供了以下扩展能力：</p>
-<ul>
-<li><strong>工具集成</strong>：封装 API 调用、数据库查询、文件操作等技术能力</li>
-<li><strong>领域专业化</strong>：注入特定行业知识（如医疗诊断、法律分析、代码审查）</li>
-<li><strong>流程自动化</strong>：预定义复杂任务的执行步骤和决策逻辑</li>
-<li><strong>记忆增强</strong>：维护长期状态、用户偏好和历史交互记录</li>
-</ul>
-<h4 id="2-1-2-模块化设计"><a href="#2-1-2-模块化设计" class="headerlink" title="2.1.2 模块化设计"></a>2.1.2 模块化设计</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────┐</span><br><span class="line">│         AI Agent Core               │</span><br><span class="line">│  (LLM + Reasoning Engine)           │</span><br><span class="line">└──────────┬──────────────────────────┘</span><br><span class="line">           │ 动态加载</span><br><span class="line">    ┌──────┴──────┬──────────┐</span><br><span class="line">    │             │          │</span><br><span class="line">┌───▼───┐  ┌─────▼────┐ ┌───▼────┐</span><br><span class="line">│Skill A│  │ Skill B  │ │Skill C │</span><br><span class="line">│(代码) │  │ (数据分析)│ │(写作)  │</span><br><span class="line">└───────┘  └──────────┘ └────────┘</span><br></pre></td></tr></table></figure>
-
-<p>每个 Skill 独立封装，支持：</p>
-<ul>
-<li><strong>按需加载</strong>：根据任务类型动态激活相关技能</li>
-<li><strong>热插拔</strong>：运行时添加或删除技能模块</li>
-<li><strong>版本管理</strong>：独立更新单个技能而不影响其他模块</li>
-</ul>
-<h3 id="2-2-实际应用场景"><a href="#2-2-实际应用场景" class="headerlink" title="2.2 实际应用场景"></a>2.2 实际应用场景</h3><table>
-<thead>
-<tr>
-<th>场景</th>
-<th>所需 Skills</th>
-<th>效果提升</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>软件开发</td>
-<td>代码生成、单元测试、Bug 修复</td>
-<td>开发效率提升 3-5 倍</td>
-</tr>
-<tr>
-<td>数据分析</td>
-<td>SQL 查询、可视化、统计建模</td>
-<td>分析准确率提高 40%</td>
-</tr>
-<tr>
-<td>内容创作</td>
-<td>SEO 优化、多语言翻译、风格适配</td>
-<td>产出质量更稳定</td>
-</tr>
-<tr>
-<td>客户服务</td>
-<td>知识库检索、工单分类、情绪识别</td>
-<td>响应速度提升 60%</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="三、原理"><a href="#三、原理" class="headerlink" title="三、原理"></a>三、原理</h2><h3 id="3-1-技术架构"><a href="#3-1-技术架构" class="headerlink" title="3.1 技术架构"></a>3.1 技术架构</h3><p>Skills 的实现基于以下核心技术栈：</p>
-<h4 id="3-1-1-描述层（Description-Layer）"><a href="#3-1-1-描述层（Description-Layer）" class="headerlink" title="3.1.1 描述层（Description Layer）"></a>3.1.1 描述层（Description Layer）</h4><p>每个 Skill 需要声明元数据，帮助 Agent 理解何时以及如何调用：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">skill:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;code_review&quot;</span></span><br><span class="line">  <span class="attr">description:</span> <span class="string">&quot;审查代码质量，检测潜在 Bug 和安全漏洞&quot;</span></span><br><span class="line">  <span class="attr">triggers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;review code&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;check for bugs&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;security audit&quot;</span></span><br><span class="line">  <span class="attr">parameters:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">language:</span> <span class="string">string</span> <span class="string">(required)</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">code_snippet:</span> <span class="string">string</span> <span class="string">(required)</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">severity_level:</span> <span class="string">enum</span> [<span class="string">&quot;low&quot;</span>, <span class="string">&quot;medium&quot;</span>, <span class="string">&quot;high&quot;</span>] <span class="string">(optional)</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-1-2-执行层（Execution-Layer）"><a href="#3-1-2-执行层（Execution-Layer）" class="headerlink" title="3.1.2 执行层（Execution Layer）"></a>3.1.2 执行层（Execution Layer）</h4><p>Skill 的实际逻辑可以通过以下方式实现：</p>
-<ol>
-<li><p><strong>函数调用（Function Calling）</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">code_review</span>(<span class="params">language: <span class="built_in">str</span>, code: <span class="built_in">str</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="comment"># 调用静态分析工具</span></span><br><span class="line">    issues = linter.analyze(code, language)</span><br><span class="line">    <span class="comment"># 调用安全扫描器</span></span><br><span class="line">    vulnerabilities = scanner.check(code)</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;issues&quot;</span>: issues,</span><br><span class="line">        <span class="string">&quot;vulnerabilities&quot;</span>: vulnerabilities,</span><br><span class="line">        <span class="string">&quot;suggestions&quot;</span>: generate_suggestions(issues)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Prompt 模板（Prompt Template）</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">You are a code review expert. Analyze the following &#123;language&#125; code:</span><br><span class="line"></span><br><span class="line">```&#123;language&#125;</span><br><span class="line">&#123;code_snippet&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Focus on:</p>
-<ol>
-<li>Code quality and readability</li>
-<li>Potential bugs</li>
-<li>Security vulnerabilities</li>
-<li>Performance optimizations</li>
-</ol>
-<p>Provide actionable feedback with specific line references.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. **外部服务集成**</span><br><span class="line">   - REST API 调用</span><br><span class="line">   - gRPC 微服务</span><br><span class="line">   - 消息队列异步处理</span><br><span class="line"></span><br><span class="line">#### 3.1.3 路由层（Routing Layer）</span><br><span class="line"></span><br><span class="line">Agent 通过以下机制决定调用哪个 Skill：</span><br><span class="line"></span><br><span class="line">- **语义匹配**：使用向量相似度计算用户意图与 Skill 描述的匹配度</span><br><span class="line">- **规则引擎**：基于关键词、上下文状态的确定性路由</span><br><span class="line">- **强化学习**：根据历史成功率动态调整路由策略</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">def route_skill(user_query: str, context: dict) -&gt; Skill:</span><br><span class="line">    # 1. 向量检索候选 Skills</span><br><span class="line">    candidates = vector_db.similarity_search(user_query, top_k=5)</span><br><span class="line">    </span><br><span class="line">    # 2. LLM 二次筛选</span><br><span class="line">    best_skill = llm.evaluate_candidates(candidates, context)</span><br><span class="line">    </span><br><span class="line">    # 3. 缓存高频组合</span><br><span class="line">    cache.update(user_query, best_skill)</span><br><span class="line">    </span><br><span class="line">    return best_skill</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="3-2-工作流程"><a href="#3-2-工作流程" class="headerlink" title="3.2 工作流程"></a>3.2 工作流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    participant User</span><br><span class="line">    participant Agent</span><br><span class="line">    participant Router</span><br><span class="line">    participant Skill</span><br><span class="line">    participant External</span><br><span class="line">    </span><br><span class="line">    User-&gt;&gt;Agent: 提交任务请求</span><br><span class="line">    Agent-&gt;&gt;Router: 解析意图</span><br><span class="line">    Router-&gt;&gt;Router: 匹配最佳 Skill</span><br><span class="line">    Router-&gt;&gt;Skill: 激活技能</span><br><span class="line">    Skill-&gt;&gt;External: 调用外部工具/API</span><br><span class="line">    External--&gt;&gt;Skill: 返回结果</span><br><span class="line">    Skill--&gt;&gt;Agent: 结构化输出</span><br><span class="line">    Agent-&gt;&gt;Agent: 整合多个 Skill 结果</span><br><span class="line">    Agent--&gt;&gt;User: 返回最终答案</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-关键技术点"><a href="#3-3-关键技术点" class="headerlink" title="3.3 关键技术点"></a>3.3 关键技术点</h3><h4 id="3-3-1-上下文传递"><a href="#3-3-1-上下文传递" class="headerlink" title="3.3.1 上下文传递"></a>3.3.1 上下文传递</h4><p>Skills 之间需要共享状态和信息：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SkillContext</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.user_profile = &#123;&#125;      <span class="comment"># 用户偏好</span></span><br><span class="line">        <span class="variable language_">self</span>.task_history = []      <span class="comment"># 任务执行历史</span></span><br><span class="line">        <span class="variable language_">self</span>.shared_memory = &#123;&#125;     <span class="comment"># 跨技能共享数据</span></span><br><span class="line">        <span class="variable language_">self</span>.constraints = &#123;&#125;       <span class="comment"># 业务约束条件</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">persist</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 序列化到持久化存储</span></span><br><span class="line">        database.save(<span class="variable language_">self</span>.to_dict())</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-2-错误处理"><a href="#3-3-2-错误处理" class="headerlink" title="3.3.2 错误处理"></a>3.3.2 错误处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">execute_with_retry</span>(<span class="params">skill, params, max_retries=<span class="number">3</span></span>):</span><br><span class="line">    <span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="built_in">range</span>(max_retries):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            result = skill.execute(params)</span><br><span class="line">            <span class="keyword">if</span> validate_result(result):</span><br><span class="line">                <span class="keyword">return</span> result</span><br><span class="line">        <span class="keyword">except</span> TransientError <span class="keyword">as</span> e:</span><br><span class="line">            log.warning(<span class="string">f&quot;Attempt <span class="subst">&#123;attempt + <span class="number">1</span>&#125;</span> failed: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            backoff_sleep(attempt)</span><br><span class="line">        <span class="keyword">except</span> FatalError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">raise</span> FallbackSkillException(e)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 所有重试失败，切换到备用方案</span></span><br><span class="line">    <span class="keyword">return</span> fallback_skill.execute(params)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-3-性能优化"><a href="#3-3-3-性能优化" class="headerlink" title="3.3.3 性能优化"></a>3.3.3 性能优化</h4><ul>
-<li><strong>懒加载</strong>：仅在首次调用时初始化重量级依赖</li>
-<li><strong>结果缓存</strong>：对相同输入返回缓存结果（TTL 策略）</li>
-<li><strong>并行执行</strong>：无依赖的 Skills 并发执行</li>
-<li><strong>流式输出</strong>：逐步返回结果，降低用户等待感知</li>
-</ul>
-<hr>
-<h2 id="四、最佳实践"><a href="#四、最佳实践" class="headerlink" title="四、最佳实践"></a>四、最佳实践</h2><h3 id="4-1-设计原则"><a href="#4-1-设计原则" class="headerlink" title="4.1 设计原则"></a>4.1 设计原则</h3><h4 id="4-1-1-单一职责（Single-Responsibility）"><a href="#4-1-1-单一职责（Single-Responsibility）" class="headerlink" title="4.1.1 单一职责（Single Responsibility）"></a>4.1.1 单一职责（Single Responsibility）</h4><p>❌ <strong>反例</strong>：一个 Skill 同时处理代码生成、测试、部署</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">devops_skill</span>(<span class="params">task: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;generate&quot;</span> <span class="keyword">in</span> task:</span><br><span class="line">        <span class="keyword">return</span> generate_code()</span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;test&quot;</span> <span class="keyword">in</span> task:</span><br><span class="line">        <span class="keyword">return</span> run_tests()</span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;deploy&quot;</span> <span class="keyword">in</span> task:</span><br><span class="line">        <span class="keyword">return</span> deploy_app()</span><br></pre></td></tr></table></figure>
-
-<p>✅ <strong>正例</strong>：拆分为独立的 Skills</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CodeGenerationSkill</span>: ...</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestingSkill</span>: ...</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DeploymentSkill</span>: ...</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-1-2-明确边界（Clear-Boundaries）"><a href="#4-1-2-明确边界（Clear-Boundaries）" class="headerlink" title="4.1.2 明确边界（Clear Boundaries）"></a>4.1.2 明确边界（Clear Boundaries）</h4><p>每个 Skill 应该：</p>
-<ul>
-<li>有清晰的输入输出契约</li>
-<li>不依赖其他 Skill 的内部实现</li>
-<li>提供完整的错误信息和回退机制</li>
-</ul>
-<h4 id="4-1-3-可观测性（Observability）"><a href="#4-1-3-可观测性（Observability）" class="headerlink" title="4.1.3 可观测性（Observability）"></a>4.1.3 可观测性（Observability）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@monitor_skill_execution</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_analysis_skill</span>(<span class="params">query: <span class="built_in">str</span></span>):</span><br><span class="line">    start_time = time.now()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = execute_query(query)</span><br><span class="line">        metrics.record_success(query, duration=time.now() - start_time)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        metrics.record_failure(query, error=e)</span><br><span class="line">        <span class="keyword">raise</span></span><br></pre></td></tr></table></figure>
-
-<p>监控指标包括：</p>
-<ul>
-<li>调用频率</li>
-<li>平均响应时间</li>
-<li>成功率&#x2F;失败率</li>
-<li>资源消耗（CPU、内存、API 配额）</li>
-</ul>
-<h3 id="4-2-开发规范"><a href="#4-2-开发规范" class="headerlink" title="4.2 开发规范"></a>4.2 开发规范</h3><h4 id="4-2-1-命名约定"><a href="#4-2-1-命名约定" class="headerlink" title="4.2.1 命名约定"></a>4.2.1 命名约定</h4><ul>
-<li><strong>Skill 名称</strong>：使用 <code>snake_case</code>，动词开头（如 <code>analyze_sentiment</code>、<code>generate_report</code>）</li>
-<li><strong>参数命名</strong>：语义清晰，避免缩写（用 <code>customer_id</code> 而非 <code>cid</code>）</li>
-<li><strong>版本号</strong>：遵循语义化版本（SemVer），如 <code>v1.2.3</code></li>
-</ul>
-<h4 id="4-2-2-文档要求"><a href="#4-2-2-文档要求" class="headerlink" title="4.2.2 文档要求"></a>4.2.2 文档要求</h4><p>每个 Skill 必须包含：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Skill: translate<span class="emphasis">_text</span></span></span><br><span class="line"><span class="emphasis"><span class="section"></span></span></span><br><span class="line"><span class="emphasis"><span class="section">### 描述</span></span></span><br><span class="line"><span class="emphasis"><span class="section">将文本从源语言翻译为目标语言，支持 50+ 语种</span></span></span><br><span class="line"><span class="emphasis"><span class="section"></span></span></span><br><span class="line"><span class="emphasis"><span class="section">### 输入参数</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- `text`: 待翻译文本（string, required）</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- `source_</span>lang`: 源语言代码（string, optional, default=&quot;auto&quot;）</span></span><br><span class="line"><span class="bullet">-</span> <span class="code">`target_lang`</span>: 目标语言代码（string, required）</span><br><span class="line"><span class="bullet">-</span> <span class="code">`formality`</span>: 正式程度（enum: [&quot;casual&quot;, &quot;formal&quot;], optional）</span><br><span class="line"></span><br><span class="line"><span class="section">### 输出格式</span></span><br><span class="line"><span class="code">```json</span></span><br><span class="line"><span class="code">&#123;</span></span><br><span class="line"><span class="code">  &quot;translated_text&quot;: &quot;...&quot;,</span></span><br><span class="line"><span class="code">  &quot;detected_language&quot;: &quot;...&quot;,</span></span><br><span class="line"><span class="code">  &quot;confidence&quot;: 0.95</span></span><br><span class="line"><span class="code">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">result = translate_text(</span><br><span class="line">    text=<span class="string">&quot;Hello, world!&quot;</span>,</span><br><span class="line">    target_lang=<span class="string">&quot;zh-CN&quot;</span>,</span><br><span class="line">    formality=<span class="string">&quot;casual&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># &#123;&quot;translated_text&quot;: &quot;你好，世界！&quot;, &quot;detected_language&quot;: &quot;en&quot;, &quot;confidence&quot;: 0.99&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ul>
-<li>单次最多翻译 5000 字符</li>
-<li>QPS 限制：10 次&#x2F;秒</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 4.2.3 测试策略</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">class TestTranslationSkill:</span><br><span class="line">    def test_basic_translation(self):</span><br><span class="line">        result = translate_text(&quot;Hello&quot;, &quot;zh-CN&quot;)</span><br><span class="line">        assert &quot;你好&quot; in result[&quot;translated_text&quot;]</span><br><span class="line">    </span><br><span class="line">    def test_auto_detect_language(self):</span><br><span class="line">        result = translate_text(&quot;Bonjour&quot;, &quot;en&quot;)</span><br><span class="line">        assert result[&quot;detected_language&quot;] == &quot;fr&quot;</span><br><span class="line">    </span><br><span class="line">    def test_error_handling(self):</span><br><span class="line">        with pytest.raises(InvalidLanguageError):</span><br><span class="line">            translate_text(&quot;Test&quot;, &quot;invalid-lang&quot;)</span><br><span class="line">    </span><br><span class="line">    def test_performance(self):</span><br><span class="line">        start = time.time()</span><br><span class="line">        translate_text(&quot;A&quot; * 1000, &quot;ja&quot;)</span><br><span class="line">        assert time.time() - start &lt; 2.0  # 2秒内完成</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-部署与运维"><a href="#4-3-部署与运维" class="headerlink" title="4.3 部署与运维"></a>4.3 部署与运维</h3><h4 id="4-3-1-版本管理"><a href="#4-3-1-版本管理" class="headerlink" title="4.3.1 版本管理"></a>4.3.1 版本管理</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">skills/</span><br><span class="line">├── v1/</span><br><span class="line">│   ├── code_review/</span><br><span class="line">│   └── data_analysis/</span><br><span class="line">├── v2/</span><br><span class="line">│   ├── code_review/      # 改进版</span><br><span class="line">│   └── sentiment_analysis/ # 新增</span><br><span class="line">└── latest -&gt; v2/         # 符号链接指向当前版本</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-3-2-灰度发布"><a href="#4-3-2-灰度发布" class="headerlink" title="4.3.2 灰度发布"></a>4.3.2 灰度发布</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_skill_version</span>(<span class="params">skill_name: <span class="built_in">str</span>, user_id: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="comment"># 10% 用户使用新版本</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hash</span>(user_id) % <span class="number">100</span> &lt; <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;v2&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;v1&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4-3-3-降级策略"><a href="#4-3-3-降级策略" class="headerlink" title="4.3.3 降级策略"></a>4.3.3 降级策略</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">execute_with_fallback</span>(<span class="params">skill_name: <span class="built_in">str</span>, params: <span class="built_in">dict</span></span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> skills[skill_name].execute(params)</span><br><span class="line">    <span class="keyword">except</span> ServiceUnavailableError:</span><br><span class="line">        <span class="comment"># 主服务不可用，切换到备用方案</span></span><br><span class="line">        <span class="keyword">return</span> backup_skills[skill_name].execute(params)</span><br><span class="line">    <span class="keyword">except</span> RateLimitError:</span><br><span class="line">        <span class="comment"># 触发限流，返回缓存结果</span></span><br><span class="line">        <span class="keyword">return</span> cache.get(skill_name, params)</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-4-安全考虑"><a href="#4-4-安全考虑" class="headerlink" title="4.4 安全考虑"></a>4.4 安全考虑</h3><h4 id="4-4-1-权限控制"><a href="#4-4-1-权限控制" class="headerlink" title="4.4.1 权限控制"></a>4.4.1 权限控制</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@require_permission(<span class="params"><span class="string">&quot;data_access&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">query_database_skill</span>(<span class="params">sql: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="comment"># 仅允许 SELECT 操作</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> is_read_only(sql):</span><br><span class="line">        <span class="keyword">raise</span> PermissionDeniedError(<span class="string">&quot;Write operations not allowed&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 参数化查询防止 SQL 注入</span></span><br><span class="line">    <span class="keyword">return</span> db.execute_parameterized(sql)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-2-数据脱敏"><a href="#4-4-2-数据脱敏" class="headerlink" title="4.4.2 数据脱敏"></a>4.4.2 数据脱敏</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">process_personal_data</span>(<span class="params">data: <span class="built_in">dict</span></span>):</span><br><span class="line">    <span class="comment"># 移除敏感字段</span></span><br><span class="line">    sanitized = &#123;</span><br><span class="line">        k: mask_if_sensitive(v) </span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> data.items()</span><br><span class="line">        <span class="keyword">if</span> k <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">&quot;ssn&quot;</span>, <span class="string">&quot;credit_card&quot;</span>, <span class="string">&quot;password&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sanitized</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-3-审计日志"><a href="#4-4-3-审计日志" class="headerlink" title="4.4.3 审计日志"></a>4.4.3 审计日志</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">log_skill_execution</span>(<span class="params">skill_name: <span class="built_in">str</span>, user_id: <span class="built_in">str</span>, params: <span class="built_in">dict</span>, result: <span class="built_in">dict</span></span>):</span><br><span class="line">    audit_log.record(&#123;</span><br><span class="line">        <span class="string">&quot;timestamp&quot;</span>: datetime.utcnow(),</span><br><span class="line">        <span class="string">&quot;skill&quot;</span>: skill_name,</span><br><span class="line">        <span class="string">&quot;user&quot;</span>: user_id,</span><br><span class="line">        <span class="string">&quot;input_hash&quot;</span>: <span class="built_in">hash</span>(params),  <span class="comment"># 不记录原始输入</span></span><br><span class="line">        <span class="string">&quot;output_size&quot;</span>: <span class="built_in">len</span>(<span class="built_in">str</span>(result)),</span><br><span class="line">        <span class="string">&quot;duration_ms&quot;</span>: calculate_duration(),</span><br><span class="line">        <span class="string">&quot;success&quot;</span>: <span class="literal">True</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-5-性能调优"><a href="#4-5-性能调优" class="headerlink" title="4.5 性能调优"></a>4.5 性能调优</h3><h4 id="4-5-1-缓存策略"><a href="#4-5-1-缓存策略" class="headerlink" title="4.5.1 缓存策略"></a>4.5.1 缓存策略</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> lru_cache</span><br><span class="line"></span><br><span class="line"><span class="meta">@lru_cache(<span class="params">maxsize=<span class="number">1000</span>, ttl=<span class="number">3600</span></span>)  </span><span class="comment"># 最多1000条，过期时间1小时</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_industry_knowledge</span>(<span class="params">topic: <span class="built_in">str</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">    <span class="keyword">return</span> knowledge_base.query(topic)</span><br></pre></td></tr></table></figure>
-
-<p>缓存层级：</p>
-<ol>
-<li><strong>内存缓存</strong>：热点数据（LRU）</li>
-<li><strong>Redis 缓存</strong>：跨实例共享</li>
-<li><strong>CDN 缓存</strong>：静态资源</li>
-<li><strong>浏览器缓存</strong>：客户端本地</li>
-</ol>
-<h4 id="4-5-2-批量处理"><a href="#4-5-2-批量处理" class="headerlink" title="4.5.2 批量处理"></a>4.5.2 批量处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ❌ 低效：逐个调用</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">    result = analyze_sentiment(item)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ✅ 高效：批量调用</span></span><br><span class="line">results = batch_analyze_sentiment(items, batch_size=<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-5-3-异步执行"><a href="#4-5-3-异步执行" class="headerlink" title="4.5.3 异步执行"></a>4.5.3 异步执行</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">parallel_skills</span>(<span class="params">tasks: <span class="built_in">list</span></span>):</span><br><span class="line">    <span class="comment"># 并发执行无依赖的 Skills</span></span><br><span class="line">    results = <span class="keyword">await</span> asyncio.gather(</span><br><span class="line">        *[execute_skill(task) <span class="keyword">for</span> task <span class="keyword">in</span> tasks],</span><br><span class="line">        return_exceptions=<span class="literal">True</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>Skills 作为 AI Agent 的核心扩展机制，正在重塑人机协作的方式。通过模块化、标准化的能力封装，我们能够实现：</p>
-<ol>
-<li><strong>更高的灵活性</strong>：按需组合技能应对不同场景</li>
-<li><strong>更好的可维护性</strong>：独立开发和测试每个技能</li>
-<li><strong>更强的可扩展性</strong>：轻松集成新工具和领域知识</li>
-<li><strong>更低的成本</strong>：复用已有技能，避免重复开发</li>
-</ol>
-<p>未来发展方向包括：</p>
-<ul>
-<li><strong>自动技能发现</strong>：Agent 自主学习新技能</li>
-<li><strong>技能市场</strong>：社区共享和交易 Skills</li>
-<li><strong>自适应优化</strong>：根据使用反馈自动调优</li>
-<li><strong>跨平台兼容</strong>：统一的 Skill 标准协议</li>
-</ul>
-<p>掌握 Skills 的设计和应用，将是构建下一代智能应用的关键能力。</p>
-<hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li>Anthropic. “Claude Agent Skills Documentation”</li>
-<li>OpenAI. “Function Calling Best Practices”</li>
-<li>Google DeepMind. “Agent Architecture Patterns”</li>
-<li>LangChain. “Tool Integration Guide”</li>
-</ol>
-
+          
       
     </div>
 
