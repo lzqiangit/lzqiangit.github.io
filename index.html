@@ -138,7 +138,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,101 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Zhiqiang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/java/JUC_%E9%94%81/" class="post-title-link" itemprop="url">锁</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-16 16:30:00 / 修改时间：16:34:26" itemprop="dateCreated datePublished" datetime="2026-04-16T16:30:00+08:00">2026-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JUC/" itemprop="url" rel="index"><span itemprop="name">JUC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h1><p><strong>实现原理：</strong> 通过JVM虚拟机的monitorenter 和 monitorexit指令，在同步代码块入口通过monitorenter获取对象监视器的持有权，退出的时候通过monitorexit释放持有权。获取持有权就是获取锁，释放持有权就是释放锁。此外，wait&#x2F;notify也是依赖于对象监视器的，所以这两个方法必须在synchronized代码块中调用.</p>
+<p><strong>锁升级：</strong> 锁升级机制的核心目标是在保证线程安全的前提下，根据实际的线程竞争情况，智能地选择最合适的锁实现。，synchronized无论有无竞争，直接使用重量级锁。这种锁依赖于操作系统的互斥量（Mutex Lock），导致每次加锁和解锁都需要进行用户态到内核态的切换，开销很大。</p>
+<blockquote>
+<p>偏向锁（CAS，适合单个线程重复获取锁）</p>
+<p>– 出现竞争–&gt; </p>
+<p>轻量级锁（自旋CAS，适合持有锁时间较短，两个线程竞争，没有用户态内核态切换）</p>
+<p>– 自旋次数过多&#x2F;竞争线程过多–&gt;</p>
+<p>重量级锁（操作系统的Mutex，需要操作系统切换）</p>
+</blockquote>
+<p>锁监视器Monitor，当升级为重量级锁的时候，对象头的Mark word将指向Monitor对象</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png" alt="对象监视器结构"></p>
+<p><strong>可重入锁：</strong> synchronized是可重入锁，其通过 对象监视器 的”持有对象” 和 “计数器”属性字段实现</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -207,7 +302,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/" class="post-title-link" itemprop="url">线程池和任务编排</a>
+          <a href="/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/" class="post-title-link" itemprop="url">Java线程池和任务编排</a>
         </h2>
 
         <div class="post-meta-container">
@@ -219,7 +314,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 14:30:00 / 修改时间：16:15:18" itemprop="dateCreated datePublished" datetime="2026-04-16T14:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 14:30:00 / 修改时间：16:24:50" itemprop="dateCreated datePublished" datetime="2026-04-16T14:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
