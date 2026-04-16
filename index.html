@@ -218,6 +218,347 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/redis/REDIS_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/redis/REDIS_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Redis数据结构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-16 23:30:00 / 修改时间：22:06:16" itemprop="dateCreated datePublished" datetime="2026-04-16T23:30:00+08:00">2026-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><p>| <strong>数据类型</strong> | <strong>数据结构</strong> | <strong>适用场景</strong> |</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>实现数据结构</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String</td>
+<td>SDS（Simple Dynamic String）</td>
+<td>token，计数，对象，分布式锁(setnx)</td>
+</tr>
+<tr>
+<td>List</td>
+<td>双向链表&#x2F;ZipList&#x2F;QuickList</td>
+<td>消息队列，最新列表，时间线</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>HashTable&#x2F;IntSet</td>
+<td>标签，共同好友，抽奖</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>HashTable&#x2F;ZipList</td>
+<td>存储对象，用户信息</td>
+</tr>
+<tr>
+<td>Zset</td>
+<td>跳表+HashTable</td>
+<td>排行榜</td>
+</tr>
+<tr>
+<td>HyperLogLog</td>
+<td>HyperLogLog算法</td>
+<td>基数统计，UV统计</td>
+</tr>
+<tr>
+<td>BitMap</td>
+<td>位数组</td>
+<td>实现登录，布隆过滤器</td>
+</tr>
+<tr>
+<td>Geospatial</td>
+<td>GeoHash+Zset</td>
+<td>附近的人，地理位置</td>
+</tr>
+</tbody></table>
+<h1 id="String数据类型"><a href="#String数据类型" class="headerlink" title="String数据类型"></a>String数据类型</h1><p>Redis 的 STRING 类型是最基本也最常用的数据类型，本质上是一个二进制安全的字节数组（value），可以保存文本、二进制数据，或者被当作整数来做原子自增。</p>
+<p>SDS（Simple Dynamic String）共有五种实现结构：sdshdr5、sdshdr8、sdshdr16、sdshdr32 和 sdshdr64。Redis 会根据字符串的实际长度自动选择最合适的结构类型，从而优化内存使用效率。</p>
+<p>与传统 C 字符串不同，SDS 通过 len 属性记录字符串长度，无需遍历即可获取长度信息，且能正确处理包含空字符的二进制数据，因此适用于更广泛的场景。</p>
+<h1 id="什么是跳表"><a href="#什么是跳表" class="headerlink" title="什么是跳表"></a>什么是跳表</h1><p>跳表是对链表的优化。即使链表元素有序，在链表中做查找速度还是需要遍历，速度很慢。跳表是在链表的基础上，增加了索引，使得查找速度速度达到二分查找的复杂度。</p>
+<p>其是一种基于多层链表的概率平衡数据结构，用来实现有序集合或有序映射，能把查找、插入、删除的期望时间复杂度降到 O(log n)。直观上可以把它想成在有序的单链表上额外建立若干”跳跃”层：最底层是完整的有序链表，上层是从底层抽样得到的子链表，越高层的节点越少。查找时从最高层开始水平扫描，遇到大于目标的节点则下降一层，直至找到或确定不存在；插入时通过随机决定新节点的层数（常用的概率 p &#x3D; 1&#x2F;2），在每一层调整指针；删除类似——在每层把对应节点移除。</p>
+<h1 id="为什么用跳表实现zset？"><a href="#为什么用跳表实现zset？" class="headerlink" title="为什么用跳表实现zset？"></a>为什么用跳表实现zset？</h1><p>一般可以通过跳表，二叉搜索书，B+树等来维护一个具有先后关系的集合，使用跳表是因为：</p>
+<ul>
+<li>相较于二叉平衡树，没有平衡开销，范围搜索性能更好</li>
+<li>相较于红黑树，实现起来更简洁，范围搜索性能也更好</li>
+<li>B+树更适合需要IO操作的场景，例如文件系统、数据库等。不适用B+树是因为Redis基于内存。跳表实现更简单，添加删除时不用处理复杂的节点分裂合并</li>
+</ul>
+<p>5、Redis的过期策略</p>
+<p>6、Redis是怎么找到key存储在哪个节点上</p>
+<h1 id="ZipList-和-QuickList"><a href="#ZipList-和-QuickList" class="headerlink" title="ZipList 和 QuickList"></a>ZipList 和 QuickList</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/375414918">redis 压缩列表ziplist、quicklist - 知乎</a></p>
+<h2 id="ZipList（压缩列表）"><a href="#ZipList（压缩列表）" class="headerlink" title="ZipList（压缩列表）"></a>ZipList（压缩列表）</h2><p>ZipList 是 Redis 为了节约内存而设计的一种特殊编码的双向链表。它是一块连续的内存空间，以数组的形式存储数据，通过特殊的编码方式来压缩存储空间。</p>
+<h3 id="ZipList-的特点"><a href="#ZipList-的特点" class="headerlink" title="ZipList 的特点"></a>ZipList 的特点</h3><ul>
+<li>内存紧凑：所有元素连续存储，没有指针开销，适合存储小数据</li>
+<li>可变长度编码：根据实际数据大小动态调整存储空间</li>
+<li>连锁更新问题：当某个节点长度变化时，可能触发后续节点的级联更新，导致性能下降</li>
+<li>适用场景：元素数量较少且元素值较小的 List、Hash 和 Zset</li>
+</ul>
+<h2 id="QuickList（快速列表）"><a href="#QuickList（快速列表）" class="headerlink" title="QuickList（快速列表）"></a>QuickList（快速列表）</h2><p>QuickList 是 Redis 3.2 版本引入的新数据结构，它是 ZipList 和双向链表的结合体。QuickList 本质上是一个双向链表，但每个节点都是一个 ZipList。</p>
+<h3 id="QuickList-的设计思路"><a href="#QuickList-的设计思路" class="headerlink" title="QuickList 的设计思路"></a>QuickList 的设计思路</h3><p>QuickList 结合了两种数据结构的优点：</p>
+<ul>
+<li>双向链表的优势：支持高效的头尾插入和删除操作</li>
+<li>ZipList 的优势：内存紧凑，适合存储多个小元素</li>
+</ul>
+<h3 id="QuickList-的优势"><a href="#QuickList-的优势" class="headerlink" title="QuickList 的优势"></a>QuickList 的优势</h3><ul>
+<li>平衡性能和内存：既保持了链表的 O(1) 头尾操作性能，又通过 ZipList 节省了内存</li>
+<li>避免连锁更新：将大链表拆分成多个小的 ZipList，降低了连锁更新的概率和影响范围</li>
+<li>支持压缩：可以对中间节点进行压缩，进一步节省内存</li>
+<li>默认实现：Redis 3.2+ 版本中，List 类型默认使用 QuickList 作为底层实现</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/" class="post-title-link" itemprop="url">Java线程池和任务编排</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-16 22:30:00 / 修改时间：22:05:28" itemprop="dateCreated datePublished" datetime="2026-04-16T22:30:00+08:00">2026-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JUC/" itemprop="url" rel="index"><span itemprop="name">JUC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
+
+<h1 id="1，线程池"><a href="#1，线程池" class="headerlink" title="1，线程池"></a>1，线程池</h1><h2 id="1-1-Executor-框架"><a href="#1-1-Executor-框架" class="headerlink" title="1.1, Executor 框架"></a>1.1, Executor 框架</h2><ul>
+<li>任务<ul>
+<li>Callable（有返回值)</li>
+<li>runnable（无返回值）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Runnable 接口不会返回结果或抛出检查异常，但是 Callable 接口可以</p>
+</blockquote>
+<ul>
+<li>执行任务<ul>
+<li>Executor（接口）</li>
+</ul>
+</li>
+<li>异步执行结果<ul>
+<li>Future</li>
+<li>CompletableFuture</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2-线程池核心参数"><a href="#1-2-线程池核心参数" class="headerlink" title="1.2, 线程池核心参数"></a>1.2, 线程池核心参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(<span class="type">int</span> corePoolSize,		// 核心线程数</span></span><br><span class="line"><span class="params">                          <span class="type">int</span> maximumPoolSize,	// 最大线程数</span></span><br><span class="line"><span class="params">                          <span class="type">long</span> keepAliveTime,	// 超时时间</span></span><br><span class="line"><span class="params">                          TimeUnit unit,		// 超时时间单位</span></span><br><span class="line"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,	// 等待队列</span></span><br><span class="line"><span class="params">                          ThreadFactory threadFactory,			// 线程工厂</span></span><br><span class="line"><span class="params">                          RejectedExecutionHandler handler)</span>		<span class="comment">// 拒绝策略</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>核心线程数，最大线程数和等待队列是最核心的三个参数</p>
+</blockquote>
+<h3 id="1-2-1-线程数"><a href="#1-2-1-线程数" class="headerlink" title="1.2.1, 线程数"></a>1.2.1, 线程数</h3><p>对于CPU密集型任务：n（ncpu核心数）(不推荐n+1是因为，对于缺页等中断，还是会需要cpu处理，计算密集型任务cpu始终是瓶颈）</p>
+<p>对于IO密集型任务：m*n（m&gt;1）一般推荐m为2</p>
+<blockquote>
+<p>线程数更严谨的计算的方法应该是：最佳线程数 &#x3D; N（CPU 核心数）∗（1+WT（线程等待时间）&#x2F;ST（线程计算时间）），其中 WT（线程等待时间）&#x3D;线程运行总时间 - ST（线程计算时间）</p>
+</blockquote>
+<h3 id="1-2-2，阻塞队列"><a href="#1-2-2，阻塞队列" class="headerlink" title="1.2.2，阻塞队列"></a>1.2.2，阻塞队列</h3><ul>
+<li>LinkedBlockingQueue：无界（本节无界即为Integer.MAX_VALUE）</li>
+<li>SynchronousQueue：容量为0，用于CachedThreadPool （无限核心线程数）</li>
+<li>DelayedWorkQueue：通过堆实现的，按处理时间排序的，容量无限的队列（ScheduledThreadPool 使用）</li>
+<li>ArrayBlockingQueue：可设定最大容量</li>
+</ul>
+<h3 id="1-2-3，拒绝策略"><a href="#1-2-3，拒绝策略" class="headerlink" title="1.2.3，拒绝策略"></a>1.2.3，拒绝策略</h3><ul>
+<li>直接抛出异常</li>
+<li>让调用的线程执行（如果原线程没有结束）</li>
+<li>不抛出异常</li>
+<li>丢弃最早的任务</li>
+</ul>
+<p>默认的拒绝策略：ThreadPoolExecutor.AbortPolicy：抛出 RejectedExecutionException来拒绝新任务的处理。</p>
+<h2 id="1-2-实现原理"><a href="#1-2-实现原理" class="headerlink" title="1.2, 实现原理"></a>1.2, 实现原理</h2><blockquote>
+<p>面试题：任务达到核心线程数，是先扩容线程数还是先进阻塞队列</p>
+<p>答：先添加到阻塞队列，后扩容</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> ctl.get();</span><br><span class="line"><span class="comment">// 当前线程数是否小于核心线程数</span></span><br><span class="line"><span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">    <span class="keyword">if</span> (addWorker(command, <span class="literal">true</span>))</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    c = ctl.get();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否可以加入等待队列</span></span><br><span class="line"><span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">recheck</span> <span class="operator">=</span> ctl.get();</span><br><span class="line">    <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">        reject(command);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)</span><br><span class="line">        addWorker(<span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否能够添加线程</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="literal">false</span>))</span><br><span class="line">    reject(command);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>submit和execute的区别</p>
+<p>答：execute不支持返回结果，不能查看运行情况。submit实际上是将任务包装成Future后提交给execute的</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; Future&lt;T&gt; <span class="title function_">submit</span><span class="params">(Callable&lt;T&gt; task)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (task == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    RunnableFuture&lt;T&gt; ftask = newTaskFor(task);</span><br><span class="line">    execute(ftask);</span><br><span class="line">    <span class="keyword">return</span> ftask;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3，内置线程池"><a href="#1-3，内置线程池" class="headerlink" title="1.3，内置线程池"></a>1.3，内置线程池</h2><blockquote>
+<p>java可以通过ThreadPoolExecutor自定义线程池，这是推荐的做法。java也提供了一些内置的线程池，可以通过Executor<strong>s</strong>的工厂方法创建</p>
+</blockquote>
+<ul>
+<li>FixedThreadPool</li>
+<li>SingleThreadExecutor</li>
+<li>CachedThreadPool （无限线程数，阻塞队列长为0）</li>
+<li>ScheduledThreadPool （定时任务<a target="_blank" rel="noopener" href="https://javaguide.cn/system-design/schedule-task.html">https://javaguide.cn/system-design/schedule-task.html</a>）</li>
+</ul>
+<h1 id="2，CompletableFuture"><a href="#2，CompletableFuture" class="headerlink" title="2，CompletableFuture"></a>2，CompletableFuture</h1><p>CompletableFuture 是对Future的增强，除了提供了更为好用和强大的 Future 特性之外，还提供了函数式编程、异步任务编排组合（可以将多个异步任务串联起来，组成一个完整的链式调用）等能力。</p>
+<h2 id="2-0，Future"><a href="#2-0，Future" class="headerlink" title="2.0，Future"></a>2.0，Future</h2><p>Future 是用来表示一个异步计算的结果占位符——你可以通过它查询任务是否完成、取消任务、并在需要时阻塞等待并获取计算结果。常见实现有通过 ExecutorService.submit 返回的实现和 FutureTask；在现代异步场景下更常用 CompletableFuture 来支持链式&#x2F;回调式处理。</p>
+<h2 id="2-1，构造"><a href="#2-1，构造" class="headerlink" title="2.1，构造"></a>2.1，构造</h2><ul>
+<li>new</li>
+<li>工厂 supplyAsync （有返回值的任务），runAsync（无返回值的任务）（第一个参数是任务，第二个可选参数是线程池）</li>
+</ul>
+<blockquote>
+<p>推荐通过自定义线程池构造</p>
+</blockquote>
+<h2 id="2-2-处理异步结果"><a href="#2-2-处理异步结果" class="headerlink" title="2.2, 处理异步结果"></a>2.2, 处理异步结果</h2><ul>
+<li>thenApply:传入,传入</li>
+<li>thenAccept:只传入,不传出</li>
+<li>thenRun: 不关心上一步结果</li>
+<li>whenComplete:在完成时做“副作用”处理（能同时看到结果或异常），不会改变原结果（返回与上一步相同的值类型），常用于记录&#x2F;清理&#x2F;观察异常</li>
+</ul>
+<blockquote>
+<p>通常在“完成前置阶段的线程”上执行</p>
+<p>带 Async 的变体（thenApplyAsync &#x2F; thenAcceptAsync &#x2F; thenRunAsync &#x2F; whenCompleteAsync）会在异步执行环境中运行：默认使用 ForkJoinPool.commonPool()，或者使用你传入的 Executor（thenApplyAsync(fn, executor)）运行。</p>
+</blockquote>
+<ul>
+<li>异常处理:handle</li>
+</ul>
+<h2 id="2-3-组合排序"><a href="#2-3-组合排序" class="headerlink" title="2.3, 组合排序"></a>2.3, 组合排序</h2><ul>
+<li>thenCompose按顺序链接两个 CompletableFuture 对象，实现异步的任务链</li>
+<li>thenCombine会在两个任务都执行完成后，把两个任务的结果合并。两个任务是并行执行的</li>
+<li>acceptEither 两个任务完成一个进行定义的任务</li>
+<li><strong>CompletableFuture 的 allOf()这个静态方法来并行运行多个 CompletableFuture</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CompletableFuture&lt;Void&gt; headerFuture=CompletableFuture.allOf(task1,...);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    headerFuture.join();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 后续操作</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4，CountDownLatch"><a href="#2-4，CountDownLatch" class="headerlink" title="2.4，CountDownLatch"></a>2.4，CountDownLatch</h2><p>可以实现和CompleteFuture.allOf相同的功能，通过AQS实现</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -271,87 +612,6 @@
     
     <div class="post-body" itemprop="articleBody">
           
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/redis/REDIS_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
-      <meta itemprop="name" content="Zhiqiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客随笔">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 博客随笔">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/redis/REDIS_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Redis数据结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:55:11" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Redis数据结构</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
       
     </div>
 
@@ -603,186 +863,6 @@
 
 <p><img src="/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png" alt="对象监视器结构"></p>
 <p><strong>可重入锁：</strong> synchronized是可重入锁，其通过 对象监视器 的”持有对象” 和 “计数器”属性字段实现</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
-      <meta itemprop="name" content="Zhiqiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客随笔">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 博客随笔">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/java/JUC_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92/" class="post-title-link" itemprop="url">Java线程池和任务编排</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-04-16 14:30:00 / 修改时间：21:53:40" itemprop="dateCreated datePublished" datetime="2026-04-16T14:30:00+08:00">2026-04-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JUC/" itemprop="url" rel="index"><span itemprop="name">JUC</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-
-<h1 id="1，线程池"><a href="#1，线程池" class="headerlink" title="1，线程池"></a>1，线程池</h1><h2 id="1-1-Executor-框架"><a href="#1-1-Executor-框架" class="headerlink" title="1.1, Executor 框架"></a>1.1, Executor 框架</h2><ul>
-<li>任务<ul>
-<li>Callable（有返回值)</li>
-<li>runnable（无返回值）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Runnable 接口不会返回结果或抛出检查异常，但是 Callable 接口可以</p>
-</blockquote>
-<ul>
-<li>执行任务<ul>
-<li>Executor（接口）</li>
-</ul>
-</li>
-<li>异步执行结果<ul>
-<li>Future</li>
-<li>CompletableFuture</li>
-</ul>
-</li>
-</ul>
-<h2 id="1-2-线程池核心参数"><a href="#1-2-线程池核心参数" class="headerlink" title="1.2, 线程池核心参数"></a>1.2, 线程池核心参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(<span class="type">int</span> corePoolSize,		// 核心线程数</span></span><br><span class="line"><span class="params">                          <span class="type">int</span> maximumPoolSize,	// 最大线程数</span></span><br><span class="line"><span class="params">                          <span class="type">long</span> keepAliveTime,	// 超时时间</span></span><br><span class="line"><span class="params">                          TimeUnit unit,		// 超时时间单位</span></span><br><span class="line"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,	// 等待队列</span></span><br><span class="line"><span class="params">                          ThreadFactory threadFactory,			// 线程工厂</span></span><br><span class="line"><span class="params">                          RejectedExecutionHandler handler)</span>		<span class="comment">// 拒绝策略</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>核心线程数，最大线程数和等待队列是最核心的三个参数</p>
-</blockquote>
-<h3 id="1-2-1-线程数"><a href="#1-2-1-线程数" class="headerlink" title="1.2.1, 线程数"></a>1.2.1, 线程数</h3><p>对于CPU密集型任务：n（ncpu核心数）(不推荐n+1是因为，对于缺页等中断，还是会需要cpu处理，计算密集型任务cpu始终是瓶颈）</p>
-<p>对于IO密集型任务：m*n（m&gt;1）一般推荐m为2</p>
-<blockquote>
-<p>线程数更严谨的计算的方法应该是：最佳线程数 &#x3D; N（CPU 核心数）∗（1+WT（线程等待时间）&#x2F;ST（线程计算时间）），其中 WT（线程等待时间）&#x3D;线程运行总时间 - ST（线程计算时间）</p>
-</blockquote>
-<h3 id="1-2-2，阻塞队列"><a href="#1-2-2，阻塞队列" class="headerlink" title="1.2.2，阻塞队列"></a>1.2.2，阻塞队列</h3><ul>
-<li>LinkedBlockingQueue：无界（本节无界即为Integer.MAX_VALUE）</li>
-<li>SynchronousQueue：容量为0，用于CachedThreadPool （无限核心线程数）</li>
-<li>DelayedWorkQueue：通过堆实现的，按处理时间排序的，容量无限的队列（ScheduledThreadPool 使用）</li>
-<li>ArrayBlockingQueue：可设定最大容量</li>
-</ul>
-<h3 id="1-2-3，拒绝策略"><a href="#1-2-3，拒绝策略" class="headerlink" title="1.2.3，拒绝策略"></a>1.2.3，拒绝策略</h3><ul>
-<li>直接抛出异常</li>
-<li>让调用的线程执行（如果原线程没有结束）</li>
-<li>不抛出异常</li>
-<li>丢弃最早的任务</li>
-</ul>
-<p>默认的拒绝策略：ThreadPoolExecutor.AbortPolicy：抛出 RejectedExecutionException来拒绝新任务的处理。</p>
-<h2 id="1-2-实现原理"><a href="#1-2-实现原理" class="headerlink" title="1.2, 实现原理"></a>1.2, 实现原理</h2><blockquote>
-<p>面试题：任务达到核心线程数，是先扩容线程数还是先进阻塞队列</p>
-<p>答：先添加到阻塞队列，后扩容</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> ctl.get();</span><br><span class="line"><span class="comment">// 当前线程数是否小于核心线程数</span></span><br><span class="line"><span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">    <span class="keyword">if</span> (addWorker(command, <span class="literal">true</span>))</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    c = ctl.get();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否可以加入等待队列</span></span><br><span class="line"><span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">recheck</span> <span class="operator">=</span> ctl.get();</span><br><span class="line">    <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">        reject(command);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)</span><br><span class="line">        addWorker(<span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否能够添加线程</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="literal">false</span>))</span><br><span class="line">    reject(command);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>submit和execute的区别</p>
-<p>答：execute不支持返回结果，不能查看运行情况。submit实际上是将任务包装成Future后提交给execute的</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; Future&lt;T&gt; <span class="title function_">submit</span><span class="params">(Callable&lt;T&gt; task)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (task == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    RunnableFuture&lt;T&gt; ftask = newTaskFor(task);</span><br><span class="line">    execute(ftask);</span><br><span class="line">    <span class="keyword">return</span> ftask;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-3，内置线程池"><a href="#1-3，内置线程池" class="headerlink" title="1.3，内置线程池"></a>1.3，内置线程池</h2><blockquote>
-<p>java可以通过ThreadPoolExecutor自定义线程池，这是推荐的做法。java也提供了一些内置的线程池，可以通过Executor<strong>s</strong>的工厂方法创建</p>
-</blockquote>
-<ul>
-<li>FixedThreadPool</li>
-<li>SingleThreadExecutor</li>
-<li>CachedThreadPool （无限线程数，阻塞队列长为0）</li>
-<li>ScheduledThreadPool （定时任务<a target="_blank" rel="noopener" href="https://javaguide.cn/system-design/schedule-task.html">https://javaguide.cn/system-design/schedule-task.html</a>）</li>
-</ul>
-<h1 id="2，CompletableFuture"><a href="#2，CompletableFuture" class="headerlink" title="2，CompletableFuture"></a>2，CompletableFuture</h1><p>CompletableFuture 是对Future的增强，除了提供了更为好用和强大的 Future 特性之外，还提供了函数式编程、异步任务编排组合（可以将多个异步任务串联起来，组成一个完整的链式调用）等能力。</p>
-<h2 id="2-0，Future"><a href="#2-0，Future" class="headerlink" title="2.0，Future"></a>2.0，Future</h2><p>Future 是用来表示一个异步计算的结果占位符——你可以通过它查询任务是否完成、取消任务、并在需要时阻塞等待并获取计算结果。常见实现有通过 ExecutorService.submit 返回的实现和 FutureTask；在现代异步场景下更常用 CompletableFuture 来支持链式&#x2F;回调式处理。</p>
-<h2 id="2-1，构造"><a href="#2-1，构造" class="headerlink" title="2.1，构造"></a>2.1，构造</h2><ul>
-<li>new</li>
-<li>工厂 supplyAsync （有返回值的任务），runAsync（无返回值的任务）（第一个参数是任务，第二个可选参数是线程池）</li>
-</ul>
-<blockquote>
-<p>推荐通过自定义线程池构造</p>
-</blockquote>
-<h2 id="2-2-处理异步结果"><a href="#2-2-处理异步结果" class="headerlink" title="2.2, 处理异步结果"></a>2.2, 处理异步结果</h2><ul>
-<li>thenApply:传入,传入</li>
-<li>thenAccept:只传入,不传出</li>
-<li>thenRun: 不关心上一步结果</li>
-<li>whenComplete:在完成时做“副作用”处理（能同时看到结果或异常），不会改变原结果（返回与上一步相同的值类型），常用于记录&#x2F;清理&#x2F;观察异常</li>
-</ul>
-<blockquote>
-<p>通常在“完成前置阶段的线程”上执行</p>
-<p>带 Async 的变体（thenApplyAsync &#x2F; thenAcceptAsync &#x2F; thenRunAsync &#x2F; whenCompleteAsync）会在异步执行环境中运行：默认使用 ForkJoinPool.commonPool()，或者使用你传入的 Executor（thenApplyAsync(fn, executor)）运行。</p>
-</blockquote>
-<ul>
-<li>异常处理:handle</li>
-</ul>
-<h2 id="2-3-组合排序"><a href="#2-3-组合排序" class="headerlink" title="2.3, 组合排序"></a>2.3, 组合排序</h2><ul>
-<li>thenCompose按顺序链接两个 CompletableFuture 对象，实现异步的任务链</li>
-<li>thenCombine会在两个任务都执行完成后，把两个任务的结果合并。两个任务是并行执行的</li>
-<li>acceptEither 两个任务完成一个进行定义的任务</li>
-<li><strong>CompletableFuture 的 allOf()这个静态方法来并行运行多个 CompletableFuture</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CompletableFuture&lt;Void&gt; headerFuture=CompletableFuture.allOf(task1,...);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    headerFuture.join();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 后续操作</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4，CountDownLatch"><a href="#2-4，CountDownLatch" class="headerlink" title="2.4，CountDownLatch"></a>2.4，CountDownLatch</h2><p>可以实现和CompleteFuture.allOf相同的功能，通过AQS实现</p>
 
       
     </div>
