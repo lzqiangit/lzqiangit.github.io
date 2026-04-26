@@ -247,7 +247,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-26 16:30:00 / 修改时间：21:44:08" itemprop="dateCreated datePublished" datetime="2026-04-26T16:30:00+08:00">2026-04-26</time>
+      <time title="创建时间：2026-04-26 16:30:00 / 修改时间：23:48:53" itemprop="dateCreated datePublished" datetime="2026-04-26T16:30:00+08:00">2026-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,7 +269,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1、定义角度"><a href="#1、定义角度" class="headerlink" title="1、定义角度"></a>1、定义角度</h1><p>当前许多关于Harness（Harness Engineering）的讨论和实践，但不同方向的从业者所说的 Harness 角度是不同的。</p>
+          <h1 id="Harness"><a href="#Harness" class="headerlink" title="Harness"></a>Harness</h1><h2 id="1、定义角度"><a href="#1、定义角度" class="headerlink" title="1、定义角度"></a>1、定义角度</h2><p>当前许多关于Harness（Harness Engineering）的讨论和实践，但不同方向的从业者所说的 Harness 角度是不同的。</p>
 <ul>
 <li>对于优化 Agent 开发体验的开发者，其所述的 Harness，往往聚焦于模型之外，让 Agent 能感知、规划、调用工具、执行动作、接收反馈并持续完成任务的运行与控制系统。它解决的是：模型怎么访问工具和环境、怎么持久化状态跨会话继续工作、怎么控制上下文膨胀、怎么做规划执行验证和重试、多个 Agent 怎么协作分工。如果借用 LangChain 的表达，可以写成 Agent &#x3D; Model + Harness。</li>
 <li>对于利用各种 Agent 提升开发效率，并尝试构建 AI 时代的软件工程最佳实践的开发者，Harness 则是围绕 Agent 重构代码库、文档、测试、可观测性和开发流程，使 Agent 能在真实软件工程里稳定协作、验证和交付的外层系统。其需要解决的问题是诸如：repo 是否对 Agent 可读、docs 和规则是否结构化、tests &#x2F; CI &#x2F; review &#x2F; 验收是否能进入 agent loop、UI 和日志指标 trace 是否对 Agent 可见、团队流程是否支持 agent-first 的开发方式。</li>
@@ -279,7 +279,7 @@
 <p>Most companies bolt AI onto their existing process … Efficiency goes up 10 to 20 percent. Nothing structurally changes. That is AI-assisted.</p>
 <p>AI-first means you redesign your process, your architecture, and your organization around the assumption that AI is the primary builder.</p>
 </blockquote>
-<h1 id="2、目标挑战"><a href="#2、目标挑战" class="headerlink" title="2、目标挑战"></a>2、目标挑战</h1><p>Harness 的最终目标是实现人类掌舵，Agent 执行。在传统团队里，很多价值主要来自工程师亲手完成实现：自己查代码、自己跑环境、自己改逻辑、自己验证结果、自己兜底隐性知识。在面向 Agent 的工程环境里，人的高价值工作会逐渐迁移到：定义目标、拆解任务、提供清晰参考、设计工程环境、设定边界和约束、判断风险、处理异常、沉淀规则。与此同时，Agent 的价值也不在”替代工程师”，而在于承担越来越多可定义、可执行、可验证、可迭代的执行工作。</p>
+<h2 id="2、目标挑战"><a href="#2、目标挑战" class="headerlink" title="2、目标挑战"></a>2、目标挑战</h2><p>Harness 的最终目标是实现人类掌舵，Agent 执行。在传统团队里，很多价值主要来自工程师亲手完成实现：自己查代码、自己跑环境、自己改逻辑、自己验证结果、自己兜底隐性知识。在面向 Agent 的工程环境里，人的高价值工作会逐渐迁移到：定义目标、拆解任务、提供清晰参考、设计工程环境、设定边界和约束、判断风险、处理异常、沉淀规则。与此同时，Agent 的价值也不在”替代工程师”，而在于承担越来越多可定义、可执行、可验证、可迭代的执行工作。</p>
 <p>当 Agent 真正进入研发流程之后，开发者面对的不再只是”它会不会写代码”，而是：</p>
 <ul>
 <li>它能看到什么</li>
@@ -290,7 +290,7 @@
 <li>人在这个过程中应该扮演什么角色</li>
 </ul>
 <p>换句话说，真正发生变化的不是”多了一个工具”，而是——我们的研发系统，开始需要对 Agent 友好。<br>这也是 Harness Engineering 真正重要的地方。它不是 prompt 小技巧，也不是某个工具的使用心得，而是在讨论：当研发系统开始围绕 Agent 重构时，我们到底应该建设什么。</p>
-<h1 id="3、Harness-的工作方式和四层能力"><a href="#3、Harness-的工作方式和四层能力" class="headerlink" title="3、Harness 的工作方式和四层能力"></a>3、Harness 的工作方式和四层能力</h1><p>Harness Agent 的工作方式可以总结为 Perceive &#x2F; Decide &#x2F; Act &#x2F; Feedback 四个环节。</p>
+<h2 id="3、Harness-的工作方式和四层能力"><a href="#3、Harness-的工作方式和四层能力" class="headerlink" title="3、Harness 的工作方式和四层能力"></a>3、Harness 的工作方式和四层能力</h2><p>Harness Agent 的工作方式可以总结为 Perceive &#x2F; Decide &#x2F; Act &#x2F; Feedback 四个环节。</p>
 <ul>
 <li>Perceive（先看见世界）：Agent 需要先读取任务、代码、文档、历史决策、环境状态和已有结果。它的一切判断都依赖当前能看到什么。所以第一层问题不是”模型强不强”，而是系统有没有把关键上下文以 Agent 能消费的方式暴露出来。</li>
 <li>Decide（判断下一步做什么）：读完上下文之后，Agent 要判断先查什么、先改什么、先验证什么、什么时候该停、什么时候应该升级给人。在复杂任务里，它还要涉及任务拆解和推进顺序安排。</li>
@@ -1149,7 +1149,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -1167,7 +1167,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" class="post-title-link" itemprop="url">MySQL事务和隔离级别</a>
+          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">MySQL日志</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1179,7 +1179,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:46" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:43" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1227,7 +1227,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -1245,7 +1245,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">MySQL日志</a>
+          <a href="/2026/04/16/mysql/MYSQL_%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" class="post-title-link" itemprop="url">MySQL事务和隔离级别</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1257,7 +1257,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:43" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:46" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
