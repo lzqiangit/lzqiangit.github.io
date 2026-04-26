@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -177,7 +177,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -208,6 +208,597 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/26/ai/AI_harness/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/26/ai/AI_harness/" class="post-title-link" itemprop="url">知识集与Skill</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-26 16:30:00 / 修改时间：21:38:48" itemprop="dateCreated datePublished" datetime="2026-04-26T16:30:00+08:00">2026-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Harness/" itemprop="url" rel="index"><span itemprop="name">Harness</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1、定义角度"><a href="#1、定义角度" class="headerlink" title="1、定义角度"></a>1、定义角度</h1><p>当前许多关于Harness（Harness Engineering）的讨论和实践，但不同方向的从业者所说的 Harness 角度是不同的。</p>
+<ul>
+<li>对于优化 Agent 开发体验的开发者，其所述的 Harness，往往聚焦于模型之外，让 Agent 能感知、规划、调用工具、执行动作、接收反馈并持续完成任务的运行与控制系统。它解决的是：模型怎么访问工具和环境、怎么持久化状态跨会话继续工作、怎么控制上下文膨胀、怎么做规划执行验证和重试、多个 Agent 怎么协作分工。如果借用 LangChain 的表达，可以写成 Agent &#x3D; Model + Harness。</li>
+<li>对于利用各种 Agent 提升开发效率，并尝试构建 AI 时代的软件工程最佳实践的开发者，Harness 则是围绕 Agent 重构代码库、文档、测试、可观测性和开发流程，使 Agent 能在真实软件工程里稳定协作、验证和交付的外层系统。其需要解决的问题是诸如：repo 是否对 Agent 可读、docs 和规则是否结构化、tests &#x2F; CI &#x2F; review &#x2F; 验收是否能进入 agent loop、UI 和日志指标 trace 是否对 Agent 可见、团队流程是否支持 agent-first 的开发方式。</li>
+</ul>
+<p>总结就是Agent Harness让 Agent 跑起来；面向 Agent 软件工程的 Harness 让 Agent 在真实工程里产生价值。两者最终拥有一个共同目标：AI-first。</p>
+<blockquote>
+<p>Most companies bolt AI onto their existing process … Efficiency goes up 10 to 20 percent. Nothing structurally changes. That is AI-assisted.</p>
+<p>AI-first means you redesign your process, your architecture, and your organization around the assumption that AI is the primary builder.</p>
+</blockquote>
+<h1 id="2、目标挑战"><a href="#2、目标挑战" class="headerlink" title="2、目标挑战"></a>2、目标挑战</h1><p>Harness 的最终目标是实现人类掌舵，Agent 执行。在传统团队里，很多价值主要来自工程师亲手完成实现：自己查代码、自己跑环境、自己改逻辑、自己验证结果、自己兜底隐性知识。在面向 Agent 的工程环境里，人的高价值工作会逐渐迁移到：定义目标、拆解任务、提供清晰参考、设计工程环境、设定边界和约束、判断风险、处理异常、沉淀规则。与此同时，Agent 的价值也不在”替代工程师”，而在于承担越来越多可定义、可执行、可验证、可迭代的执行工作。</p>
+<p>当 Agent 真正进入研发流程之后，开发者面对的不再只是”它会不会写代码”，而是：</p>
+<ul>
+<li>它能看到什么</li>
+<li>它能理解什么</li>
+<li>它能做什么</li>
+<li>它怎么知道自己做得对不对</li>
+<li>系统怎么防止它长期失控</li>
+<li>人在这个过程中应该扮演什么角色</li>
+</ul>
+<p>换句话说，真正发生变化的不是”多了一个工具”，而是——我们的研发系统，开始需要对 Agent 友好。<br>这也是 Harness Engineering 真正重要的地方。它不是 prompt 小技巧，也不是某个工具的使用心得，而是在讨论：当研发系统开始围绕 Agent 重构时，我们到底应该建设什么。</p>
+<h1 id="3、Harness-的工作方式和四层能力"><a href="#3、Harness-的工作方式和四层能力" class="headerlink" title="3、Harness 的工作方式和四层能力"></a>3、Harness 的工作方式和四层能力</h1><p>Harness Agent 的工作方式可以总结为 Perceive &#x2F; Decide &#x2F; Act &#x2F; Feedback 四个环节。</p>
+<ul>
+<li>Perceive（先看见世界）：Agent 需要先读取任务、代码、文档、历史决策、环境状态和已有结果。它的一切判断都依赖当前能看到什么。所以第一层问题不是”模型强不强”，而是系统有没有把关键上下文以 Agent 能消费的方式暴露出来。</li>
+<li>Decide（判断下一步做什么）：读完上下文之后，Agent 要判断先查什么、先改什么、先验证什么、什么时候该停、什么时候应该升级给人。在复杂任务里，它还要涉及任务拆解和推进顺序安排。</li>
+<li>Act（真的采取动作）：Agent 不只是输出建议，还要改代码、跑脚本、执行测试、调用工具、查询日志和指标、触发工作流、发起 PR、响应评论。只有能真正进入动作层，它才不是一个”会说怎么做”的模型，而是一个能参与工程闭环的执行体。</li>
+<li>Feedback（根据结果继续修正）：动作发生之后，Agent 还要知道测试有没有通过、脚本有没有报错、页面是不是正常、性能有没有退化、指标有没有变化、改动到底有没有生效。这些结果如果不能回流，下一轮决策就无从谈起。</li>
+</ul>
+<p>可以理解为 “感知 → 决策 → 行动 → 反馈 → 再感知” 的闭环系统。将闭环翻译成工程语言，我们就得到了其真正要建设的是四层能力：</p>
+<table>
+<thead>
+<tr>
+<th>Agent 运行闭环</th>
+<th>对应工程能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Perceive</td>
+<td>让 Agent 读懂</td>
+</tr>
+<tr>
+<td>Decide + Act</td>
+<td>让 Agent 可执行</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>让 Agent 有反馈闭环</td>
+</tr>
+<tr>
+<td>长期稳定运行</td>
+<td>让 Agent 可治理</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/20/ai/AI_skills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
+      <meta itemprop="name" content="Zhiqiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 博客随笔">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/20/ai/AI_skills/" class="post-title-link" itemprop="url">知识集与Skill</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-20 16:30:00" itemprop="dateCreated datePublished" datetime="2026-04-20T16:30:00+08:00">2026-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-04-26 21:38:42" itemprop="dateModified" datetime="2026-04-26T21:38:42+08:00">2026-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Harness/" itemprop="url" rel="index"><span itemprop="name">Harness</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="知识集与-Skill"><a href="#知识集与-Skill" class="headerlink" title="知识集与 Skill"></a>知识集与 Skill</h1><h2 id="一、Skill与知识集"><a href="#一、Skill与知识集" class="headerlink" title="一、Skill与知识集"></a>一、Skill与知识集</h2><h3 id="1-1-Skill"><a href="#1-1-Skill" class="headerlink" title="1.1 Skill"></a>1.1 Skill</h3><p><strong>定义</strong>：Skil 是一种标准化的知识封装格式，让大模型在特定领域拥有专家级的执行能力。</p>
+<p><strong>本质</strong>：一个文件夹，里面装着”该怎么做”的指令、”可以用什么工具”的脚本、以及”参考什么标准”的文档。</p>
+<p><strong>核心特征</strong>：</p>
+<ul>
+<li><strong>可执行性</strong>：包含明确的执行步骤和操作流程</li>
+<li><strong>模块化</strong>：独立的功能单元，可以单独使用</li>
+<li><strong>可组合性</strong>：可以与其他 Skill 组合使用</li>
+<li><strong>聚焦性</strong>：专注于解决特定问题</li>
+<li><strong>简洁性</strong>：不应过于庞大，保持清晰</li>
+</ul>
+<h3 id="1-2-什么是知识集？"><a href="#1-2-什么是知识集？" class="headerlink" title="1.2 什么是知识集？"></a>1.2 什么是知识集？</h3><p><strong>定义</strong>：知识集是用户自定义的”知识地图”，涵盖平台资源配置（iCode 代码库、iCafe 需求空间、iAPI 文档、如流群 ID、iDataset 等）以及背景知识、工作流、团队规范、F&amp;Q 等。</p>
+<p><strong>本质</strong>：配置索引与数据实体的双层结构：</p>
+<ul>
+<li><strong>配置索引层</strong>（<code>knowledge_book/</code>）：用户定义的知识地图，记录各类资源的存储路径和访问方式</li>
+<li><strong>数据实体层</strong>（<code>knowledge/</code> 下的其他目录）：公司内部各平台的知识集合（iCode 代码库、知识库文档、iCafe 需求卡片、iAPI 接口文档等）</li>
+</ul>
+<p><strong>核心特征</strong>：</p>
+<ul>
+<li><strong>存储性</strong>：存储事实数据、文档、配置信息</li>
+<li><strong>检索性</strong>：通过关键词搜索定位特定知识</li>
+<li><strong>组织性</strong>：按领域、类型、项目等维度组织知识</li>
+<li><strong>时效性</strong>：知识具有创建&#x2F;修改时间，需要关注时效性</li>
+</ul>
+<h3 id="1-3-对比"><a href="#1-3-对比" class="headerlink" title="1.3  对比"></a>1.3  对比</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>程序性知识</th>
+<th>陈述性知识</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>定义</strong></td>
+<td>知道怎么做</td>
+<td>知道是什么</td>
+</tr>
+<tr>
+<td><strong>例子</strong></td>
+<td>“如何根据症状选择抗生素”</td>
+<td>“阿莫西林的半衰期是1.5小时”</td>
+</tr>
+<tr>
+<td><strong>特征</strong></td>
+<td>有判断流程、需要完整理解逻辑</td>
+<td>纯事实数据、只需检索匹配</td>
+</tr>
+<tr>
+<td><strong>适合载体</strong></td>
+<td><strong>Skills</strong></td>
+<td><strong>知识集</strong></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>Skill</th>
+<th>知识集</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>核心作用</strong></td>
+<td>定义”会做什么、怎么做”</td>
+<td>存储”是什么、在哪里”</td>
+</tr>
+<tr>
+<td><strong>内容类型</strong></td>
+<td>方法论、流程、决策规则</td>
+<td>事实数据、文档、配置</td>
+</tr>
+<tr>
+<td><strong>AI 使用方式</strong></td>
+<td>加载到上下文，理解并执行</td>
+<td>检索匹配，返回具体内容</td>
+</tr>
+<tr>
+<td><strong>容量约束</strong></td>
+<td>受上下文窗口限制（建议几百条以内）</td>
+<td>理论上无上限</td>
+</tr>
+<tr>
+<td><strong>更新方式</strong></td>
+<td>修改 SKILL.md、脚本、配置文件</td>
+<td>通过知识-fetch 技能拉取最新内容</td>
+</tr>
+<tr>
+<td><strong>版本管理</strong></td>
+<td>通过 dodo-skill-publish 发布到个人技能库</td>
+<td>知识内容随源平台更新</td>
+</tr>
+<tr>
+<td><strong>触发机制</strong></td>
+<td>基于用户意图自动匹配（Skill Matcher）</td>
+<td>基于关键词主动检索</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-判断标准：该用-Skill-还是知识集？"><a href="#2-3-判断标准：该用-Skill-还是知识集？" class="headerlink" title="2.3 判断标准：该用 Skill 还是知识集？"></a>2.3 判断标准：该用 Skill 还是知识集？</h3><p><strong>核心判断问题</strong>：”AI 需要理解这个方法的完整逻辑，还是需要查到具体数值？”</p>
+<table>
+<thead>
+<tr>
+<th>经验内容</th>
+<th>判断</th>
+<th>归属</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>某 API 的请求参数和返回格式</td>
+<td>查到即可</td>
+<td>知识集</td>
+</tr>
+<tr>
+<td>如何根据错误码定位问题根因</td>
+<td>需要理解判断流程</td>
+<td>Skill</td>
+</tr>
+<tr>
+<td>公司所有客户的联系方式</td>
+<td>纯数据检索</td>
+<td>知识集</td>
+</tr>
+<tr>
+<td>客户分级标准和服务策略</td>
+<td>决策规则</td>
+<td>Skill</td>
+</tr>
+<tr>
+<td>某试剂的最佳配比 1:2:3</td>
+<td>查到即可</td>
+<td>知识集</td>
+</tr>
+<tr>
+<td>如何根据目标产率选择配比策略</td>
+<td>需要理解方法论</td>
+<td>Skill</td>
+</tr>
+<tr>
+<td>团队代码规范文档</td>
+<td>查阅参考</td>
+<td>知识集</td>
+</tr>
+<tr>
+<td>如何进行代码评审的完整流程</td>
+<td>执行步骤</td>
+<td>Skill</td>
+</tr>
+</tbody></table>
+<h3 id="1-4-规模约束参考"><a href="#1-4-规模约束参考" class="headerlink" title="1.4 规模约束参考"></a>1.4 规模约束参考</h3><table>
+<thead>
+<tr>
+<th>数量级</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>几十条方法</td>
+<td>直接写成 Skills</td>
+</tr>
+<tr>
+<td>几百条方法</td>
+<td>Skills 分层 + 目录索引</td>
+</tr>
+<tr>
+<td>几千条以上</td>
+<td>必须用知识集</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、Skill-的结构与最佳实践"><a href="#二、Skill-的结构与最佳实践" class="headerlink" title="二、Skill 的结构与最佳实践"></a>二、Skill 的结构与最佳实践</h2><h3 id="2-1-Skill-目录结构"><a href="#2-1-Skill-目录结构" class="headerlink" title="2.1 Skill 目录结构"></a>2.1 Skill 目录结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">skill-name/</span><br><span class="line">├── SKILL.md              # 必需：Skill 主文件，定义触发条件和执行步骤</span><br><span class="line">├── scripts/              # 可选：可执行脚本</span><br><span class="line">│   ├── tool.sh</span><br><span class="line">│   └── helper.py</span><br><span class="line">├── references/           # 可选：详细文档、API 说明等</span><br><span class="line">│   ├── api-reference.md</span><br><span class="line">│   └── workflow-guide.md</span><br><span class="line">└── assets/              # 可选：模板文件、配置示例等</span><br><span class="line">    └── template.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-SKILL-md-核心要素"><a href="#2-2-SKILL-md-核心要素" class="headerlink" title="2.2 SKILL.md 核心要素"></a>2.2 SKILL.md 核心要素</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Skill Name</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 功能描述</span></span><br><span class="line">简要说明这个 Skill 做什么</span><br><span class="line"></span><br><span class="line"><span class="section">## 触发条件</span></span><br><span class="line">什么情况下使用这个 Skill</span><br><span class="line"></span><br><span class="line"><span class="section">## 前置依赖</span></span><br><span class="line"><span class="bullet">-</span> 依赖的 Rules</span><br><span class="line"><span class="bullet">-</span> 依赖的 Knowledge Base</span><br><span class="line"><span class="bullet">-</span> 依赖的其他 Skills</span><br><span class="line"></span><br><span class="line"><span class="section">## 执行步骤</span></span><br><span class="line"><span class="bullet">1.</span> 步骤 1（简要）</span><br><span class="line"><span class="bullet">2.</span> 步骤 2（简要）</span><br><span class="line"><span class="bullet">3.</span> 步骤 3（简要）</span><br><span class="line"></span><br><span class="line"><span class="section">## 输出结果</span></span><br><span class="line">期望的输出是什么</span><br><span class="line"></span><br><span class="line"><span class="section">## 相关文档</span></span><br><span class="line">指向详细文档的链接</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-Skill-设计五原则"><a href="#2-3-Skill-设计五原则" class="headerlink" title="2.3 Skill 设计五原则"></a>2.3 Skill 设计五原则</h3><table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+<th>反例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>边界明确</strong></td>
+<td>明确正向条件和负向条件</td>
+<td>只写”代码评审”而不写何时触发</td>
+</tr>
+<tr>
+<td><strong>输入输出结构化</strong></td>
+<td>用函数签名方式定义 Input&#x2F;Output</td>
+<td>“帮用户跑测试并返回结果”</td>
+</tr>
+<tr>
+<td><strong>步骤明确、可执行</strong></td>
+<td>每步都是可执行的动作</td>
+<td>“检查 PR，运行测试，然后更新状态”</td>
+</tr>
+<tr>
+<td><strong>失败策略完备</strong></td>
+<td>定义不同失败情况的处理方式</td>
+<td>只写成功路径</td>
+</tr>
+<tr>
+<td><strong>职责绝对单一</strong></td>
+<td>一个 Skill 只做一件事</td>
+<td>一个 Skill 同时完成测试+通知+更新状态</td>
+</tr>
+</tbody></table>
+<h3 id="3-4-Skill-编写常见误区"><a href="#3-4-Skill-编写常见误区" class="headerlink" title="3.4 Skill 编写常见误区"></a>3.4 Skill 编写常见误区</h3><table>
+<thead>
+<tr>
+<th>误区</th>
+<th>正确理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Skill 等同于一段 Prompt</td>
+<td>Skill 是长期复用、输入输出明确的能力模块，Prompt 是临时性交互</td>
+</tr>
+<tr>
+<td>Skill 是写给人看的文档</td>
+<td>Skill 目标是”下达指令”，应使用模型可解析的结构化语言</td>
+</tr>
+<tr>
+<td>Skill 越复杂越强大</td>
+<td>职责单一、边界清晰的 Skill 更容易被正确触发和稳定执行</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、知识集的结构与最佳实践"><a href="#三、知识集的结构与最佳实践" class="headerlink" title="三、知识集的结构与最佳实践"></a>三、知识集的结构与最佳实践</h2><h3 id="3-1-知识集目录结构"><a href="#3-1-知识集目录结构" class="headerlink" title="3.1 知识集目录结构"></a>3.1 知识集目录结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">knowledge/</span><br><span class="line">├── knowledge_book/           # 配置索引层（用户自定义知识地图）</span><br><span class="line">│   ├── knowledge_book_usage.md  # 索引文件，记录已配置知识本清单</span><br><span class="line">│   ├── dupeng01的dodo知识本-readme.md</span><br><span class="line">│   └── ...</span><br><span class="line">├── icode_repo/             # 代码库目录</span><br><span class="line">├── ku_doc/                 # 知识库文档（只读）</span><br><span class="line">├── requirement_doc/        # 需求文档</span><br><span class="line">├── api_doc/                # 接口文档（只读）</span><br><span class="line">├── browsers/               # 浏览器交互产生的上下文文件</span><br><span class="line">└── attachments/            # 用户附件</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-知识本（Knowledge-Book）配置"><a href="#4-2-知识本（Knowledge-Book）配置" class="headerlink" title="4.2 知识本（Knowledge Book）配置"></a>4.2 知识本（Knowledge Book）配置</h3><p>知识本是用户自定义的知识地图，记录：</p>
+<ul>
+<li>平台资源配置（iCode 代码库、iCafe 需求空间、iAPI 文档、如流群 ID）</li>
+<li>背景知识、工作流、团队规范、F&amp;Q</li>
+<li>各类资源的存储路径和访问方式</li>
+</ul>
+<p><strong>索引文件</strong>：<code>knowledge_book_usage.md</code> 记录已配置知识本的清单及存储路径。</p>
+<h3 id="4-3-知识集使用原则"><a href="#4-3-知识集使用原则" class="headerlink" title="4.3 知识集使用原则"></a>4.3 知识集使用原则</h3><ol>
+<li><strong>主动检索</strong>：当任务信息缺失或无法准确回答时，必须主动检索知识本</li>
+<li><strong>全量搜索</strong>：默认在全量知识本中搜索，不要凭主观判断跳过某个知识本</li>
+<li><strong>时效性校验</strong>：关注知识的创建&#x2F;修改时间，内容存在不代表可用</li>
+<li><strong>动态拉取</strong>：若发现现有知识与用户 Query 不符或过时，调用 knowledge-fetch 技能拉取最新知识</li>
+</ol>
+<hr>
+<h2 id="五、Skill-更新机制"><a href="#五、Skill-更新机制" class="headerlink" title="五、Skill 更新机制"></a>五、Skill 更新机制</h2><h3 id="5-1-本地-Skill-更新"><a href="#5-1-本地-Skill-更新" class="headerlink" title="5.1 本地 Skill 更新"></a>5.1 本地 Skill 更新</h3><p><strong>场景</strong>：在当前会话中安装或修改了 Skill</p>
+<p><strong>更新步骤</strong>：</p>
+<ol>
+<li>修改 Skill 文件（SKILL.md、脚本、配置等）</li>
+<li>调用 <code>dodo-skill-publish</code> Skill 将修改同步到个人技能库</li>
+</ol>
+<p><strong>命令示例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Skill: dodo-skill-publish</span><br><span class="line">Args: （无需参数，自动检测当前会话中的 Skill 变更并发布）</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-已安装-Skill-更新最新版本"><a href="#5-2-已安装-Skill-更新最新版本" class="headerlink" title="5.2 已安装 Skill 更新最新版本"></a>5.2 已安装 Skill 更新最新版本</h3><p><strong>场景</strong>：从远端技能托管平台安装的 Skill 有新版本</p>
+<p><strong>更新步骤</strong>：</p>
+<ol>
+<li>使用 <code>skill-recommender</code> Skill 查看可用 Skills 列表</li>
+<li>找到目标 Skill，查看版本信息和更新日志</li>
+<li>重新安装最新版本（覆盖旧版本）</li>
+</ol>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>本地修改过的 Skill 重新安装会被覆盖</li>
+<li>建议在更新前备份本地修改内容</li>
+</ul>
+<h3 id="5-3-Skill-持久化机制"><a href="#5-3-Skill-持久化机制" class="headerlink" title="5.3 Skill 持久化机制"></a>5.3 Skill 持久化机制</h3><p><strong>重要原则</strong>：沙箱环境是临时的，所有写入的文件在沙箱销毁后会永久消失。</p>
+<p><strong>持久化流程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">会话中修改 Skill</span><br><span class="line">    ↓</span><br><span class="line">调用 dodo-skill-publish</span><br><span class="line">    ↓</span><br><span class="line">同步到远端&quot;个人技能库&quot;（私有，非公开平台）</span><br><span class="line">    ↓</span><br><span class="line">新会话自动加载最新版本</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、协作模式：Skill-知识集"><a href="#六、协作模式：Skill-知识集" class="headerlink" title="六、协作模式：Skill + 知识集"></a>六、协作模式：Skill + 知识集</h2><h3 id="6-1-协作架构"><a href="#6-1-协作架构" class="headerlink" title="6.1 协作架构"></a>6.1 协作架构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用户提问</span><br><span class="line">    ↓</span><br><span class="line">Skills：判断问题类型 → 决定检索策略 → 选择目标知识域</span><br><span class="line">    ↓</span><br><span class="line">知识集：执行检索 → 返回匹配内容</span><br><span class="line">    ↓</span><br><span class="line">Skills：解读结果 → 组织回答</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-典型场景示例"><a href="#6-2-典型场景示例" class="headerlink" title="6.2 典型场景示例"></a>6.2 典型场景示例</h3><p><strong>场景：企业内部问答系统</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>知识集</strong></td>
+<td>存储几万份产品文档、技术规范、历史工单</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>定义”如何根据问题类型选择检索范围”、”如何判断检索结果是否足够回答问题”、”如何处理跨文档的关联查询”</td>
+</tr>
+</tbody></table>
+<p><strong>结论</strong>：Skills 让 AI 变成一个更聪明的检索者，但被检索的内容还是在知识集里。</p>
+<h3 id="6-3-协作最佳实践"><a href="#6-3-协作最佳实践" class="headerlink" title="6.3 协作最佳实践"></a>6.3 协作最佳实践</h3><ol>
+<li><strong>先分类</strong>：把知识资产过一遍，区分方法论和事实数据</li>
+<li><strong>方法论精简</strong>：高频使用、包含不可替代判断逻辑的才放 Skills</li>
+<li><strong>目录索引</strong>：按领域组织目录，每个目录下放内容概要</li>
+<li><strong>预处理格式</strong>：知识集中的 PDF、Excel 等提前转成纯文本或 Markdown</li>
+</ol>
+<hr>
+<h2 id="七、最佳实践总结"><a href="#七、最佳实践总结" class="headerlink" title="七、最佳实践总结"></a>七、最佳实践总结</h2><h3 id="7-1-Skill-最佳实践"><a href="#7-1-Skill-最佳实践" class="headerlink" title="7.1 Skill 最佳实践"></a>7.1 Skill 最佳实践</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>实践建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>命名规范</strong></td>
+<td>小写字母、数字和连字符，使用动名词，长度不超过 64 字符</td>
+</tr>
+<tr>
+<td><strong>描述规范</strong></td>
+<td>第三人称、包含核心功能与触发时机关键词、长度不超过 1024 字符</td>
+</tr>
+<tr>
+<td><strong>触发条件</strong></td>
+<td>明确正向条件和负向条件（Use this skill when &#x2F; Do NOT use this skill when）</td>
+</tr>
+<tr>
+<td><strong>渐进式披露</strong></td>
+<td>SKILL.md 保持简洁（500 行以内），详细内容拆分到 references&#x2F;</td>
+</tr>
+<tr>
+<td><strong>失败策略</strong></td>
+<td>明确定义不同失败情况下的处理方式</td>
+</tr>
+<tr>
+<td><strong>职责单一</strong></td>
+<td>一个 Skill 只做一件事，对应一个核心动作动词</td>
+</tr>
+<tr>
+<td><strong>脚本健壮性</strong></td>
+<td>显式处理错误、输出自解释的日志、避免魔法数字</td>
+</tr>
+</tbody></table>
+<h3 id="7-2-知识集最佳实践"><a href="#7-2-知识集最佳实践" class="headerlink" title="7.2 知识集最佳实践"></a>7.2 知识集最佳实践</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>实践建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>分类存储</strong></td>
+<td>按领域、类型、项目等维度组织知识</td>
+</tr>
+<tr>
+<td><strong>时效性管理</strong></td>
+<td>定期检查知识创建&#x2F;修改时间，过时内容及时更新</td>
+</tr>
+<tr>
+<td><strong>格式统一</strong></td>
+<td>知识内容尽量使用 Markdown，便于检索和解析</td>
+</tr>
+<tr>
+<td><strong>索引完善</strong></td>
+<td>每个目录下放内容概要，帮助快速定位</td>
+</tr>
+<tr>
+<td><strong>动态拉取</strong></td>
+<td>发现知识过时，及时调用 knowledge-fetch 拉取最新内容</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-技能开发流程（评测驱动）"><a href="#7-3-技能开发流程（评测驱动）" class="headerlink" title="7.3 技能开发流程（评测驱动）"></a>7.3 技能开发流程（评测驱动）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Step 1：建立无 Skill 基线</span><br><span class="line">    → 直接让模型执行任务，记录问题和失败点</span><br><span class="line"></span><br><span class="line">Step 2：定义评测用例</span><br><span class="line">    → 针对已识别问题，设计 3-5 个可复现用例</span><br><span class="line"></span><br><span class="line">Step 3：编写最小化 Skill</span><br><span class="line">    → 只编写刚好能通过评测的最小规则集合</span><br><span class="line"></span><br><span class="line">Step 4：补充边界条件</span><br><span class="line">    → 扩展适用范围，补充输入输出定义和示例</span><br><span class="line"></span><br><span class="line">Step 5：评测回归</span><br><span class="line">    → 新增用例推动修改，任意修改必须通过回归</span><br><span class="line"></span><br><span class="line">Step 6：真实使用校准</span><br><span class="line">    → 持续观察误触发、遗漏读取等问题，形成迭代闭环</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、快速参考清单"><a href="#八、快速参考清单" class="headerlink" title="八、快速参考清单"></a>八、快速参考清单</h2><h3 id="8-1-Skill-vs-知识集-快速判断"><a href="#8-1-Skill-vs-知识集-快速判断" class="headerlink" title="8.1 Skill vs 知识集 快速判断"></a>8.1 Skill vs 知识集 快速判断</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">问自己：AI 需要理解完整逻辑，还是只需要查数据？</span><br><span class="line"></span><br><span class="line">需要理解逻辑 → Skill</span><br><span class="line">只需要查数据 → 知识集</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-Skill-更新流程"><a href="#8-2-Skill-更新流程" class="headerlink" title="8.2 Skill 更新流程"></a>8.2 Skill 更新流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本地修改 → dodo-skill-publish → 同步到个人技能库</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-3-知识集更新流程"><a href="#8-3-知识集更新流程" class="headerlink" title="8.3 知识集更新流程"></a>8.3 知识集更新流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">知识过时 → knowledge-fetch → 拉取最新内容 → 覆盖本地文件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="九、总结"><a href="#九、总结" class="headerlink" title="九、总结"></a>九、总结</h2><p><strong>一句话总结</strong>：<strong>Skills 是方法论，知识集是数据。方法论告诉 AI 怎么思考和检索，数据提供具体的事实支撑。</strong></p>
+<p><strong>判断标准不是规模，而是知识性质</strong>：</p>
+<ul>
+<li>需要 AI 理解完整判断流程 → Skills</li>
+<li>只需检索匹配返回 → 知识集</li>
+</ul>
+<p><strong>最优解通常是两者结合</strong>：用 Skills 封装智能检索和决策逻辑，用知识集承载大规模事实数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -636,7 +1227,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -654,7 +1245,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">MySQL日志</a>
+          <a href="/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">MySQL性能优化</a>
         </h2>
 
         <div class="post-meta-container">
@@ -666,7 +1257,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:43" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:49" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -714,7 +1305,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -732,7 +1323,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/16/mysql/MYSQL_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">MySQL性能优化</a>
+          <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">MySQL日志</a>
         </h2>
 
         <div class="post-meta-container">
@@ -744,7 +1335,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:49" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-16 20:30:00 / 修改时间：21:53:43" itemprop="dateCreated datePublished" datetime="2026-04-16T20:30:00+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -863,90 +1454,6 @@
 <p><img src="/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png" alt="对象监视器结构"></p>
 <p><strong>可重入锁：</strong> synchronized是可重入锁，其通过 对象监视器 的”持有对象” 和 “计数器”属性字段实现</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/15/ai/AI_skills/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
-      <meta itemprop="name" content="Zhiqiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客随笔">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 博客随笔">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/15/ai/AI_skills/" class="post-title-link" itemprop="url">Skills</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-04-15 20:30:00" itemprop="dateCreated datePublished" datetime="2026-04-15T20:30:00+08:00">2026-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-16 22:14:57" itemprop="dateModified" datetime="2026-04-16T22:14:57+08:00">2026-04-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 

@@ -20,30 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"lzqiangit.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="synchronized实现原理： 通过JVM虚拟机的monitorenter 和 monitorexit指令，在同步代码块入口通过monitorenter获取对象监视器的持有权，退出的时候通过monitorexit释放持有权。获取持有权就是获取锁，释放持有权就是释放锁。此外，wait&#x2F;notify也是依赖于对象监视器的，所以这两个方法必须在synchronized代码块中调用. 锁升级">
+    <meta name="description" content="1、定义角度当前许多关于Harness（Harness Engineering）的讨论和实践，但不同方向的从业者所说的 Harness 角度是不同的。  对于优化 Agent 开发体验的开发者，其所述的 Harness，往往聚焦于模型之外，让 Agent 能感知、规划、调用工具、执行动作、接收反馈并持续完成任务的运行与控制系统。它解决的是：模型怎么访问工具和环境、怎么持久化状态跨会话继续工作、怎么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java线程同步">
-<meta property="og:url" content="https://lzqiangit.github.io/2026/04/16/java/JUC_%E9%94%81/index.html">
+<meta property="og:title" content="知识集与Skill">
+<meta property="og:url" content="https://lzqiangit.github.io/2026/04/26/ai/AI_harness/index.html">
 <meta property="og:site_name" content="博客随笔">
-<meta property="og:description" content="synchronized实现原理： 通过JVM虚拟机的monitorenter 和 monitorexit指令，在同步代码块入口通过monitorenter获取对象监视器的持有权，退出的时候通过monitorexit释放持有权。获取持有权就是获取锁，释放持有权就是释放锁。此外，wait&#x2F;notify也是依赖于对象监视器的，所以这两个方法必须在synchronized代码块中调用. 锁升级">
+<meta property="og:description" content="1、定义角度当前许多关于Harness（Harness Engineering）的讨论和实践，但不同方向的从业者所说的 Harness 角度是不同的。  对于优化 Agent 开发体验的开发者，其所述的 Harness，往往聚焦于模型之外，让 Agent 能感知、规划、调用工具、执行动作、接收反馈并持续完成任务的运行与控制系统。它解决的是：模型怎么访问工具和环境、怎么持久化状态跨会话继续工作、怎么">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzqiangit.github.io/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png">
-<meta property="article:published_time" content="2026-04-16T08:30:00.000Z">
-<meta property="article:modified_time" content="2026-04-16T13:53:36.700Z">
+<meta property="article:published_time" content="2026-04-26T08:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-26T13:38:48.821Z">
 <meta property="article:author" content="Zhiqiang">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="JUC">
+<meta property="article:tag" content="Harness">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lzqiangit.github.io/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png">
 
 
-<link rel="canonical" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E9%94%81/">
+<link rel="canonical" href="https://lzqiangit.github.io/2026/04/26/ai/AI_harness/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lzqiangit.github.io/2026/04/16/java/JUC_%E9%94%81/","path":"2026/04/16/java/JUC_锁/","title":"Java线程同步"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lzqiangit.github.io/2026/04/26/ai/AI_harness/","path":"2026/04/26/ai/AI_harness/","title":"知识集与Skill"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Java线程同步 | 博客随笔</title>
+<title>知识集与Skill | 博客随笔</title>
   
 
 
@@ -161,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#synchronized"><span class="nav-number">1.</span> <span class="nav-text">synchronized</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89%E8%A7%92%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">1、定义角度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81%E7%9B%AE%E6%A0%87%E6%8C%91%E6%88%98"><span class="nav-number">2.</span> <span class="nav-text">2、目标挑战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81Harness-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9B%9B%E5%B1%82%E8%83%BD%E5%8A%9B"><span class="nav-number">3.</span> <span class="nav-text">3、Harness 的工作方式和四层能力</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/16/java/JUC_%E9%94%81/">
+    <link itemprop="mainEntityOfPage" href="https://lzqiangit.github.io/2026/04/26/ai/AI_harness/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/83963608?v=4&size=64">
@@ -240,12 +237,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Java线程同步 | 博客随笔">
+      <meta itemprop="name" content="知识集与Skill | 博客随笔">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Java线程同步
+          知识集与Skill
         </h1>
 
         <div class="post-meta-container">
@@ -257,7 +254,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-04-16 16:30:00 / 修改时间：21:53:36" itemprop="dateCreated datePublished" datetime="2026-04-16T16:30:00+08:00">2026-04-16</time>
+      <time title="创建时间：2026-04-26 16:30:00 / 修改时间：21:38:48" itemprop="dateCreated datePublished" datetime="2026-04-26T16:30:00+08:00">2026-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,11 +262,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JUC/" itemprop="url" rel="index"><span itemprop="name">JUC</span></a>
+          <a href="/categories/Harness/" itemprop="url" rel="index"><span itemprop="name">Harness</span></a>
         </span>
     </span>
 
@@ -282,20 +275,59 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h1><p><strong>实现原理：</strong> 通过JVM虚拟机的monitorenter 和 monitorexit指令，在同步代码块入口通过monitorenter获取对象监视器的持有权，退出的时候通过monitorexit释放持有权。获取持有权就是获取锁，释放持有权就是释放锁。此外，wait&#x2F;notify也是依赖于对象监视器的，所以这两个方法必须在synchronized代码块中调用.</p>
-<p><strong>锁升级：</strong> 锁升级机制的核心目标是在保证线程安全的前提下，根据实际的线程竞争情况，智能地选择最合适的锁实现。，synchronized无论有无竞争，直接使用重量级锁。这种锁依赖于操作系统的互斥量（Mutex Lock），导致每次加锁和解锁都需要进行用户态到内核态的切换，开销很大。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="1、定义角度"><a href="#1、定义角度" class="headerlink" title="1、定义角度"></a>1、定义角度</h1><p>当前许多关于Harness（Harness Engineering）的讨论和实践，但不同方向的从业者所说的 Harness 角度是不同的。</p>
+<ul>
+<li>对于优化 Agent 开发体验的开发者，其所述的 Harness，往往聚焦于模型之外，让 Agent 能感知、规划、调用工具、执行动作、接收反馈并持续完成任务的运行与控制系统。它解决的是：模型怎么访问工具和环境、怎么持久化状态跨会话继续工作、怎么控制上下文膨胀、怎么做规划执行验证和重试、多个 Agent 怎么协作分工。如果借用 LangChain 的表达，可以写成 Agent &#x3D; Model + Harness。</li>
+<li>对于利用各种 Agent 提升开发效率，并尝试构建 AI 时代的软件工程最佳实践的开发者，Harness 则是围绕 Agent 重构代码库、文档、测试、可观测性和开发流程，使 Agent 能在真实软件工程里稳定协作、验证和交付的外层系统。其需要解决的问题是诸如：repo 是否对 Agent 可读、docs 和规则是否结构化、tests &#x2F; CI &#x2F; review &#x2F; 验收是否能进入 agent loop、UI 和日志指标 trace 是否对 Agent 可见、团队流程是否支持 agent-first 的开发方式。</li>
+</ul>
+<p>总结就是Agent Harness让 Agent 跑起来；面向 Agent 软件工程的 Harness 让 Agent 在真实工程里产生价值。两者最终拥有一个共同目标：AI-first。</p>
 <blockquote>
-<p>偏向锁（CAS，适合单个线程重复获取锁）</p>
-<p>– 出现竞争–&gt;</p>
-<p>轻量级锁（自旋CAS，适合持有锁时间较短，两个线程竞争，没有用户态内核态切换）</p>
-<p>– 自旋次数过多&#x2F;竞争线程过多–&gt;</p>
-<p>重量级锁（操作系统的Mutex，需要操作系统切换）</p>
+<p>Most companies bolt AI onto their existing process … Efficiency goes up 10 to 20 percent. Nothing structurally changes. That is AI-assisted.</p>
+<p>AI-first means you redesign your process, your architecture, and your organization around the assumption that AI is the primary builder.</p>
 </blockquote>
-<p>锁监视器Monitor，当升级为重量级锁的时候，对象头的Mark word将指向Monitor对象</p>
-<!-- 这是一张图片，ocr 内容为： -->
-
-<p><img src="/images/java/JUC_%E9%94%81_%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8.png" alt="对象监视器结构"></p>
-<p><strong>可重入锁：</strong> synchronized是可重入锁，其通过 对象监视器 的”持有对象” 和 “计数器”属性字段实现</p>
+<h1 id="2、目标挑战"><a href="#2、目标挑战" class="headerlink" title="2、目标挑战"></a>2、目标挑战</h1><p>Harness 的最终目标是实现人类掌舵，Agent 执行。在传统团队里，很多价值主要来自工程师亲手完成实现：自己查代码、自己跑环境、自己改逻辑、自己验证结果、自己兜底隐性知识。在面向 Agent 的工程环境里，人的高价值工作会逐渐迁移到：定义目标、拆解任务、提供清晰参考、设计工程环境、设定边界和约束、判断风险、处理异常、沉淀规则。与此同时，Agent 的价值也不在”替代工程师”，而在于承担越来越多可定义、可执行、可验证、可迭代的执行工作。</p>
+<p>当 Agent 真正进入研发流程之后，开发者面对的不再只是”它会不会写代码”，而是：</p>
+<ul>
+<li>它能看到什么</li>
+<li>它能理解什么</li>
+<li>它能做什么</li>
+<li>它怎么知道自己做得对不对</li>
+<li>系统怎么防止它长期失控</li>
+<li>人在这个过程中应该扮演什么角色</li>
+</ul>
+<p>换句话说，真正发生变化的不是”多了一个工具”，而是——我们的研发系统，开始需要对 Agent 友好。<br>这也是 Harness Engineering 真正重要的地方。它不是 prompt 小技巧，也不是某个工具的使用心得，而是在讨论：当研发系统开始围绕 Agent 重构时，我们到底应该建设什么。</p>
+<h1 id="3、Harness-的工作方式和四层能力"><a href="#3、Harness-的工作方式和四层能力" class="headerlink" title="3、Harness 的工作方式和四层能力"></a>3、Harness 的工作方式和四层能力</h1><p>Harness Agent 的工作方式可以总结为 Perceive &#x2F; Decide &#x2F; Act &#x2F; Feedback 四个环节。</p>
+<ul>
+<li>Perceive（先看见世界）：Agent 需要先读取任务、代码、文档、历史决策、环境状态和已有结果。它的一切判断都依赖当前能看到什么。所以第一层问题不是”模型强不强”，而是系统有没有把关键上下文以 Agent 能消费的方式暴露出来。</li>
+<li>Decide（判断下一步做什么）：读完上下文之后，Agent 要判断先查什么、先改什么、先验证什么、什么时候该停、什么时候应该升级给人。在复杂任务里，它还要涉及任务拆解和推进顺序安排。</li>
+<li>Act（真的采取动作）：Agent 不只是输出建议，还要改代码、跑脚本、执行测试、调用工具、查询日志和指标、触发工作流、发起 PR、响应评论。只有能真正进入动作层，它才不是一个”会说怎么做”的模型，而是一个能参与工程闭环的执行体。</li>
+<li>Feedback（根据结果继续修正）：动作发生之后，Agent 还要知道测试有没有通过、脚本有没有报错、页面是不是正常、性能有没有退化、指标有没有变化、改动到底有没有生效。这些结果如果不能回流，下一轮决策就无从谈起。</li>
+</ul>
+<p>可以理解为 “感知 → 决策 → 行动 → 反馈 → 再感知” 的闭环系统。将闭环翻译成工程语言，我们就得到了其真正要建设的是四层能力：</p>
+<table>
+<thead>
+<tr>
+<th>Agent 运行闭环</th>
+<th>对应工程能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Perceive</td>
+<td>让 Agent 读懂</td>
+</tr>
+<tr>
+<td>Decide + Act</td>
+<td>让 Agent 可执行</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>让 Agent 有反馈闭环</td>
+</tr>
+<tr>
+<td>长期稳定运行</td>
+<td>让 Agent 可治理</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -305,19 +337,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/JUC/" rel="tag"># JUC</a>
+              <a href="/tags/Harness/" rel="tag"># Harness</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2026/04/20/ai/AI_skills/" rel="prev" title="知识集与Skill">
+                  <i class="fa fa-angle-left"></i> 知识集与Skill
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/04/16/mysql/MYSQL_%E6%97%A5%E5%BF%97/" rel="next" title="MySQL日志">
-                  MySQL日志 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
